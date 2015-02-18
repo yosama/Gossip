@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="PhotoContainer" representedClassName="YOSPhotoContainer" syncable="YES">
+        <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="photo" inverseEntity="Service" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="photo" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Service" representedClassName="YOSService" syncable="YES">
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="detail" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="photo" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoContainer" inverseName="service" inverseEntity="PhotoContainer" syncable="YES"/>
+        <relationship name="user" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="service" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="YOSUser" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoContainer" inverseName="user" inverseEntity="PhotoContainer" syncable="YES"/>
+        <relationship name="service" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="user" inverseEntity="Service" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PhotoContainer" positionX="-641" positionY="180" width="128" height="88"/>
+        <element name="Service" positionX="-668" positionY="440" width="128" height="118"/>
+        <element name="User" positionX="-308" positionY="198" width="128" height="88"/>
+    </elements>
+</model>

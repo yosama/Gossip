@@ -12,6 +12,15 @@
 		DBD940BC1A9367F300CBD51F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD940BB1A9367F300CBD51F /* Images.xcassets */; };
 		DBD940BF1A9367F300CBD51F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD940BD1A9367F300CBD51F /* LaunchScreen.xib */; };
 		DBD940CB1A9367F300CBD51F /* GossipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940CA1A9367F300CBD51F /* GossipTests.m */; };
+		DBD940DC1A93716000CBD51F /* YOSGossipBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940DB1A93716000CBD51F /* YOSGossipBaseClass.m */; };
+		DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DBD940F31A9374AF00CBD51F /* Model.xcdatamodeld */; };
+		DBD941271A93785000CBD51F /* _YOSPhotoContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9411C1A93785000CBD51F /* _YOSPhotoContainer.m */; };
+		DBD941281A93785000CBD51F /* _YOSService.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9411E1A93785000CBD51F /* _YOSService.m */; };
+		DBD941291A93785000CBD51F /* _YOSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941201A93785000CBD51F /* _YOSUser.m */; };
+		DBD9412A1A93785000CBD51F /* YOSPhotoContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941221A93785000CBD51F /* YOSPhotoContainer.m */; };
+		DBD9412B1A93785000CBD51F /* YOSService.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941241A93785000CBD51F /* YOSService.m */; };
+		DBD9412C1A93785000CBD51F /* YOSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941261A93785000CBD51F /* YOSUser.m */; };
+		DBD941301A93797F00CBD51F /* YOSJsonToObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9412F1A93797F00CBD51F /* YOSJsonToObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,23 @@
 		DBD940C41A9367F300CBD51F /* GossipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GossipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBD940C91A9367F300CBD51F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBD940CA1A9367F300CBD51F /* GossipTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GossipTests.m; sourceTree = "<group>"; };
+		DBD940DA1A93716000CBD51F /* YOSGossipBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSGossipBaseClass.h; path = Gossip/YOSGossipBaseClass.h; sourceTree = "<group>"; };
+		DBD940DB1A93716000CBD51F /* YOSGossipBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSGossipBaseClass.m; path = Gossip/YOSGossipBaseClass.m; sourceTree = "<group>"; };
+		DBD940F41A9374AF00CBD51F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DBD9411B1A93785000CBD51F /* _YOSPhotoContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _YOSPhotoContainer.h; path = Gossip/_YOSPhotoContainer.h; sourceTree = "<group>"; };
+		DBD9411C1A93785000CBD51F /* _YOSPhotoContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSPhotoContainer.m; path = Gossip/_YOSPhotoContainer.m; sourceTree = "<group>"; };
+		DBD9411D1A93785000CBD51F /* _YOSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _YOSService.h; path = Gossip/_YOSService.h; sourceTree = "<group>"; };
+		DBD9411E1A93785000CBD51F /* _YOSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSService.m; path = Gossip/_YOSService.m; sourceTree = "<group>"; };
+		DBD9411F1A93785000CBD51F /* _YOSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _YOSUser.h; path = Gossip/_YOSUser.h; sourceTree = "<group>"; };
+		DBD941201A93785000CBD51F /* _YOSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSUser.m; path = Gossip/_YOSUser.m; sourceTree = "<group>"; };
+		DBD941211A93785000CBD51F /* YOSPhotoContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSPhotoContainer.h; path = Gossip/YOSPhotoContainer.h; sourceTree = "<group>"; };
+		DBD941221A93785000CBD51F /* YOSPhotoContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSPhotoContainer.m; path = Gossip/YOSPhotoContainer.m; sourceTree = "<group>"; };
+		DBD941231A93785000CBD51F /* YOSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSService.h; path = Gossip/YOSService.h; sourceTree = "<group>"; };
+		DBD941241A93785000CBD51F /* YOSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSService.m; path = Gossip/YOSService.m; sourceTree = "<group>"; };
+		DBD941251A93785000CBD51F /* YOSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSUser.h; path = Gossip/YOSUser.h; sourceTree = "<group>"; };
+		DBD941261A93785000CBD51F /* YOSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSUser.m; path = Gossip/YOSUser.m; sourceTree = "<group>"; };
+		DBD9412E1A93797F00CBD51F /* YOSJsonToObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSJsonToObject.h; path = Gossip/YOSJsonToObject.h; sourceTree = "<group>"; };
+		DBD9412F1A93797F00CBD51F /* YOSJsonToObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSJsonToObject.m; path = Gossip/YOSJsonToObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +84,7 @@
 		DBD940A81A9367F200CBD51F = {
 			isa = PBXGroup;
 			children = (
+				DBD940D71A93682A00CBD51F /* Models */,
 				DBD940B31A9367F300CBD51F /* Gossip */,
 				DBD940C71A9367F300CBD51F /* GossipTests */,
 				DBD940B21A9367F300CBD51F /* Products */,
@@ -109,6 +136,38 @@
 				DBD940C91A9367F300CBD51F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DBD940D71A93682A00CBD51F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DBD9412D1A93785A00CBD51F /* Machine */,
+				DBD941211A93785000CBD51F /* YOSPhotoContainer.h */,
+				DBD941221A93785000CBD51F /* YOSPhotoContainer.m */,
+				DBD941231A93785000CBD51F /* YOSService.h */,
+				DBD941241A93785000CBD51F /* YOSService.m */,
+				DBD941251A93785000CBD51F /* YOSUser.h */,
+				DBD941261A93785000CBD51F /* YOSUser.m */,
+				DBD940F31A9374AF00CBD51F /* Model.xcdatamodeld */,
+				DBD940DA1A93716000CBD51F /* YOSGossipBaseClass.h */,
+				DBD940DB1A93716000CBD51F /* YOSGossipBaseClass.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DBD9412D1A93785A00CBD51F /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				DBD9411B1A93785000CBD51F /* _YOSPhotoContainer.h */,
+				DBD9411C1A93785000CBD51F /* _YOSPhotoContainer.m */,
+				DBD9411D1A93785000CBD51F /* _YOSService.h */,
+				DBD9411E1A93785000CBD51F /* _YOSService.m */,
+				DBD9411F1A93785000CBD51F /* _YOSUser.h */,
+				DBD941201A93785000CBD51F /* _YOSUser.m */,
+				DBD9412E1A93797F00CBD51F /* YOSJsonToObject.h */,
+				DBD9412F1A93797F00CBD51F /* YOSJsonToObject.m */,
+			);
+			name = Machine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,8 +269,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBD940DC1A93716000CBD51F /* YOSGossipBaseClass.m in Sources */,
+				DBD941301A93797F00CBD51F /* YOSJsonToObject.m in Sources */,
 				DBD940BA1A9367F300CBD51F /* AppDelegate.m in Sources */,
+				DBD941291A93785000CBD51F /* _YOSUser.m in Sources */,
+				DBD9412B1A93785000CBD51F /* YOSService.m in Sources */,
 				DBD940B71A9367F300CBD51F /* main.m in Sources */,
+				DBD941271A93785000CBD51F /* _YOSPhotoContainer.m in Sources */,
+				DBD9412C1A93785000CBD51F /* YOSUser.m in Sources */,
+				DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */,
+				DBD9412A1A93785000CBD51F /* YOSPhotoContainer.m in Sources */,
+				DBD941281A93785000CBD51F /* _YOSService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +472,20 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DBD940F31A9374AF00CBD51F /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DBD940F41A9374AF00CBD51F /* Model.xcdatamodel */,
+			);
+			currentVersion = DBD940F41A9374AF00CBD51F /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = Gossip/Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DBD940A91A9367F200CBD51F /* Project object */;
 }
