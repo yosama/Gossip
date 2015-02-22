@@ -4,10 +4,13 @@
 #import "_YOSUser.h"
 
 const struct YOSUserAttributes YOSUserAttributes = {
+	.detail = @"detail",
+	.idUser = @"idUser",
 	.name = @"name",
 };
 
 const struct YOSUserRelationships YOSUserRelationships = {
+	.event = @"event",
 	.photo = @"photo",
 	.service = @"service",
 };
@@ -38,10 +41,49 @@ const struct YOSUserRelationships YOSUserRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"idUserValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"idUser"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
+@dynamic detail;
+
+@dynamic idUser;
+
+- (int64_t)idUserValue {
+	NSNumber *result = [self idUser];
+	return [result longLongValue];
+}
+
+- (void)setIdUserValue:(int64_t)value_ {
+	[self setIdUser:@(value_)];
+}
+
+- (int64_t)primitiveIdUserValue {
+	NSNumber *result = [self primitiveIdUser];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveIdUserValue:(int64_t)value_ {
+	[self setPrimitiveIdUser:@(value_)];
+}
+
 @dynamic name;
+
+@dynamic event;
+
+- (NSMutableSet*)eventSet {
+	[self willAccessValueForKey:@"event"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"event"];
+
+	[self didAccessValueForKey:@"event"];
+	return result;
+}
 
 @dynamic photo;
 

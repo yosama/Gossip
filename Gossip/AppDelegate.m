@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "YOSJSONToObject.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +19,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    YOSJSONToObject *model = [[YOSJSONToObject alloc] initWithUser:@"yosamac"];
+    
+    [model showData];
+    
+    
+     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

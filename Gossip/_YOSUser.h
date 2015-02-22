@@ -5,14 +5,18 @@
 #import "YOSGossipBaseClass.h"
 
 extern const struct YOSUserAttributes {
+	__unsafe_unretained NSString *detail;
+	__unsafe_unretained NSString *idUser;
 	__unsafe_unretained NSString *name;
 } YOSUserAttributes;
 
 extern const struct YOSUserRelationships {
+	__unsafe_unretained NSString *event;
 	__unsafe_unretained NSString *photo;
 	__unsafe_unretained NSString *service;
 } YOSUserRelationships;
 
+@class YOSEvent;
 @class YOSPhotoContainer;
 @class YOSService;
 
@@ -25,9 +29,25 @@ extern const struct YOSUserRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) YOSUserID* objectID;
 
+@property (nonatomic, strong) NSString* detail;
+
+//- (BOOL)validateDetail:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* idUser;
+
+@property (atomic) int64_t idUserValue;
+- (int64_t)idUserValue;
+- (void)setIdUserValue:(int64_t)value_;
+
+//- (BOOL)validateIdUser:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSSet *event;
+
+- (NSMutableSet*)eventSet;
 
 @property (nonatomic, strong) YOSPhotoContainer *photo;
 
@@ -36,6 +56,14 @@ extern const struct YOSUserRelationships {
 @property (nonatomic, strong) NSSet *service;
 
 - (NSMutableSet*)serviceSet;
+
+@end
+
+@interface _YOSUser (EventCoreDataGeneratedAccessors)
+- (void)addEvent:(NSSet*)value_;
+- (void)removeEvent:(NSSet*)value_;
+- (void)addEventObject:(YOSEvent*)value_;
+- (void)removeEventObject:(YOSEvent*)value_;
 
 @end
 
@@ -49,8 +77,20 @@ extern const struct YOSUserRelationships {
 
 @interface _YOSUser (CoreDataGeneratedPrimitiveAccessors)
 
+- (NSString*)primitiveDetail;
+- (void)setPrimitiveDetail:(NSString*)value;
+
+- (NSNumber*)primitiveIdUser;
+- (void)setPrimitiveIdUser:(NSNumber*)value;
+
+- (int64_t)primitiveIdUserValue;
+- (void)setPrimitiveIdUserValue:(int64_t)value_;
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+- (NSMutableSet*)primitiveEvent;
+- (void)setPrimitiveEvent:(NSMutableSet*)value;
 
 - (YOSPhotoContainer*)primitivePhoto;
 - (void)setPrimitivePhoto:(YOSPhotoContainer*)value;

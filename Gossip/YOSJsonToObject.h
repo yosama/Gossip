@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YOSJsonToObject : NSObject
+@interface YOSJSONToObject : NSObject
+
 
 @property (nonatomic,strong) NSDictionary *model;
+@property (copy) NSString *user;
 
--(id) initWithDictionary :(NSDictionary *) aDictionary;
+//-(id) initWithDictionary :(NSDictionary *) aDictionary;
 
+-(id) initWithUser: (NSString *) aUser;
 
+-(void) showData;
 @end

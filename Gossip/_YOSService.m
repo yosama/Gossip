@@ -4,12 +4,12 @@
 #import "_YOSService.h"
 
 const struct YOSServiceAttributes YOSServiceAttributes = {
-	.date = @"date",
 	.detail = @"detail",
 	.name = @"name",
 };
 
 const struct YOSServiceRelationships YOSServiceRelationships = {
+	.event = @"event",
 	.photo = @"photo",
 	.user = @"user",
 };
@@ -43,24 +43,24 @@ const struct YOSServiceRelationships YOSServiceRelationships = {
 	return keyPaths;
 }
 
-@dynamic date;
-
 @dynamic detail;
 
 @dynamic name;
 
+@dynamic event;
+
+- (NSMutableSet*)eventSet {
+	[self willAccessValueForKey:@"event"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"event"];
+
+	[self didAccessValueForKey:@"event"];
+	return result;
+}
+
 @dynamic photo;
 
 @dynamic user;
-
-- (NSMutableSet*)userSet {
-	[self willAccessValueForKey:@"user"];
-
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"user"];
-
-	[self didAccessValueForKey:@"user"];
-	return result;
-}
 
 @end
 

@@ -1,4 +1,5 @@
 #import "YOSService.h"
+#import "YOSEvent.h"
 
 @interface YOSService ()
 
@@ -8,6 +9,18 @@
 
 @implementation YOSService
 
-// Custom logic goes here.
++(instancetype) serviceWithName: (NSString *) aName
+                         detail: (NSString * ) aDetail
+                        context:(NSManagedObjectContext *) aContext {
+    
+    YOSService *serv = [YOSService insertInManagedObjectContext:aContext];
+    
+    serv.name = aName;
+    serv.detail = aDetail;
+    serv.event = [YOSEvent insertInManagedObjectContext:aContext];
+    
+serv.user = [YOSUser]
+    return serv;
+}
 
 @end

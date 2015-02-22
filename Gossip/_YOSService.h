@@ -5,16 +5,17 @@
 #import "YOSGossipBaseClass.h"
 
 extern const struct YOSServiceAttributes {
-	__unsafe_unretained NSString *date;
 	__unsafe_unretained NSString *detail;
 	__unsafe_unretained NSString *name;
 } YOSServiceAttributes;
 
 extern const struct YOSServiceRelationships {
+	__unsafe_unretained NSString *event;
 	__unsafe_unretained NSString *photo;
 	__unsafe_unretained NSString *user;
 } YOSServiceRelationships;
 
+@class YOSEvent;
 @class YOSPhotoContainer;
 @class YOSUser;
 
@@ -27,10 +28,6 @@ extern const struct YOSServiceRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) YOSServiceID* objectID;
 
-@property (nonatomic, strong) NSDate* date;
-
-//- (BOOL)validateDate:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* detail;
 
 //- (BOOL)validateDetail:(id*)value_ error:(NSError**)error_;
@@ -39,28 +36,29 @@ extern const struct YOSServiceRelationships {
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *event;
+
+- (NSMutableSet*)eventSet;
+
 @property (nonatomic, strong) YOSPhotoContainer *photo;
 
 //- (BOOL)validatePhoto:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSSet *user;
+@property (nonatomic, strong) YOSUser *user;
 
-- (NSMutableSet*)userSet;
+//- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
 
 @end
 
-@interface _YOSService (UserCoreDataGeneratedAccessors)
-- (void)addUser:(NSSet*)value_;
-- (void)removeUser:(NSSet*)value_;
-- (void)addUserObject:(YOSUser*)value_;
-- (void)removeUserObject:(YOSUser*)value_;
+@interface _YOSService (EventCoreDataGeneratedAccessors)
+- (void)addEvent:(NSSet*)value_;
+- (void)removeEvent:(NSSet*)value_;
+- (void)addEventObject:(YOSEvent*)value_;
+- (void)removeEventObject:(YOSEvent*)value_;
 
 @end
 
 @interface _YOSService (CoreDataGeneratedPrimitiveAccessors)
-
-- (NSDate*)primitiveDate;
-- (void)setPrimitiveDate:(NSDate*)value;
 
 - (NSString*)primitiveDetail;
 - (void)setPrimitiveDetail:(NSString*)value;
@@ -68,10 +66,13 @@ extern const struct YOSServiceRelationships {
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
+- (NSMutableSet*)primitiveEvent;
+- (void)setPrimitiveEvent:(NSMutableSet*)value;
+
 - (YOSPhotoContainer*)primitivePhoto;
 - (void)setPrimitivePhoto:(YOSPhotoContainer*)value;
 
-- (NSMutableSet*)primitiveUser;
-- (void)setPrimitiveUser:(NSMutableSet*)value;
+- (YOSUser*)primitiveUser;
+- (void)setPrimitiveUser:(YOSUser*)value;
 
 @end

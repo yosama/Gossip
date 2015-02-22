@@ -10,4 +10,14 @@
 
 // Custom logic goes here.
 
+
+
++(instancetype) userWithName: (NSString *) aName detail: (NSString *) aDetail context: (NSManagedObjectContext *) aContext {
+    
+    YOSUser *usr = [YOSUser insertInManagedObjectContext:aContext];
+    
+    usr.name = aName;
+    usr.detail = aDetail;
+}
+
 @end
