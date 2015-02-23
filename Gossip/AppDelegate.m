@@ -7,9 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "YOSJSONToObject.h"
+#import "YOSService.h"
+#import "YOSUser.h"
+#import "YOSServicesTableViewController.h"
+#import "YOSEventsViewController.h"
+#import "YOSCoreDataStack.h"
 
 @interface AppDelegate ()
+@property (nonatomic, strong) YOSCoreDataStack *stack;
 
 @end
 
@@ -17,13 +22,55 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    YOSJSONToObject *model = [[YOSJSONToObject alloc] initWithUser:@"yosamac"];
+    self.stack = [YOSCoreDataStack coreDataStackWithModelName:@"Model"];
     
-    [model showData];
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSUser entityName]];
+    req.fetchBatchSize = 30;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSUserAttributes.idUser
+                                                          ascending:NO]];
     
+    YOSEventsViewController *eventTVC ;
+    YOSServicesTableViewController servicesTVC;
+    
+    if ([[req sortDescriptors] count] > 0 ) {
+       eventTVC = [[YOSEventsViewController alloc] init];
+    } else {
+        
+    }
+
+    UITabBarController *tabC = [[UITabBarController alloc] init];
+    
+
+    tabC.viewControllers = @[servicesTVC ,eventTVC];
+    
+    self.window.rootViewController = tabC;
+    
+    
+    
+    
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
+    req.fetchBatchSize = 30;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.name
+                                                          ascending:YES selector:@selector(caseInsensitiveCompare:)],
+                            [NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.detail
+                                                          ascending:NO]];
+    
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                         managedObjectContext:self.stack.context
+                                                                           sectionNameKeyPath:nil cacheName:nil];
+    
+    
+    YOSServicesTableViewController *servTVC = [[YOSServicesTableViewController alloc] initWithFetchedResultsController:fc
+                                                                                                                 style:UITableViewStylePlain];
+    
+    
+    
+    
+   
     
      self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -51,5 +98,30 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+-(void) createDummyData {
+    
+    [self.stack zapAllData];
+    
+    
+   [YOSService serviceWithName:@"GitHub"
+                        detail:@"The nerd's facebook"
+                       context:self.stack.context];
+    
+    [YOSService serviceWithName:@"Google Drive"
+                         detail:@"Data in the cloud 1"
+                        context:self.stack.context];
+    
+    [YOSService serviceWithName:@"Dropbox"
+                         detail:@"Data in the cloud 2"
+                        context:self.stack.context];
+    
+}
+
+
+
+
+
 
 @end

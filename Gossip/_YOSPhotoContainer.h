@@ -14,7 +14,7 @@ extern const struct YOSPhotoContainerRelationships {
 } YOSPhotoContainerRelationships;
 
 @class YOSService;
-@class YOSUser;
+@class YOSCredential;
 
 @interface YOSPhotoContainerID : NSManagedObjectID {}
 @end
@@ -33,7 +33,7 @@ extern const struct YOSPhotoContainerRelationships {
 
 //- (BOOL)validateService:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) YOSUser *user;
+@property (nonatomic, strong) YOSCredential *user;
 
 //- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
 
@@ -47,7 +47,7 @@ extern const struct YOSPhotoContainerRelationships {
 - (YOSService*)primitiveService;
 - (void)setPrimitiveService:(YOSService*)value;
 
-- (YOSUser*)primitiveUser;
-- (void)setPrimitiveUser:(YOSUser*)value;
+- (YOSCredential*)primitiveUser;
+- (void)setPrimitiveUser:(YOSCredential*)value;
 
 @end

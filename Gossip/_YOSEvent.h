@@ -8,7 +8,7 @@ extern const struct YOSEventAttributes {
 	__unsafe_unretained NSString *date;
 	__unsafe_unretained NSString *detail;
 	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *type;
+	__unsafe_unretained NSString *typeEvent;
 	__unsafe_unretained NSString *url;
 } YOSEventAttributes;
 
@@ -18,7 +18,7 @@ extern const struct YOSEventRelationships {
 } YOSEventRelationships;
 
 @class YOSService;
-@class YOSUser;
+@class YOSCredential;
 
 @interface YOSEventID : NSManagedObjectID {}
 @end
@@ -41,9 +41,9 @@ extern const struct YOSEventRelationships {
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* type;
+@property (nonatomic, strong) NSString* typeEvent;
 
-//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateTypeEvent:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* url;
 
@@ -53,7 +53,7 @@ extern const struct YOSEventRelationships {
 
 //- (BOOL)validateService:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) YOSUser *user;
+@property (nonatomic, strong) YOSCredential *user;
 
 //- (BOOL)validateUser:(id*)value_ error:(NSError**)error_;
 
@@ -70,13 +70,16 @@ extern const struct YOSEventRelationships {
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
+- (NSString*)primitiveTypeEvent;
+- (void)setPrimitiveTypeEvent:(NSString*)value;
+
 - (NSString*)primitiveUrl;
 - (void)setPrimitiveUrl:(NSString*)value;
 
 - (YOSService*)primitiveService;
 - (void)setPrimitiveService:(YOSService*)value;
 
-- (YOSUser*)primitiveUser;
-- (void)setPrimitiveUser:(YOSUser*)value;
+- (YOSCredential*)primitiveUser;
+- (void)setPrimitiveUser:(YOSCredential*)value;
 
 @end

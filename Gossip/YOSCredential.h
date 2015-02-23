@@ -1,8 +1,8 @@
-#import "_YOSUser.h"
+#import "_YOSCredential.h"
 
-@interface YOSUser : _YOSUser {}
-// Custom logic goes here.
+@interface YOSCredential : _YOSCredential {}
 
 +(instancetype) userWithName: (NSString *) aName detail: (NSString *) aDetail context: (NSManagedObjectContext *) aContext;
+
 
 @end

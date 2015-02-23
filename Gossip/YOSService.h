@@ -6,7 +6,7 @@
 
 
 
-+(instancetype) serviceWithName: (NSString *) aName detail: (NSString * ) aDetail context:(NSManagedObject *) aContext;
++(instancetype) serviceWithName: (NSString *) aName detail: (NSString * ) aDetail context:(NSManagedObjectContext *) aContext;
 
 
 

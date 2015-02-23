@@ -1,24 +1,22 @@
 //
-//  YOSJsonToObject.m
+//  YOSJSONGitHub.m
 //  Gossip
 //
-//  Created by Yosnier on 17/02/15.
+//  Created by Yosnier on 23/02/15.
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-#import "YOSJSONToObject.h"
+#import "YOSGitHubAuth.h"
 
-@implementation YOSJSONToObject
+@implementation YOSGitHubAuth
 
 
-
--(id) initWithUser: (NSString *) aUser {
+-(id) initWithUser: (NSString *) anUser {
     
     if (self = [super init]) {
         
-        aUser = @"yosamac";
         
-        NSString *url = [NSString stringWithFormat:@"https://api.github.com/users/%@/events",aUser];
+        NSString *url = [NSString stringWithFormat:@"https://api.github.com/users/%@/events",anUser];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
         
@@ -57,9 +55,9 @@
 
 
 -(void) showData {
-        
+    
     NSLog(@"Datos usuario: %@ ",[self.model objectForKey:@"actor:"]);
-
+    
 }
 
 

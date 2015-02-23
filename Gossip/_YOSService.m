@@ -9,7 +9,7 @@ const struct YOSServiceAttributes YOSServiceAttributes = {
 };
 
 const struct YOSServiceRelationships YOSServiceRelationships = {
-	.event = @"event",
+	.events = @"events",
 	.photo = @"photo",
 	.user = @"user",
 };
@@ -47,14 +47,14 @@ const struct YOSServiceRelationships YOSServiceRelationships = {
 
 @dynamic name;
 
-@dynamic event;
+@dynamic events;
 
-- (NSMutableSet*)eventSet {
-	[self willAccessValueForKey:@"event"];
+- (NSMutableSet*)eventsSet {
+	[self willAccessValueForKey:@"events"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"event"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"events"];
 
-	[self didAccessValueForKey:@"event"];
+	[self didAccessValueForKey:@"events"];
 	return result;
 }
 

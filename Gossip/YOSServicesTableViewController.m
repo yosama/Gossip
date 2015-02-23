@@ -7,6 +7,7 @@
 //
 
 #import "YOSServicesTableViewController.h"
+#import "YOSServices.h"
 
 @interface YOSServicesTableViewController ()
 
@@ -14,8 +15,22 @@
 
 @implementation YOSServicesTableViewController
 
+
+-(id) initWithService: (YOSService *) aService {
+    
+    if (self = [super initWithNibName:nil bundle:nil] ) {
+        _services = aService;
+    }
+    
+    return self;
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -32,23 +47,25 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return  3;
-}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellId = @"cellId";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                            forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
+    if (cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                      reuseIdentifier:cellId];
+    }
     
+    cell.textLabel.text = self.services;
     
     return cell;
 }

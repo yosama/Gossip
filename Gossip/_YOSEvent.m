@@ -7,7 +7,7 @@ const struct YOSEventAttributes YOSEventAttributes = {
 	.date = @"date",
 	.detail = @"detail",
 	.name = @"name",
-	.type = @"type",
+	.typeEvent = @"typeEvent",
 	.url = @"url",
 };
 
@@ -51,7 +51,7 @@ const struct YOSEventRelationships YOSEventRelationships = {
 
 @dynamic name;
 
-@dynamic type;
+@dynamic typeEvent;
 
 @dynamic url;
 

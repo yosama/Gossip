@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Credential" representedClassName="YOSCredential" syncable="YES">
+        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idUser" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="user" inverseEntity="Event" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoContainer" inverseName="user" inverseEntity="PhotoContainer" syncable="YES"/>
+        <relationship name="services" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="user" inverseEntity="Service" syncable="YES"/>
+    </entity>
     <entity name="Event" representedClassName="YOSEvent" syncable="YES">
         <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="detail" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="type" attributeType="String" syncable="YES"/>
+        <attribute name="typeEvent" attributeType="String" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="events" inverseEntity="Service" syncable="YES"/>
-        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="events" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="Credential" inverseName="events" inverseEntity="Credential" syncable="YES"/>
     </entity>
     <entity name="PhotoContainer" representedClassName="YOSPhotoContainer" syncable="YES">
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="photo" inverseEntity="Service" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="photo" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Credential" inverseName="photo" inverseEntity="Credential" syncable="YES"/>
     </entity>
     <entity name="Service" representedClassName="YOSService" syncable="YES">
         <attribute name="detail" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="service" inverseEntity="Event" syncable="YES"/>
         <relationship name="photo" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoContainer" inverseName="service" inverseEntity="PhotoContainer" syncable="YES"/>
-        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="services" inverseEntity="User" syncable="YES"/>
-    </entity>
-    <entity name="User" representedClassName="YOSUser" syncable="YES">
-        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idUser" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="user" inverseEntity="Event" syncable="YES"/>
-        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoContainer" inverseName="user" inverseEntity="PhotoContainer" syncable="YES"/>
-        <relationship name="services" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="user" inverseEntity="Service" syncable="YES"/>
+        <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="Credential" inverseName="services" inverseEntity="Credential" syncable="YES"/>
     </entity>
     <elements>
         <element name="Event" positionX="-657" positionY="347" width="128" height="148"/>
         <element name="PhotoContainer" positionX="-765" positionY="-25" width="128" height="88"/>
         <element name="Service" positionX="-866" positionY="185" width="128" height="118"/>
-        <element name="User" positionX="-308" positionY="198" width="128" height="133"/>
+        <element name="Credential" positionX="-308" positionY="198" width="128" height="133"/>
     </elements>
 </model>

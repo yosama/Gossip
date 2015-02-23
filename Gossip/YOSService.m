@@ -1,9 +1,10 @@
 #import "YOSService.h"
 #import "YOSEvent.h"
+#import "YOSPhotoContainer.h"
 
 @interface YOSService ()
 
-// Private interface goes here.
+
 
 @end
 
@@ -17,9 +18,8 @@
     
     serv.name = aName;
     serv.detail = aDetail;
-    serv.event = [YOSEvent insertInManagedObjectContext:aContext];
+    serv.photo = [YOSPhotoContainer insertInManagedObjectContext:aContext];
     
-serv.user = [YOSUser]
     return serv;
 }
 

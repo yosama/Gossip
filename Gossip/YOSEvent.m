@@ -23,7 +23,7 @@
     event.detail = aDeatil;
     event.date = aDate;
     
-    event.user = [YOSUser ]
+    
 
     return  event;
 

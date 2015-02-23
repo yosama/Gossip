@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YOSService.h"
+#import "YOSCoreDataTableViewController.h"
 
-@interface YOSServicesTableViewController : UITableViewController
+@interface YOSServicesTableViewController : YOSCoreDataTableViewController
+
+@property (nonatomic,strong) YOSService *services;
+
+-(id) initWithService: (YOSService *) aService;
 
 @end
