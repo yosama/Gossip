@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import "YOSService.h"
-#import "YOSCoreDataTableViewController.h"
+#import "AGTCoreDataTableViewController.h"
 
-@interface YOSServicesTableViewController : YOSCoreDataTableViewController
+@interface YOSServicesTableViewController : AGTCoreDataTableViewController
 
 @property (nonatomic,strong) YOSService *services;
 

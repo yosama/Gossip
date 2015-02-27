@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Fernando. All rights reserved.
 //
 
-#import "YOSCoreDataTableViewController.h"
+#import "AGTCoreDataTableViewController.h"
 
 
 
-@interface YOSCoreDataTableViewController()
+@interface AGTCoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
 @end
 
-@implementation YOSCoreDataTableViewController
+@implementation AGTCoreDataTableViewController
 
 
 -(id) initWithFetchedResultsController: (NSFetchedResultsController *) aFetchedResultsController

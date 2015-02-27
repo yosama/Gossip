@@ -7,10 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC8ED7367082EFD219FBB065 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C128A4EC93C920ED136614B3 /* libPods.a */; };
+		DB05420B1A9B426F0087F90F /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DB05420A1A9B426F0087F90F /* AGTCoreDataStack.m */; };
+		DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB05420D1A9B4CB70087F90F /* AGTCoreDataTableViewController.m */; };
+		DB6B60E81A9D40A0000B3229 /* YOSAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6B60E61A9D40A0000B3229 /* YOSAuthViewController.m */; };
+		DB6B60E91A9D40A0000B3229 /* YOSAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6B60E71A9D40A0000B3229 /* YOSAuthViewController.xib */; };
+		DB98CFE21A9E831000ECC6AA /* YOSJSONObjectGitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */; };
 		DB9B3A2E1A95F1B7003B3EE2 /* YOSServicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9B3A2D1A95F1B7003B3EE2 /* YOSServicesTableViewController.m */; };
 		DB9B3A951A960BDB003B3EE2 /* _YOSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9B3A921A960BDB003B3EE2 /* _YOSEvent.m */; };
 		DB9B3A961A960BDB003B3EE2 /* YOSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9B3A941A960BDB003B3EE2 /* YOSEvent.m */; };
-		DB9B3A991A960D3D003B3EE2 /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9B3A981A960D3D003B3EE2 /* AGTCoreDataStack.m */; };
+		DBC4E6DB1A9B88E00044F22A /* _YOSCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC4E6D81A9B88E00044F22A /* _YOSCredential.m */; };
+		DBC4E6DC1A9B88E00044F22A /* YOSCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC4E6DA1A9B88E00044F22A /* YOSCredential.m */; };
+		DBC4E6E01A9B8E200044F22A /* YOSEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC4E6DE1A9B8E200044F22A /* YOSEventTableViewCell.m */; };
+		DBC4E6E11A9B8E200044F22A /* YOSEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6DF1A9B8E200044F22A /* YOSEventTableViewCell.xib */; };
+		DBC4E6E51A9BA8D50044F22A /* YOSEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC4E6E41A9BA8D50044F22A /* YOSEventsTableViewController.m */; };
+		DBC4E6E91A9BB3450044F22A /* YOSServiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC4E6E71A9BB3450044F22A /* YOSServiceTableViewCell.m */; };
+		DBC4E6EA1A9BB3450044F22A /* YOSServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6E81A9BB3450044F22A /* YOSServiceTableViewCell.xib */; };
+		DBC4E6EE1A9BDA300044F22A /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6ED1A9BDA300044F22A /* octocat.png */; };
+		DBC4E6F01A9BDA600044F22A /* dropbox.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6EF1A9BDA600044F22A /* dropbox.png */; };
+		DBC4E6F21A9BDA7D0044F22A /* googleDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6F11A9BDA7D0044F22A /* googleDrive.png */; };
 		DBD940B71A9367F300CBD51F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940B61A9367F300CBD51F /* main.m */; };
 		DBD940BA1A9367F300CBD51F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940B91A9367F300CBD51F /* AppDelegate.m */; };
 		DBD940BC1A9367F300CBD51F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD940BB1A9367F300CBD51F /* Images.xcassets */; };
@@ -20,11 +35,8 @@
 		DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DBD940F31A9374AF00CBD51F /* Model.xcdatamodeld */; };
 		DBD941271A93785000CBD51F /* _YOSPhotoContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9411C1A93785000CBD51F /* _YOSPhotoContainer.m */; };
 		DBD941281A93785000CBD51F /* _YOSService.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9411E1A93785000CBD51F /* _YOSService.m */; };
-		DBD941291A93785000CBD51F /* _YOSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941201A93785000CBD51F /* _YOSUser.m */; };
 		DBD9412A1A93785000CBD51F /* YOSPhotoContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941221A93785000CBD51F /* YOSPhotoContainer.m */; };
 		DBD9412B1A93785000CBD51F /* YOSService.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941241A93785000CBD51F /* YOSService.m */; };
-		DBD9412C1A93785000CBD51F /* YOSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941261A93785000CBD51F /* YOSUser.m */; };
-		DBD941301A93797F00CBD51F /* YOSJSONToObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9412F1A93797F00CBD51F /* YOSJSONToObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,14 +50,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D8321D186707DE2DF38B8AA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		99266B6DF7C1B1470F3288CD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C128A4EC93C920ED136614B3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB0542091A9B426F0087F90F /* AGTCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AGTCoreDataStack.h; path = Gossip/AGTCoreDataStack.h; sourceTree = "<group>"; };
+		DB05420A1A9B426F0087F90F /* AGTCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGTCoreDataStack.m; path = Gossip/AGTCoreDataStack.m; sourceTree = "<group>"; };
+		DB05420C1A9B4CB70087F90F /* AGTCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataTableViewController.h; sourceTree = "<group>"; };
+		DB05420D1A9B4CB70087F90F /* AGTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataTableViewController.m; sourceTree = "<group>"; };
+		DB6B60E51A9D40A0000B3229 /* YOSAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSAuthViewController.h; sourceTree = "<group>"; };
+		DB6B60E61A9D40A0000B3229 /* YOSAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSAuthViewController.m; sourceTree = "<group>"; };
+		DB6B60E71A9D40A0000B3229 /* YOSAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOSAuthViewController.xib; sourceTree = "<group>"; };
+		DB98CFE01A9E831000ECC6AA /* YOSJSONObjectGitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSJSONObjectGitHub.h; sourceTree = "<group>"; };
+		DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSJSONObjectGitHub.m; sourceTree = "<group>"; };
 		DB9B3A2C1A95F1B7003B3EE2 /* YOSServicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSServicesTableViewController.h; sourceTree = "<group>"; };
 		DB9B3A2D1A95F1B7003B3EE2 /* YOSServicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSServicesTableViewController.m; sourceTree = "<group>"; };
 		DB9B3A911A960BDB003B3EE2 /* _YOSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _YOSEvent.h; path = Gossip/_YOSEvent.h; sourceTree = "<group>"; };
 		DB9B3A921A960BDB003B3EE2 /* _YOSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSEvent.m; path = Gossip/_YOSEvent.m; sourceTree = "<group>"; };
 		DB9B3A931A960BDB003B3EE2 /* YOSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSEvent.h; path = Gossip/YOSEvent.h; sourceTree = "<group>"; };
 		DB9B3A941A960BDB003B3EE2 /* YOSEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSEvent.m; path = Gossip/YOSEvent.m; sourceTree = "<group>"; };
-		DB9B3A971A960D3D003B3EE2 /* AGTCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataStack.h; sourceTree = "<group>"; };
-		DB9B3A981A960D3D003B3EE2 /* AGTCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataStack.m; sourceTree = "<group>"; };
+		DBC4E6D71A9B88E00044F22A /* _YOSCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _YOSCredential.h; path = Gossip/_YOSCredential.h; sourceTree = "<group>"; };
+		DBC4E6D81A9B88E00044F22A /* _YOSCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSCredential.m; path = Gossip/_YOSCredential.m; sourceTree = "<group>"; };
+		DBC4E6D91A9B88E00044F22A /* YOSCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSCredential.h; path = Gossip/YOSCredential.h; sourceTree = "<group>"; };
+		DBC4E6DA1A9B88E00044F22A /* YOSCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSCredential.m; path = Gossip/YOSCredential.m; sourceTree = "<group>"; };
+		DBC4E6DD1A9B8E200044F22A /* YOSEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSEventTableViewCell.h; sourceTree = "<group>"; };
+		DBC4E6DE1A9B8E200044F22A /* YOSEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSEventTableViewCell.m; sourceTree = "<group>"; };
+		DBC4E6DF1A9B8E200044F22A /* YOSEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOSEventTableViewCell.xib; sourceTree = "<group>"; };
+		DBC4E6E31A9BA8D50044F22A /* YOSEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSEventsTableViewController.h; sourceTree = "<group>"; };
+		DBC4E6E41A9BA8D50044F22A /* YOSEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSEventsTableViewController.m; sourceTree = "<group>"; };
+		DBC4E6E61A9BB3450044F22A /* YOSServiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSServiceTableViewCell.h; sourceTree = "<group>"; };
+		DBC4E6E71A9BB3450044F22A /* YOSServiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSServiceTableViewCell.m; sourceTree = "<group>"; };
+		DBC4E6E81A9BB3450044F22A /* YOSServiceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOSServiceTableViewCell.xib; sourceTree = "<group>"; };
+		DBC4E6ED1A9BDA300044F22A /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
+		DBC4E6EF1A9BDA600044F22A /* dropbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropbox.png; sourceTree = "<group>"; };
+		DBC4E6F11A9BDA7D0044F22A /* googleDrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleDrive.png; sourceTree = "<group>"; };
 		DBD940B11A9367F300CBD51F /* Gossip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gossip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBD940B51A9367F300CBD51F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBD940B61A9367F300CBD51F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,16 +100,10 @@
 		DBD9411C1A93785000CBD51F /* _YOSPhotoContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSPhotoContainer.m; path = Gossip/_YOSPhotoContainer.m; sourceTree = "<group>"; };
 		DBD9411D1A93785000CBD51F /* _YOSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _YOSService.h; path = Gossip/_YOSService.h; sourceTree = "<group>"; };
 		DBD9411E1A93785000CBD51F /* _YOSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSService.m; path = Gossip/_YOSService.m; sourceTree = "<group>"; };
-		DBD9411F1A93785000CBD51F /* _YOSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _YOSUser.h; path = Gossip/_YOSUser.h; sourceTree = "<group>"; };
-		DBD941201A93785000CBD51F /* _YOSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _YOSUser.m; path = Gossip/_YOSUser.m; sourceTree = "<group>"; };
 		DBD941211A93785000CBD51F /* YOSPhotoContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSPhotoContainer.h; path = Gossip/YOSPhotoContainer.h; sourceTree = "<group>"; };
 		DBD941221A93785000CBD51F /* YOSPhotoContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSPhotoContainer.m; path = Gossip/YOSPhotoContainer.m; sourceTree = "<group>"; };
 		DBD941231A93785000CBD51F /* YOSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSService.h; path = Gossip/YOSService.h; sourceTree = "<group>"; };
 		DBD941241A93785000CBD51F /* YOSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSService.m; path = Gossip/YOSService.m; sourceTree = "<group>"; };
-		DBD941251A93785000CBD51F /* YOSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSUser.h; path = Gossip/YOSUser.h; sourceTree = "<group>"; };
-		DBD941261A93785000CBD51F /* YOSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSUser.m; path = Gossip/YOSUser.m; sourceTree = "<group>"; };
-		DBD9412E1A93797F00CBD51F /* YOSJSONToObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSJSONToObject.h; path = Gossip/YOSJSONToObject.h; sourceTree = "<group>"; };
-		DBD9412F1A93797F00CBD51F /* YOSJSONToObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSJSONToObject.m; path = Gossip/YOSJSONToObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC8ED7367082EFD219FBB065 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,27 +125,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D4E4CA27272F158BDC96C56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				99266B6DF7C1B1470F3288CD /* Pods.debug.xcconfig */,
+				4D8321D186707DE2DF38B8AA /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DB0542011A9B2BB90087F90F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DB98CFE01A9E831000ECC6AA /* YOSJSONObjectGitHub.h */,
+				DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		DB0542051A9B34990087F90F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DBC4E6D61A9B861F0044F22A /* CoreData */,
+				DB9B3A2C1A95F1B7003B3EE2 /* YOSServicesTableViewController.h */,
+				DB9B3A2D1A95F1B7003B3EE2 /* YOSServicesTableViewController.m */,
+				DBC4E6E31A9BA8D50044F22A /* YOSEventsTableViewController.h */,
+				DBC4E6E41A9BA8D50044F22A /* YOSEventsTableViewController.m */,
+				DB6B60E51A9D40A0000B3229 /* YOSAuthViewController.h */,
+				DB6B60E61A9D40A0000B3229 /* YOSAuthViewController.m */,
+				DB6B60E71A9D40A0000B3229 /* YOSAuthViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		DB4B4FD31A95455000605487 /* Human */ = {
 			isa = PBXGroup;
 			children = (
+				DBC4E6D91A9B88E00044F22A /* YOSCredential.h */,
+				DBC4E6DA1A9B88E00044F22A /* YOSCredential.m */,
 				DB9B3A931A960BDB003B3EE2 /* YOSEvent.h */,
 				DB9B3A941A960BDB003B3EE2 /* YOSEvent.m */,
 				DBD941211A93785000CBD51F /* YOSPhotoContainer.h */,
 				DBD941221A93785000CBD51F /* YOSPhotoContainer.m */,
 				DBD941231A93785000CBD51F /* YOSService.h */,
 				DBD941241A93785000CBD51F /* YOSService.m */,
-				DBD941251A93785000CBD51F /* YOSUser.h */,
-				DBD941261A93785000CBD51F /* YOSUser.m */,
 			);
 			name = Human;
+			sourceTree = "<group>";
+		};
+		DBC4E6D51A9B860A0044F22A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DB0542091A9B426F0087F90F /* AGTCoreDataStack.h */,
+				DB05420A1A9B426F0087F90F /* AGTCoreDataStack.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		DBC4E6D61A9B861F0044F22A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DB05420C1A9B4CB70087F90F /* AGTCoreDataTableViewController.h */,
+				DB05420D1A9B4CB70087F90F /* AGTCoreDataTableViewController.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		DBC4E6E21A9B8E300044F22A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DBC4E6DD1A9B8E200044F22A /* YOSEventTableViewCell.h */,
+				DBC4E6DE1A9B8E200044F22A /* YOSEventTableViewCell.m */,
+				DBC4E6DF1A9B8E200044F22A /* YOSEventTableViewCell.xib */,
+				DBC4E6E61A9BB3450044F22A /* YOSServiceTableViewCell.h */,
+				DBC4E6E71A9BB3450044F22A /* YOSServiceTableViewCell.m */,
+				DBC4E6E81A9BB3450044F22A /* YOSServiceTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DBD4F5F71A9C8E4400C94591 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DBC4E6F11A9BDA7D0044F22A /* googleDrive.png */,
+				DBC4E6EF1A9BDA600044F22A /* dropbox.png */,
+				DBC4E6ED1A9BDA300044F22A /* octocat.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		DBD940A81A9367F200CBD51F = {
 			isa = PBXGroup;
 			children = (
 				DBD940B31A9367F300CBD51F /* Gossip */,
+				DBD940B41A9367F300CBD51F /* Supporting Files */,
 				DBD940C71A9367F300CBD51F /* GossipTests */,
 				DBD940B21A9367F300CBD51F /* Products */,
+				2D4E4CA27272F158BDC96C56 /* Pods */,
+				E4344749E3572026A1D1C9FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,14 +238,15 @@
 		DBD940B31A9367F300CBD51F /* Gossip */ = {
 			isa = PBXGroup;
 			children = (
-				DBD940D71A93682A00CBD51F /* Models */,
+				DBD4F5F71A9C8E4400C94591 /* Resources */,
 				DBD940B81A9367F300CBD51F /* AppDelegate.h */,
 				DBD940B91A9367F300CBD51F /* AppDelegate.m */,
 				DBD940BB1A9367F300CBD51F /* Images.xcassets */,
 				DBD940BD1A9367F300CBD51F /* LaunchScreen.xib */,
-				DBD940B41A9367F300CBD51F /* Supporting Files */,
-				DB9B3A2C1A95F1B7003B3EE2 /* YOSServicesTableViewController.h */,
-				DB9B3A2D1A95F1B7003B3EE2 /* YOSServicesTableViewController.m */,
+				DBD940D71A93682A00CBD51F /* Models */,
+				DB0542051A9B34990087F90F /* Controllers */,
+				DB0542011A9B2BB90087F90F /* Utilities */,
+				DBC4E6E21A9B8E300044F22A /* Views */,
 			);
 			path = Gossip;
 			sourceTree = "<group>";
@@ -148,6 +258,7 @@
 				DBD940B61A9367F300CBD51F /* main.m */,
 			);
 			name = "Supporting Files";
+			path = Gossip;
 			sourceTree = "<group>";
 		};
 		DBD940C71A9367F300CBD51F /* GossipTests */ = {
@@ -170,15 +281,12 @@
 		DBD940D71A93682A00CBD51F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DBC4E6D51A9B860A0044F22A /* CoreData */,
 				DBD9412D1A93785A00CBD51F /* Machine */,
 				DB4B4FD31A95455000605487 /* Human */,
-				DB9B3A971A960D3D003B3EE2 /* AGTCoreDataStack.h */,
-				DB9B3A981A960D3D003B3EE2 /* AGTCoreDataStack.m */,
 				DBD940F31A9374AF00CBD51F /* Model.xcdatamodeld */,
 				DBD940DA1A93716000CBD51F /* YOSGossipBaseClass.h */,
 				DBD940DB1A93716000CBD51F /* YOSGossipBaseClass.m */,
-				DBD9412E1A93797F00CBD51F /* YOSJSONToObject.h */,
-				DBD9412F1A93797F00CBD51F /* YOSJSONToObject.m */,
 			);
 			name = Models;
 			path = ..;
@@ -187,16 +295,24 @@
 		DBD9412D1A93785A00CBD51F /* Machine */ = {
 			isa = PBXGroup;
 			children = (
+				DBC4E6D71A9B88E00044F22A /* _YOSCredential.h */,
+				DBC4E6D81A9B88E00044F22A /* _YOSCredential.m */,
 				DB9B3A911A960BDB003B3EE2 /* _YOSEvent.h */,
 				DB9B3A921A960BDB003B3EE2 /* _YOSEvent.m */,
 				DBD9411B1A93785000CBD51F /* _YOSPhotoContainer.h */,
 				DBD9411C1A93785000CBD51F /* _YOSPhotoContainer.m */,
 				DBD9411D1A93785000CBD51F /* _YOSService.h */,
 				DBD9411E1A93785000CBD51F /* _YOSService.m */,
-				DBD9411F1A93785000CBD51F /* _YOSUser.h */,
-				DBD941201A93785000CBD51F /* _YOSUser.m */,
 			);
 			name = Machine;
+			sourceTree = "<group>";
+		};
+		E4344749E3572026A1D1C9FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C128A4EC93C920ED136614B3 /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,9 +322,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBD940CE1A9367F300CBD51F /* Build configuration list for PBXNativeTarget "Gossip" */;
 			buildPhases = (
+				C715723F7D3B0D9FD688DB55 /* Check Pods Manifest.lock */,
 				DBD940AD1A9367F300CBD51F /* Sources */,
 				DBD940AE1A9367F300CBD51F /* Frameworks */,
 				DBD940AF1A9367F300CBD51F /* Resources */,
+				CB34F1AC2400C423E16A7972 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -281,6 +399,12 @@
 			files = (
 				DBD940BF1A9367F300CBD51F /* LaunchScreen.xib in Resources */,
 				DBD940BC1A9367F300CBD51F /* Images.xcassets in Resources */,
+				DBC4E6E11A9B8E200044F22A /* YOSEventTableViewCell.xib in Resources */,
+				DBC4E6EA1A9BB3450044F22A /* YOSServiceTableViewCell.xib in Resources */,
+				DBC4E6F01A9BDA600044F22A /* dropbox.png in Resources */,
+				DBC4E6EE1A9BDA300044F22A /* octocat.png in Resources */,
+				DBC4E6F21A9BDA7D0044F22A /* googleDrive.png in Resources */,
+				DB6B60E91A9D40A0000B3229 /* YOSAuthViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +417,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C715723F7D3B0D9FD688DB55 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CB34F1AC2400C423E16A7972 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DBD940AD1A9367F300CBD51F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -300,19 +457,24 @@
 			files = (
 				DB9B3A961A960BDB003B3EE2 /* YOSEvent.m in Sources */,
 				DBD940DC1A93716000CBD51F /* YOSGossipBaseClass.m in Sources */,
-				DBD941301A93797F00CBD51F /* YOSJSONToObject.m in Sources */,
 				DB9B3A2E1A95F1B7003B3EE2 /* YOSServicesTableViewController.m in Sources */,
 				DBD940BA1A9367F300CBD51F /* AppDelegate.m in Sources */,
-				DBD941291A93785000CBD51F /* _YOSUser.m in Sources */,
-				DB9B3A991A960D3D003B3EE2 /* AGTCoreDataStack.m in Sources */,
 				DBD9412B1A93785000CBD51F /* YOSService.m in Sources */,
 				DBD940B71A9367F300CBD51F /* main.m in Sources */,
 				DBD941271A93785000CBD51F /* _YOSPhotoContainer.m in Sources */,
-				DBD9412C1A93785000CBD51F /* YOSUser.m in Sources */,
+				DBC4E6DC1A9B88E00044F22A /* YOSCredential.m in Sources */,
+				DBC4E6DB1A9B88E00044F22A /* _YOSCredential.m in Sources */,
 				DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */,
+				DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */,
+				DBC4E6E51A9BA8D50044F22A /* YOSEventsTableViewController.m in Sources */,
+				DBC4E6E91A9BB3450044F22A /* YOSServiceTableViewCell.m in Sources */,
+				DBC4E6E01A9B8E200044F22A /* YOSEventTableViewCell.m in Sources */,
 				DBD9412A1A93785000CBD51F /* YOSPhotoContainer.m in Sources */,
+				DB6B60E81A9D40A0000B3229 /* YOSAuthViewController.m in Sources */,
 				DB9B3A951A960BDB003B3EE2 /* _YOSEvent.m in Sources */,
 				DBD941281A93785000CBD51F /* _YOSService.m in Sources */,
+				DB05420B1A9B426F0087F90F /* AGTCoreDataStack.m in Sources */,
+				DB98CFE21A9E831000ECC6AA /* YOSJSONObjectGitHub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +586,7 @@
 		};
 		DBD940CF1A9367F300CBD51F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99266B6DF7C1B1470F3288CD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Gossip/Info.plist;
@@ -434,6 +597,7 @@
 		};
 		DBD940D01A9367F300CBD51F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D8321D186707DE2DF38B8AA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Gossip/Info.plist;

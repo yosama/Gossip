@@ -6,11 +6,13 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+#import "AGTCoreDataStack.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) AGTCoreDataStack *stack;
 
 
 @end

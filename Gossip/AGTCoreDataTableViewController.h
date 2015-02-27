@@ -21,7 +21,7 @@
 @import CoreData;
 @import UIKit;
 
-@interface YOSCoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface AGTCoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 
 

@@ -8,13 +8,15 @@
 
 #import "AppDelegate.h"
 #import "YOSService.h"
-#import "YOSUser.h"
+#import "YOSCredential.h"
 #import "YOSServicesTableViewController.h"
-#import "YOSEventsViewController.h"
-#import "YOSCoreDataStack.h"
+#import "YOSEventsTableViewController.h"
+#import "AGTCoreDataStack.h"
+#import "YOSPhotoContainer.h"
 
 @interface AppDelegate ()
-@property (nonatomic, strong) YOSCoreDataStack *stack;
+
+
 
 @end
 
@@ -26,54 +28,29 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.stack = [YOSCoreDataStack coreDataStackWithModelName:@"Model"];
+    self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSUser entityName]];
-    req.fetchBatchSize = 30;
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSUserAttributes.idUser
+    [self createDummyData];
+    
+   // [self showData];
+    
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSCredential entityName]];
+    req.fetchBatchSize = 20;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSCredentialAttributes.name
                                                           ascending:NO]];
+    NSError *error;
+    NSInteger numCredentials =[[self.stack.context executeFetchRequest:req
+                                                                 error:&error] count];
     
-    YOSEventsViewController *eventTVC ;
-    YOSServicesTableViewController servicesTVC;
     
-    if ([[req sortDescriptors] count] > 0 ) {
-       eventTVC = [[YOSEventsViewController alloc] init];
-    } else {
+    if ( numCredentials > 0 ) {
+        [self loadEvents];
         
+    } else {
+        [self loadServices];
     }
-
-    UITabBarController *tabC = [[UITabBarController alloc] init];
     
-
-    tabC.viewControllers = @[servicesTVC ,eventTVC];
-    
-    self.window.rootViewController = tabC;
-    
-    
-    
-    
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
-    req.fetchBatchSize = 30;
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.name
-                                                          ascending:YES selector:@selector(caseInsensitiveCompare:)],
-                            [NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.detail
-                                                          ascending:NO]];
-    
-    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
-                                                                         managedObjectContext:self.stack.context
-                                                                           sectionNameKeyPath:nil cacheName:nil];
-    
-    
-    YOSServicesTableViewController *servTVC = [[YOSServicesTableViewController alloc] initWithFetchedResultsController:fc
-                                                                                                                 style:UITableViewStylePlain];
-    
-    
-    
-    
-   
-    
-     self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+       [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -100,28 +77,145 @@
 }
 
 
+
 -(void) createDummyData {
     
     [self.stack zapAllData];
     
+    YOSPhotoContainer  *photoGit = [YOSPhotoContainer  insertInManagedObjectContext:self.stack.context];
     
-   [YOSService serviceWithName:@"GitHub"
-                        detail:@"The nerd's facebook"
-                       context:self.stack.context];
+    photoGit.image = [UIImage imageNamed:@"octocat.png"];
+
+    YOSService *gitHub = [YOSService serviceWithName:@"GitHub"
+                                              detail:@"the nerd's facebook"
+                                               photo: photoGit
+                                             context:self.stack.context];
     
-    [YOSService serviceWithName:@"Google Drive"
-                         detail:@"Data in the cloud 1"
-                        context:self.stack.context];
     
-    [YOSService serviceWithName:@"Dropbox"
-                         detail:@"Data in the cloud 2"
-                        context:self.stack.context];
+    YOSPhotoContainer  *photoGoogle = [YOSPhotoContainer  insertInManagedObjectContext:self.stack.context];
+    photoGoogle.image = [UIImage imageNamed:@"googleDrive.png"];
+    
+    YOSService *google =  [YOSService serviceWithName:@"Google Drive"
+                                               detail:@"Data store in the cloud 1"
+                                                photo:photoGoogle
+                                              context:self.stack.context];
+    
+    YOSPhotoContainer  *photoDropbox = [YOSPhotoContainer  insertInManagedObjectContext:self.stack.context];
+     photoDropbox.image = [UIImage imageNamed:@"dropbox.png"];
+    YOSService *dropbox  =  [YOSService serviceWithName:@"Dropbox"
+                                                 detail:@"Data store in the cloud 2"
+                                                  photo: photoDropbox
+                                                context:self.stack.context];
+    
     
 }
 
 
 
+-(void) showData {
+    
+    //Count Services
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
+    req.fetchBatchSize = 20;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.name
+                                                          ascending:YES ]];
+    NSError *err = nil;
+    NSArray *services = [self.stack.context executeFetchRequest:req
+                                                          error:&err];
+    NSInteger numServices = [services count];
+    
+    // Count Credentials
+    req = [NSFetchRequest fetchRequestWithEntityName:[YOSCredential entityName]];
+    req.fetchBatchSize = 20;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSCredentialAttributes.name
+                                                          ascending:YES ]];
+    
+    NSArray *credentials = [self.stack.context executeFetchRequest:req
+                                                             error:&err];
+    NSInteger numCredentials = [credentials count];
+    
+    //Count events
+    req = [NSFetchRequest fetchRequestWithEntityName:[YOSEvent entityName]];
+    req.fetchBatchSize = 20;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.name
+                                                          ascending:YES ]];
+    
+    NSArray *events = [self.stack.context executeFetchRequest:req
+                                                        error:&err];
+    NSInteger numEvents = [events count];
+    
+    
+    printf("=========================================\n");
+    printf("Number of services:        %lu\n", (unsigned long)numServices);
+    printf("Number of credentials:        %lu\n", (unsigned long)numCredentials);
+    printf("Number of events:            %lu\n", (unsigned long)numEvents);
+    printf("========================================\n\n\n");
+    
+    
+    NSLog(@"Services: %@",[services description]);
+    NSLog(@"Services: %@",[events description]);
+    
+    [self performSelector:@selector(showData)
+               withObject:nil
+               afterDelay:5];
+    
+}
 
+
+
+-(void) loadServices {
+    
+    
+    NSFetchRequest *reqServices = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
+    
+    reqServices.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.name
+                                                                  ascending:YES],
+                                    [NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.detail
+                                                                  ascending:YES],
+                                    [NSSortDescriptor sortDescriptorWithKey:YOSServiceRelationships.photo
+                                                                  ascending:NO]
+                                    ];
+    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:reqServices
+                                                                          managedObjectContext:self.stack.context
+                                                                            sectionNameKeyPath:nil
+                                                                                     cacheName:nil];
+    
+    YOSServicesTableViewController *servicesTVC = [[YOSServicesTableViewController alloc] initWithFetchedResultsController:frc
+                                                                                                                     style:UITableViewStylePlain];
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:servicesTVC];
+    
+    self.window.rootViewController = navVC;
+}
+
+
+-(void) loadEvents {
+    
+    NSFetchRequest *reqEvents = [NSFetchRequest fetchRequestWithEntityName:[YOSEvent entityName]];
+    reqEvents.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.typeEvent
+                                                              ascending:YES],
+                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.name
+                                                                ascending:YES],
+                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.detail
+                                                                ascending:YES],
+                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.url
+                                                                ascending:YES],
+                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventRelationships.user
+                                                                ascending:YES],
+                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventRelationships.service
+                                                                ascending:YES]
+                                  ];
+    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:reqEvents
+                                                                          managedObjectContext:self.stack.context
+                                                                            sectionNameKeyPath:nil
+                                                                                     cacheName:nil];
+    
+    YOSEventsTableViewController *eventsTVC = [[YOSEventsTableViewController alloc] initWithFetchedResultsController:frc
+                                                                                                               style:UITableViewStylePlain];
+    
+    self.window.rootViewController = eventsTVC;
+}
 
 
 @end

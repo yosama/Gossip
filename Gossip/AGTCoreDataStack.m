@@ -7,17 +7,17 @@
 
 #import <CoreData/CoreData.h>
 
-#import "YOSCoreDataStack.h"
+#import "AGTCoreDataStack.h"
 
 
-@interface YOSCoreDataStack ()
+@interface AGTCoreDataStack ()
 @property (strong, nonatomic, readonly) NSManagedObjectModel *model;
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *storeCoordinator;
 @property (strong, nonatomic) NSURL *modelURL;
 @property (strong, nonatomic) NSURL *dbURL;
 @end
 
-@implementation YOSCoreDataStack
+@implementation AGTCoreDataStack
 
 
 #pragma mark -  Properties
@@ -55,7 +55,7 @@
             // Something went really wrong...
             // Send a notification and return nil
             NSNotification *note = [NSNotification
-                                    notificationWithName:[YOSCoreDataStack persistentStoreCoordinatorErrorNotificationName]
+                                    notificationWithName:[AGTCoreDataStack persistentStoreCoordinatorErrorNotificationName]
                                     object:self
                                     userInfo:@{@"error" : err}];
             [[NSNotificationCenter defaultCenter] postNotification:note];
@@ -87,7 +87,7 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-+(YOSCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
++(AGTCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
                                databaseFilename:(NSString*) aDBName{
     
     NSURL *url = nil;
@@ -102,13 +102,13 @@
                                 databaseURL:url];
 }
 
-+(YOSCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName{
++(AGTCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName{
     
     return [self coreDataStackWithModelName:aModelName
                            databaseFilename:nil];
 }
 
-+(YOSCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
++(AGTCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
                                     databaseURL:(NSURL*) aDBURL{
     return [[self alloc] initWithModelName: aModelName databaseURL:aDBURL];
     

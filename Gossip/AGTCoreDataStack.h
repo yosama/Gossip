@@ -8,18 +8,18 @@
 #import <Foundation/Foundation.h>
 @class NSManagedObjectContext;
 
-@interface YOSCoreDataStack : NSObject
+@interface AGTCoreDataStack : NSObject
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;
 
 +(NSString *) persistentStoreCoordinatorErrorNotificationName;
 
-+(YOSCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
++(AGTCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
                                databaseFilename:(NSString*) aDBName;
 
-+(YOSCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName;
++(AGTCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName;
 
-+(YOSCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
++(AGTCoreDataStack *) coreDataStackWithModelName:(NSString *)aModelName
                                     databaseURL:(NSURL*) aDBURL;
 
 -(id) initWithModelName:(NSString *)aModelName

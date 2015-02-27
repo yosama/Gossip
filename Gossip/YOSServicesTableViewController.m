@@ -7,7 +7,10 @@
 //
 
 #import "YOSServicesTableViewController.h"
-#import "YOSServices.h"
+#import "YOSServiceTableViewCell.h"
+#import "YOSService.h"
+#import "YOSPhotoContainer.h"
+#import "YOSAuthViewController.h"
 
 @interface YOSServicesTableViewController ()
 
@@ -18,7 +21,8 @@
 
 -(id) initWithService: (YOSService *) aService {
     
-    if (self = [super initWithNibName:nil bundle:nil] ) {
+    if (self = [super initWithNibName:nil
+                               bundle:nil] ) {
         _services = aService;
     }
     
@@ -30,13 +34,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Services";
     
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+}
+
+- (void) viewDidAppear:(BOOL)animated {
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +49,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 #pragma mark - Table view data source
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
@@ -52,67 +60,92 @@
 }
 
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellId = @"cellId";
+    // Capture the services
+    YOSService *service = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    [self registerNibs];
     
-    if (cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:cellId];
-    }
+    // create cell
+    YOSServiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSServiceTableViewCell cellId]];
     
-    cell.textLabel.text = self.services;
+    
+    // configurate cell
+    cell.lblNameService.text = service.name;
+    cell.lblDescriptionService.text = service.detail;
+    cell.imvPhotoService.image = service.photo.image;
+    
     
     return cell;
+    
 }
 
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// cell Height
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return [YOSServiceTableViewCell height];
+    
 }
-*/
+
+
+//Register the cells in the bundle
+- (void) registerNibs {
+    
+    // Bundle
+    NSBundle *main = [NSBundle mainBundle];
+    
+    // Register custom name  cell
+    UINib *serviceNib = [UINib nibWithNibName:@"YOSServiceTableViewCell"
+                                       bundle:main];
+    
+    [self.tableView registerNib:serviceNib
+         forCellReuseIdentifier:[YOSServiceTableViewCell cellId]];
+    
+}
+
+
+#pragma mark - TableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    YOSService *service = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    YOSAuthViewController *authVC = [[YOSAuthViewController alloc] initWithService:service];
+    
+    [self.navigationController pushViewController:authVC
+                     animated:YES];
+    
+}
+
+
+
+
+
+
+
+
 
 @end
