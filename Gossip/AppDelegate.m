@@ -32,7 +32,7 @@
     
     [self createDummyData];
     
-   // [self showData];
+   [self showData];
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSCredential entityName]];
     req.fetchBatchSize = 20;
@@ -152,15 +152,15 @@
     printf("========================================\n\n\n");
     
     
-    NSLog(@"Services: %@",[services description]);
-    NSLog(@"Services: %@",[events description]);
-    
+   // NSLog(@"Services: %@",[services description]);
+    //yNSLog(@"Services: %@",[events description]);
     [self performSelector:@selector(showData)
                withObject:nil
                afterDelay:5];
     
 }
 
+    
 
 
 -(void) loadServices {

@@ -1,4 +1,7 @@
 #import "YOSEvent.h"
+#import "YOSService.h"
+#import "YOSPhotoContainer.h"
+#import "YOSCredential.h"
 
 @interface YOSEvent ()
 
@@ -8,77 +11,52 @@
 
 @implementation YOSEvent
 
-
-
-+(instancetype) eventWithId: (NSInteger) aId
-                       name:(NSString *) aName
-                       type:(NSString *) aType
-                        url:(NSString *) aUrl
-                       date:(NSDate *)   aDate
-                     detail:(NSString *) aDeatil
-                    service:(YOSService *) aService
-                       user:(YOSCredential *)aCredential
-                    context:(NSManagedObjectContext *) aContext {
++(instancetype) eventWithDictionary:(NSDictionary *) aDict
+                            service:(YOSService *) aService
+                            context:(NSManagedObjectContext *) aContext {
     
+    NSInteger eventId = [[aDict objectForKey:@"id"] integerValue] ;
+    NSDictionary *payload = [aDict objectForKey:@"payload"];
+    NSArray *commits = [payload objectForKey:@"commits"];
     
+    NSString *message = nil;
+    NSString *url = nil;
+    NSDictionary *authorDict = nil;
     
+    for (NSDictionary *dict in commits) {
+        message = [dict objectForKey:@"message"];
+        url = [dict objectForKey:@"url"];
+        authorDict = [dict objectForKey:@"author"];
+    }
     
-    
-    YOSEvent *event = [YOSEvent insertInManagedObjectContext:aContext];
-    event.name = aName;
-    event.typeEvent = aType;
-    event.url = aUrl;
-    event.detail = aDeatil;
-    event.date = aDate;
-    event.service = aService;
-    event.user = aCredential;
-    
-    return  event;
-
-}
-
-
-+(instancetype) initWithDictionary:(NSDictionary *) aDict  context : (NSManagedObjectContext *) aContext {
-    
-    
-    NSInteger eventId = [[self.model objectForKey:@"id"] integerValue];
-    NSDictionary *payload = [self.model objectForKey:@"payload"];
-    NSDictionary *commits = [payload objectForKey:@"commits"];
-    NSString *message = [commits objectForKey:@"message"];
-    NSString *type = [self.model objectForKey:@"type"];
+    NSString *type = [aDict objectForKey:@"type"];
     NSDateFormatter *df = [NSDateFormatter new];
-    NSDate *createDate = [df dateFromString:[self.model objectForKey:@"created_at"]];
-    NSString *url = [commits objectForKey:@"url"];
-    NSDictionary *authorDict = [commits objectForKey:@"author"];
+    NSDate *createDate = [df dateFromString:[aDict objectForKey:@"created_at"]];
     NSString *author = [authorDict objectForKey:@"name"];
-
     
+        
     
     YOSEvent *event = [YOSEvent insertInManagedObjectContext:aContext];
-    event.
-    event.name = aName;
-    event.typeEvent = aType;
-    event.url = aUrl;
-    event.detail = aDeatil;
-    event.date = aDate;
+    
+    
+    event.idEvent = @(eventId);
+    event.name = message;
+    event.typeEvent = type;
+    event.url = url;
+    event.detail = author;
+    event.date = createDate;
     event.service = aService;
-    event.user = aCredential;
     
+    NSInteger idUser = [[[NSDictionary dictionaryWithDictionary:[aDict objectForKey:@"actor"] ] objectForKey:@"id"] integerValue];
     
+    event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
     
-    return <#expression#>
+    return event;
 }
 
 
-    
 
 
-
-
-
-
-
-return
 
 
 @end

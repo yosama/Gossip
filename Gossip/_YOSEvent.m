@@ -6,6 +6,7 @@
 const struct YOSEventAttributes YOSEventAttributes = {
 	.date = @"date",
 	.detail = @"detail",
+	.idEvent = @"idEvent",
 	.name = @"name",
 	.typeEvent = @"typeEvent",
 	.url = @"url",
@@ -42,12 +43,38 @@ const struct YOSEventRelationships YOSEventRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"idEventValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"idEvent"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
 @dynamic date;
 
 @dynamic detail;
+
+@dynamic idEvent;
+
+- (int32_t)idEventValue {
+	NSNumber *result = [self idEvent];
+	return [result intValue];
+}
+
+- (void)setIdEventValue:(int32_t)value_ {
+	[self setIdEvent:@(value_)];
+}
+
+- (int32_t)primitiveIdEventValue {
+	NSNumber *result = [self primitiveIdEvent];
+	return [result intValue];
+}
+
+- (void)setPrimitiveIdEventValue:(int32_t)value_ {
+	[self setPrimitiveIdEvent:@(value_)];
+}
 
 @dynamic name;
 

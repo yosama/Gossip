@@ -7,6 +7,7 @@
 extern const struct YOSEventAttributes {
 	__unsafe_unretained NSString *date;
 	__unsafe_unretained NSString *detail;
+	__unsafe_unretained NSString *idEvent;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *typeEvent;
 	__unsafe_unretained NSString *url;
@@ -37,6 +38,14 @@ extern const struct YOSEventRelationships {
 
 //- (BOOL)validateDetail:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* idEvent;
+
+@property (atomic) int32_t idEventValue;
+- (int32_t)idEventValue;
+- (void)setIdEventValue:(int32_t)value_;
+
+//- (BOOL)validateIdEvent:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -66,6 +75,12 @@ extern const struct YOSEventRelationships {
 
 - (NSString*)primitiveDetail;
 - (void)setPrimitiveDetail:(NSString*)value;
+
+- (NSNumber*)primitiveIdEvent;
+- (void)setPrimitiveIdEvent:(NSNumber*)value;
+
+- (int32_t)primitiveIdEventValue;
+- (void)setPrimitiveIdEventValue:(int32_t)value_;
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;

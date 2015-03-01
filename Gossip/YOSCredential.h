@@ -2,11 +2,11 @@
 
 @interface YOSCredential : _YOSCredential {}
 
-+(instancetype) credentialWithUserId: (NSInteger ) anUserId
-                                name:(NSString *) aName
-                               photo:(YOSPhotoContainer *) aPhoto
-                            detail: (NSString *) aDetail
-                           context: (NSManagedObjectContext *) aContext;
++(instancetype) credentialWithDictionary: (NSDictionary *) aDictionary
+                                 context: (NSManagedObjectContext *) aContext;
+
++(instancetype) credentialForIdUser:(NSInteger) anIdUser
+                               context:(NSManagedObjectContext *) aContext;
 
 
 @end

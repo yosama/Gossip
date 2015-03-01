@@ -12,6 +12,8 @@
 #import "YOSCredential.h"
 #import "YOSPhotoContainer.h"
 
+
+
 @interface YOSJSONObjectGitHub ()
 @property (nonatomic, strong) YOSService *service;
 
@@ -25,90 +27,16 @@
 -(id) initWithService: (YOSService *) aService user:(NSString *) anUser  {
     
     if (self = [super init]) {
-        
         _service = aService;
+        AppDelegate *appDel= [[UIApplication sharedApplication] delegate];
         
-        NSString *url = [NSString stringWithFormat:@"https://api.github.com/users/%@/events",anUser];
+        [self downloadJSONUserData:anUser context:appDel.stack.context];
+        [self downloadJSONUserEvents:anUser context:appDel.stack.context];
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        
-        NSURLResponse *response = [[NSURLResponse alloc] init];
-        NSError *err;
-        
-        NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                             returningResponse:&response
-                                                         error:&err];
-        
-        if (data) {
-            
-            NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:kNilOptions
-                                                                     error:&err];
-            if (JSONObjects) {
-                
-                for (NSDictionary *dict in JSONObjects) {
-                    
-                    = dict;
-                    
-                }
-                
-            } else {
-                NSLog(@"Error al parsear el JSON :%@ ", err.localizedDescription);
-            }
-            
-        } else {
-            NSLog(@"Error al cargar los datos del servidor:%@ ", err.localizedDescription);
-        }
         
     }
     return  self;
 }
-
-
-
--(void) fillCoreDataObjectsModels {
-    
-    AppDelegate *appDel= [[UIApplication sharedApplication] delegate];
-    
-    // filling  credential entity
-    NSDictionary *actor = [self.model objectForKey:@"actor"];
-    NSInteger userId = [[actor objectForKey:@"id"] integerValue];
-    NSString *userName = [actor objectForKey:@"name"];
-    YOSPhotoContainer *photoCon = [YOSPhotoContainer insertInManagedObjectContext:appDel.stack.context];
-    
-    photoCon.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[actor objectForKey:@"avatar_url"]]]];
-    NSString *detail = [actor objectForKey:@"url"];
-    
-    YOSCredential *credential = [YOSCredential credentialWithUserId:userId
-                                                               name:userName
-                                                              photo: photoCon
-                                                             detail:detail
-                                                            context:appDel.stack.context];
-    
-    // filling event entity
-    NSInteger eventId = [[self.model objectForKey:@"id"] integerValue];
-    NSDictionary *payload = [self.model objectForKey:@"payload"];
-    NSDictionary *commits = [payload objectForKey:@"commits"];
-    NSString *message = [commits objectForKey:@"message"];
-    NSString *type = [self.model objectForKey:@"type"];
-    NSDateFormatter *df = [NSDateFormatter new];
-    NSDate *createDate = [df dateFromString:[self.model objectForKey:@"created_at"]];
-    NSString *url = [commits objectForKey:@"url"];
-    NSDictionary *authorDict = [commits objectForKey:@"author"];
-    NSString *author = [authorDict objectForKey:@"name"];
-    
-    YOSEvent *event = [YOSEvent eventWithId:eventId
-                                       name:message
-                                       type:type
-                                        url:url
-                                       date:createDate
-                                     detail:author
-                                    service:self.service
-                                       user:credential
-                                    context:appDel.stack.context ];
-    
-}
-
 
 
 
@@ -117,6 +45,80 @@
     NSLog(@"Datos usuario: %@ ",[self.model objectForKey:@"actor:"]);
     
 }
+
+
+#pragma mark - Util
+
+
+// Get the user data
+-(void) downloadJSONUserData: (NSString *) anUser context:(NSManagedObjectContext *) aContext {
+    
+    NSString *userUrl = [NSString stringWithFormat:@"https://api.github.com/users/%@",anUser];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:userUrl]];
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSError *err;
+    
+    NSData *userData = [NSURLConnection sendSynchronousRequest:request
+                                             returningResponse:&response
+                                                         error:&err];
+    if (userData) {
+        
+        NSDictionary *JSONSUserData = [NSJSONSerialization JSONObjectWithData:userData
+                                                                      options:kNilOptions
+                                                                        error:&err];
+        if (JSONSUserData) {
+            
+            YOSCredential *credential = [YOSCredential credentialWithDictionary:JSONSUserData
+                                                                        context:aContext];
+        } else {
+            NSLog(@"Error al parsear el JSON Datos de usuario :%@ ", err.localizedDescription);
+        }
+        
+    } else {
+        NSLog(@"Error al cargar los datos del servidor:%@ ", err.localizedDescription);
+    }
+    
+}
+
+
+-(void) downloadJSONUserEvents:(NSString *) anUser context: (NSManagedObjectContext *) aContext {
+    
+    // Get the user
+    NSString *eventsUrl = [NSString stringWithFormat:@"https://api.github.com/users/%@/events",anUser];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:eventsUrl]];
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSError *err;
+    
+    NSData *eventsData = [NSURLConnection sendSynchronousRequest:request
+                                               returningResponse:&response
+                                                           error:&err];
+    if (eventsData) {
+        
+        NSArray *JSONSEventsData = [NSJSONSerialization JSONObjectWithData:eventsData
+                                                                   options:kNilOptions
+                                                                     error:&err];
+        if (JSONSEventsData) {
+            
+            for (NSDictionary *dict in JSONSEventsData) {
+                
+                YOSEvent *events = [YOSEvent eventWithDictionary:dict
+                                                         service:self.service
+                                                         context:aContext];
+            }
+            
+        } else {
+            NSLog(@"Error al parsear el JSON Eventos de usuarios :%@ ", err.localizedDescription);
+        }
+        
+    } else {
+        NSLog(@"Error al cargar los datos del servidor:%@ ", err.localizedDescription);
+    }
+    
+    
+}
+
+
+
 
 
 

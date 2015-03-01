@@ -18,7 +18,7 @@
 
 
 -(id) initWithService:(YOSService *) aService user:(NSString *) anUser;
--(void) fillCoreDataObjectsModels;
+
 -(void) showData;
 
 

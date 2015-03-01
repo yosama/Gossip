@@ -11,6 +11,7 @@
 #import "YOSPhotoContainer.h"
 #import "YOSCredential.h"
 #import "YOSJSONObjectGitHub.h"
+#import "YOSEventsTableViewController.h"
 
 
 @interface YOSAuthViewController ()
@@ -39,49 +40,22 @@
     
     [super viewWillAppear:animated];
     self.imvLogoService.image = self.service.photo.image;
+    self.txfUser.delegate = self;
+//    self.txfPassword.delegate = self;
     
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.txfUser.delegate = self;
-    self.txfPassword.delegate = self;
+    
     // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    // El usuario le ha dado a into
-    // ¿LO damos por bueno?
-    
-    // Valimos el texto y si está bien, entonces...
-    [textField resignFirstResponder];
-    [self validateField];
-    return YES;
-    
-}
-
--(void) textFieldDidEndEditing:(UITextField *)textField{
-    
-    // El tio ha terminado de editar y YA HEMOS VALIDADO
-    // Momento de guardar el texto en algun lugar
-    [self callEventsForService];
-   
-}
-
-
--(IBAction)removeKeyBoard:(id)sender{
-    
-    // aquí hago desaparecer el teclado
-    [self.view endEditing:YES];
-    
-    
 }
 
 
@@ -102,6 +76,11 @@
     
     [self callEventsForService];
     
+    YOSEventsTableViewController *eventVC = [YOSEventsTableViewController new];
+    
+    [self.navigationController pushViewController:eventVC
+                                        animated:YES];
+    
 }
 
 
@@ -116,7 +95,8 @@
         
         YOSJSONObjectGitHub *objectsGithub = [[YOSJSONObjectGitHub alloc] initWithService:self.service
                                                                                      user:self.txfUser.text];
-        [objectsGithub fillCoreDataObjectsModels];
+        
+        
 
         
     } else if ([self.service.name isEqualToString:GOOGLE]) {
@@ -165,6 +145,38 @@
 
 }
 
+#pragma mark - TextFieldDelegate
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    // El usuario le ha dado a into
+    // ¿LO damos por bueno?
+    // Valimos el texto y si está bien, entonces...
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+    
+}
+
+-(void) textFieldDidEndEditing:(UITextField *)textField{
+    
+//    [self validateField];
+    
+    // El tio ha terminado de editar y YA HEMOS VALIDADO
+    // Momento de guardar el texto en algun lugar
+    [self callEventsForService];
+    
+}
+
+
+-(IBAction)removeKeyBoard:(id)sender{
+    
+    // keyboard hide
+    [self.view endEditing:YES];
+    
+    
+}
 
 
 

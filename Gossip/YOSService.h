@@ -14,4 +14,7 @@
 
 
 
++(instancetype) serviceForNameService:(NSString *) aNameService
+                              context:(NSManagedObjectContext *) aContext;
+
 @end
