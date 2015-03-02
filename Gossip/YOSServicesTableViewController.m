@@ -18,9 +18,10 @@
 
 @implementation YOSServicesTableViewController
 
+#pragma mark - Init
 
--(id) initWithService: (YOSService *) aService {
-    
+-(id) initWithService: (YOSService *) aService
+{
     if (self = [super initWithNibName:nil
                                bundle:nil] ) {
         _services = aService;
@@ -29,18 +30,15 @@
     return self;
 }
 
-
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.title = @"Services";
-    
-    
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    
+- (void) viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
 }
 
@@ -53,45 +51,44 @@
 
 #pragma mark - Table view data source
 
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     
     return 1;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Capture the services
     YOSService *service = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
+    //Register cell
     [self registerNibs];
-    
     // create cell
     YOSServiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSServiceTableViewCell cellId]];
-    
     
     // configurate cell
     cell.lblNameService.text = service.name;
     cell.lblDescriptionService.text = service.detail;
     cell.imvPhotoService.image = service.photo.image;
     
-    
     return cell;
     
 }
 
+
+#pragma mark - Utils
+
 // cell Height
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [YOSServiceTableViewCell height];
     
 }
 
-
 //Register the cells in the bundle
-- (void) registerNibs {
-    
+- (void) registerNibs
+{
     // Bundle
     NSBundle *main = [NSBundle mainBundle];
     

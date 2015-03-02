@@ -10,11 +10,13 @@
 
 @implementation YOSService
 
+#pragma mark - Class methods
+
 +(instancetype) serviceWithName: (NSString *) aName
                          detail: (NSString * ) aDetail
                           photo: (YOSPhotoContainer *) aPhoto
-                        context:(NSManagedObjectContext *) aContext {
-    
+                        context:(NSManagedObjectContext *) aContext
+{    
     YOSService *serv = [YOSService insertInManagedObjectContext:aContext];
     
     serv.name = aName;
@@ -24,11 +26,9 @@
     return serv;
 }
 
-
-
 +(instancetype) serviceForNameService:(NSString *) aNameService
-                            context:(NSManagedObjectContext *) aContext {
-    
+                            context:(NSManagedObjectContext *) aContext
+{
     YOSService *service = nil;
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
     fr.fetchBatchSize = 10;
@@ -53,6 +53,24 @@
 }
 
 
++(NSFetchedResultsController *) serviceWithContext: (NSManagedObjectContext *) aContext
+{
+    NSFetchRequest *reqServices = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
+    
+    reqServices.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.name
+                                                                  ascending:YES],
+                                    [NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.detail
+                                                                  ascending:YES],
+                                    [NSSortDescriptor sortDescriptorWithKey:YOSServiceRelationships.photo
+                                                                  ascending:NO]
+                                    ];
+    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:reqServices
+                                                                          managedObjectContext:aContext
+                                                                            sectionNameKeyPath:nil
+                                                                                     cacheName:nil];
+    return frc;
+}
 
 
 

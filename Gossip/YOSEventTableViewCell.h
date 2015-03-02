@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YOSEventTableViewCell : UITableViewCell
+@interface YOSEventTableViewCell : UITableViewCell<UIImagePickerControllerDelegate>
 
 +(CGFloat)height;
 
 +(NSString *) cellId;
-
-
 
 @property (weak, nonatomic) IBOutlet UIImageView *imvPhotoService;
 @property (weak, nonatomic) IBOutlet UIImageView *imvPhotoUser;

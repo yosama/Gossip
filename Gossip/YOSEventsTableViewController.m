@@ -25,16 +25,8 @@
 
 #pragma mark - Init
 
--(id) initWithContext:(NSManagedObjectContext *) aContext {
-    
-    if (self = [super init]) {
-        _context = aContext;
-    }
-    
-    return self;
-}
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.title = @"Events";
@@ -42,9 +34,11 @@
 }
 
 
--(void) viewWillAppear:(BOOL)animated {
+-(void) viewWillAppear:(BOOL)animated
+{
     
     [super viewWillAppear:animated];
+   
     
 }
 
@@ -56,26 +50,24 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     YOSEvent *events = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     [self registerNibs];
     
     YOSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSEventTableViewCell cellId] ];
     
+      
     cell.lblTypeEvent.text = events.typeEvent;
     cell.lblDescriptionEvent.text = events.name;
     cell.lblUserDate.text = [NSString stringWithFormat:@"Created by %@ date:%@",events.user.name,events.date];
-    cell.imvPhotoService.layer.cornerRadius = 25;
     cell.imvPhotoService.image = events.service.photo.image;
-    cell.imvPhotoUser.layer.cornerRadius = 25;
     cell.imvPhotoUser.image = events.user.photo.image;
     
     return cell;
@@ -85,8 +77,8 @@
 #pragma mark - Util
 
 // cell Height
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
     return [YOSEventTableViewCell height];
 }
 

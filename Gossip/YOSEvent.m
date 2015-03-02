@@ -9,50 +9,63 @@
 
 @implementation YOSEvent
 
-#pragma mark - Methods class
+#pragma mark - Class methods
 
 +(instancetype) eventWithDictionary:(NSDictionary *) aDict
                             service:(YOSService *) aService
                             context:(NSManagedObjectContext *) aContext
 {
-    NSInteger eventId = [[aDict objectForKey:@"id"] integerValue] ;
-    NSDictionary *payload = [aDict objectForKey:@"payload"];
-    NSArray *commits = [payload objectForKey:@"commits"];
-    
-    NSString *message = nil;
-    NSString *url = nil;
-    NSDictionary *authorDict = nil;
-    
-    for (NSDictionary *dict in commits) {
-        message = [dict objectForKey:@"message"];
-        url = [dict objectForKey:@"url"];
-        authorDict = [dict objectForKey:@"author"];
-    }
-    
-    NSString *type = [aDict objectForKey:@"type"];
-    NSDateFormatter *df = [NSDateFormatter new];
-    NSDate *createDate = [df dateFromString:[aDict objectForKey:@"created_at"]];
-    NSString *author = [authorDict objectForKey:@"name"];
-    
     YOSEvent *event = [YOSEvent insertInManagedObjectContext:aContext];
+    
+    NSInteger eventId = [[aDict objectForKey:@"id"] integerValue] ;
+    NSString *type = [aDict objectForKey:@"type"];
+    
+    NSString *url = nil;
+    NSString *message = nil;
+    NSString *author = nil;
+    NSDate *createdDate = nil;
+    
+    if ([type isEqualToString:@"CreateEvent"]) {
+        
+        type = @"Created repository";
+        NSDictionary *repo = [aDict objectForKey:@"repo"];
+        message = [[[repo objectForKey:@"name"] componentsSeparatedByString:@"/"] objectAtIndex:1];
+        url = [repo objectForKey:@"url"];
+        
+    } else {
+        type = @"Push event";
+        NSDictionary *payload = [aDict objectForKey:@"payload"];
+        NSArray *commits = [payload objectForKey:@"commits"];
+        
+        NSDictionary *authorDict = nil;
+        
+        for (NSDictionary *dict in commits) {
+            message = [dict objectForKey:@"message"];
+            url = [dict objectForKey:@"url"];
+            authorDict = [dict objectForKey:@"author"];
+        }
+        
+        NSDateFormatter *df = [NSDateFormatter new];
+        createdDate = [df dateFromString:[aDict objectForKey:@"created_at"]];
+        author = [authorDict objectForKey:@"name"];
+    }
     
     event.idEvent = @(eventId);
     event.name = message;
     event.typeEvent = type;
     event.url = url;
     event.detail = author;
-    event.date = createDate;
+    event.date = createdDate;
     event.service = aService;
     
     NSInteger idUser = [[[NSDictionary dictionaryWithDictionary:[aDict objectForKey:@"actor"] ] objectForKey:@"id"] integerValue];
-    
     event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
     
-    return event;
+return event;
 }
 
 
-+(NSFetchedResultsController *) showAllEvents: (NSManagedObjectContext *) aContext {
++(NSFetchedResultsController *) eventWithMOC: (NSManagedObjectContext *) aContext {
     
     NSFetchRequest *reqEvents = [NSFetchRequest fetchRequestWithEntityName:[YOSEvent entityName]];
     reqEvents.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.typeEvent
@@ -77,6 +90,8 @@
 }
 
 
+#pragma mark - Utils
+
 -(NSInteger) countEvents:(NSManagedObjectContext *) aContext
 {
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName: [YOSEvent entityName]];
@@ -91,12 +106,12 @@
     }
     
     return [result count];
-
+    
 }
 
 
 -(NSInteger) countEventsForService:(YOSService *) aService
-                            context:(NSManagedObjectContext *) aContext {
+                           context:(NSManagedObjectContext *) aContext {
     
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName: [YOSEvent entityName]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.idEvent
@@ -117,7 +132,7 @@
 
 
 -(NSArray *) eventsForService:(YOSService *) aService
-                       context:(NSManagedObjectContext *) aContext {
+                      context:(NSManagedObjectContext *) aContext {
     
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName: [YOSEvent entityName]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.typeEvent

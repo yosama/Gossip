@@ -7,7 +7,7 @@
                             service:(YOSService *) aService
                             context:(NSManagedObjectContext *) aContext;
 
-+(NSFetchedResultsController *) showAllEvents: (NSManagedObjectContext *) aContext;
++(NSFetchedResultsController *) eventWithMOC: (NSManagedObjectContext *) aContext;
 
 -(NSInteger) countEvents:(NSManagedObjectContext *) aContext;
 -(NSInteger) countEventsForService:(YOSService *) aService

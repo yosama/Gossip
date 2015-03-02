@@ -10,6 +10,10 @@
 		BC8ED7367082EFD219FBB065 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C128A4EC93C920ED136614B3 /* libPods.a */; };
 		DB05420B1A9B426F0087F90F /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DB05420A1A9B426F0087F90F /* AGTCoreDataStack.m */; };
 		DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB05420D1A9B4CB70087F90F /* AGTCoreDataTableViewController.m */; };
+		DB4E43091AA4CC8B00FEB8EA /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43041AA4CC8B00FEB8EA /* UIImage+Alpha.m */; };
+		DB4E430A1AA4CC8B00FEB8EA /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43061AA4CC8B00FEB8EA /* UIImage+Resize.m */; };
+		DB4E430B1AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43081AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m */; };
+		DB4E430F1AA4D02B00FEB8EA /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E430E1AA4D02B00FEB8EA /* UIViewController+Navigation.m */; };
 		DB6B60E81A9D40A0000B3229 /* YOSAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6B60E61A9D40A0000B3229 /* YOSAuthViewController.m */; };
 		DB6B60E91A9D40A0000B3229 /* YOSAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6B60E71A9D40A0000B3229 /* YOSAuthViewController.xib */; };
 		DB98CFE21A9E831000ECC6AA /* YOSJSONObjectGitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */; };
@@ -57,6 +61,14 @@
 		DB05420A1A9B426F0087F90F /* AGTCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGTCoreDataStack.m; path = Gossip/AGTCoreDataStack.m; sourceTree = "<group>"; };
 		DB05420C1A9B4CB70087F90F /* AGTCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataTableViewController.h; sourceTree = "<group>"; };
 		DB05420D1A9B4CB70087F90F /* AGTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataTableViewController.m; sourceTree = "<group>"; };
+		DB4E43031AA4CC8B00FEB8EA /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		DB4E43041AA4CC8B00FEB8EA /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		DB4E43051AA4CC8B00FEB8EA /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		DB4E43061AA4CC8B00FEB8EA /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		DB4E43071AA4CC8B00FEB8EA /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		DB4E43081AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		DB4E430D1AA4D02B00FEB8EA /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
+		DB4E430E1AA4D02B00FEB8EA /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
 		DB6B60E51A9D40A0000B3229 /* YOSAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSAuthViewController.h; sourceTree = "<group>"; };
 		DB6B60E61A9D40A0000B3229 /* YOSAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSAuthViewController.m; sourceTree = "<group>"; };
 		DB6B60E71A9D40A0000B3229 /* YOSAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOSAuthViewController.xib; sourceTree = "<group>"; };
@@ -173,6 +185,21 @@
 			name = Human;
 			sourceTree = "<group>";
 		};
+		DB4E430C1AA4CC9600FEB8EA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DB4E43031AA4CC8B00FEB8EA /* UIImage+Alpha.h */,
+				DB4E43041AA4CC8B00FEB8EA /* UIImage+Alpha.m */,
+				DB4E43051AA4CC8B00FEB8EA /* UIImage+Resize.h */,
+				DB4E43061AA4CC8B00FEB8EA /* UIImage+Resize.m */,
+				DB4E43071AA4CC8B00FEB8EA /* UIImage+RoundedCorner.h */,
+				DB4E43081AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m */,
+				DB4E430D1AA4D02B00FEB8EA /* UIViewController+Navigation.h */,
+				DB4E430E1AA4D02B00FEB8EA /* UIViewController+Navigation.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		DBC4E6D51A9B860A0044F22A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +265,7 @@
 		DBD940B31A9367F300CBD51F /* Gossip */ = {
 			isa = PBXGroup;
 			children = (
+				DB4E430C1AA4CC9600FEB8EA /* Categories */,
 				DBD4F5F71A9C8E4400C94591 /* Resources */,
 				DBD940B81A9367F300CBD51F /* AppDelegate.h */,
 				DBD940B91A9367F300CBD51F /* AppDelegate.m */,
@@ -455,17 +483,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB4E430F1AA4D02B00FEB8EA /* UIViewController+Navigation.m in Sources */,
 				DB9B3A961A960BDB003B3EE2 /* YOSEvent.m in Sources */,
 				DBD940DC1A93716000CBD51F /* YOSGossipBaseClass.m in Sources */,
 				DB9B3A2E1A95F1B7003B3EE2 /* YOSServicesTableViewController.m in Sources */,
 				DBD940BA1A9367F300CBD51F /* AppDelegate.m in Sources */,
 				DBD9412B1A93785000CBD51F /* YOSService.m in Sources */,
+				DB4E430B1AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m in Sources */,
 				DBD940B71A9367F300CBD51F /* main.m in Sources */,
 				DBD941271A93785000CBD51F /* _YOSPhotoContainer.m in Sources */,
 				DBC4E6DC1A9B88E00044F22A /* YOSCredential.m in Sources */,
 				DBC4E6DB1A9B88E00044F22A /* _YOSCredential.m in Sources */,
 				DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */,
 				DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */,
+				DB4E43091AA4CC8B00FEB8EA /* UIImage+Alpha.m in Sources */,
 				DBC4E6E51A9BA8D50044F22A /* YOSEventsTableViewController.m in Sources */,
 				DBC4E6E91A9BB3450044F22A /* YOSServiceTableViewCell.m in Sources */,
 				DBC4E6E01A9B8E200044F22A /* YOSEventTableViewCell.m in Sources */,
@@ -473,6 +504,7 @@
 				DB6B60E81A9D40A0000B3229 /* YOSAuthViewController.m in Sources */,
 				DB9B3A951A960BDB003B3EE2 /* _YOSEvent.m in Sources */,
 				DBD941281A93785000CBD51F /* _YOSService.m in Sources */,
+				DB4E430A1AA4CC8B00FEB8EA /* UIImage+Resize.m in Sources */,
 				DB05420B1A9B426F0087F90F /* AGTCoreDataStack.m in Sources */,
 				DB98CFE21A9E831000ECC6AA /* YOSJSONObjectGitHub.m in Sources */,
 			);

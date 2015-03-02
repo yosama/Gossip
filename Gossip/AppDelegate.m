@@ -13,6 +13,7 @@
 #import "YOSEventsTableViewController.h"
 #import "AGTCoreDataStack.h"
 #import "YOSPhotoContainer.h"
+#import "UIViewController+Navigation.h"
 
 @interface AppDelegate ()
 
@@ -31,7 +32,7 @@
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
     [self createDummyData];
-   
+    
     [self showData];
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSCredential entityName]];
@@ -41,13 +42,17 @@
     NSError *error;
     NSInteger numCredentials =[[self.stack.context executeFetchRequest:req
                                                                  error:&error] count];
-    
+    YOSEventsTableViewController *eventTVC = nil;
+    YOSServicesTableViewController *servicesTVC = nil;
     
     if ( numCredentials > 0 ) {
-        [self showEvents];
+        eventTVC = [[YOSEventsTableViewController alloc] initWithFetchedResultsController:[YOSEvent eventWithMOC:self.stack.context] style:UITableViewStylePlain];
+        self.window.rootViewController = [eventTVC wrapperNavigation];
         
     } else {
-        [self showServices];
+        servicesTVC = [[YOSServicesTableViewController alloc] initWithFetchedResultsController:[YOSService serviceWithContext:self.stack.context]
+                                                                                                                        style:UITableViewStylePlain];
+        self.window.rootViewController = [servicesTVC wrapperNavigation];
     }
     
     [self.window makeKeyAndVisible];
@@ -83,7 +88,7 @@
 
 -(void) createDummyData {
     
-   // [self.stack zapAllData];
+    // [self.stack zapAllData];
     
     YOSPhotoContainer  *photoGit = [YOSPhotoContainer  insertInManagedObjectContext:self.stack.context];
     photoGit.image = [UIImage imageNamed:@"octocat.png"];
@@ -161,36 +166,10 @@
 -(void) showServices {
     
     
-    NSFetchRequest *reqServices = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
     
-    reqServices.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.name
-                                                                  ascending:YES],
-                                    [NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.detail
-                                                                  ascending:YES],
-                                    [NSSortDescriptor sortDescriptorWithKey:YOSServiceRelationships.photo
-                                                                  ascending:NO]
-                                    ];
-    
-    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:reqServices
-                                                                          managedObjectContext:self.stack.context
-                                                                            sectionNameKeyPath:nil
-                                                                                     cacheName:nil];
-    
-    YOSServicesTableViewController *servicesTVC = [[YOSServicesTableViewController alloc] initWithFetchedResultsController:frc
-                                                                                                                     style:UITableViewStylePlain];
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:servicesTVC];
-    
-    self.window.rootViewController = navVC;
 }
 
 
--(void) showEvents {
-    
-    YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc] initWithContext:self.stack.context];
-   
-    self.window.rootViewController = eventTVC;
-    
-}
 
 -(void) save {
     
@@ -208,7 +187,7 @@
     [self performSelector:@selector(autosaving)
                withObject:nil
                afterDelay:10];
-
+    
 }
 
 

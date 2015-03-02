@@ -75,7 +75,7 @@
                                                                                      user:self.txfUser.text];
         AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
         
-        NSFetchedResultsController *frc =   [YOSEvent showAllEvents:appDel.stack.context];
+        NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
         
         YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc] initWithFetchedResultsController:frc
                                                                                                                   style:UITableViewStylePlain];

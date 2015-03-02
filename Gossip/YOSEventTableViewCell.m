@@ -9,32 +9,32 @@
 #import "YOSEventTableViewCell.h"
 #import "YOSCredential.h"
 #import "YOSService.h"
-
+#import "UIImage+RoundedCorner.h"
+#import "UIImage+Resize.h"
 @implementation YOSEventTableViewCell
 
 
 
-+(CGFloat)height {
-    
-    return 80.0f;
+
++(CGFloat)height
+{
+    return 90.0f;
 }
 
-
-+(NSString *) cellId {
++(NSString *) cellId
+{
     return [self description];
 }
 
-
-
-
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end
