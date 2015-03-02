@@ -12,6 +12,7 @@
 
 @import UIKit;
 #import "YOSService.h"
+@class YOSAuthViewController;
 
 
 @interface YOSAuthViewController : UIViewController<UITableViewDelegate,UITextFieldDelegate>
@@ -24,7 +25,7 @@
 
 -(id) initWithService: (YOSService *) aService;
 
-- (IBAction)btnSingin:(id)sender;
+-(IBAction)btnSingin:(id)sender;
 -(IBAction)removeKeyBoard:(id)sender;
 
 @end

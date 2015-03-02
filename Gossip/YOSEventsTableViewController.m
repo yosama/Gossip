@@ -8,26 +8,31 @@
 
 #import "YOSEventsTableViewController.h"
 #import "YOSEvent.h"
+#import "YOSCredential.h"
+#import "YOSService.h"
+#import "YOSPhotoContainer.h"
 #import "YOSJSONObjectGitHub.h"
+#import "YOSEventTableViewCell.h"
 
 
 @interface YOSEventsTableViewController ()
+
 
 @end
 
 @implementation YOSEventsTableViewController
 
+
 #pragma mark - Init
 
--(id) initWithEvent: (YOSEvent *) anEvent {
+-(id) initWithContext:(NSManagedObjectContext *) aContext {
     
     if (self = [super init]) {
-        _event = anEvent;
+        _context = aContext;
     }
     
     return self;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +41,12 @@
     
 }
 
+
+-(void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -46,74 +57,57 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    // Return the number of sections.
-    return 1;
-}
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-
     
     return 1;
 }
 
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    YOSEvent *events = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    [self registerNibs];
+    
+    YOSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSEventTableViewCell cellId] ];
+    
+    cell.lblTypeEvent.text = events.typeEvent;
+    cell.lblDescriptionEvent.text = events.name;
+    cell.lblUserDate.text = [NSString stringWithFormat:@"Created by %@ date:%@",events.user.name,events.date];
+    cell.imvPhotoService.layer.cornerRadius = 25;
+    cell.imvPhotoService.image = events.service.photo.image;
+    cell.imvPhotoUser.layer.cornerRadius = 25;
+    cell.imvPhotoUser.image = events.user.photo.image;
+    
+    return cell;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+#pragma mark - Util
+
+// cell Height
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return [YOSEventTableViewCell height];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+//Register the cell in the bundle
+- (void) registerNibs {
+    
+    // Bundle
+    NSBundle *main = [NSBundle mainBundle];
+    
+    // Register custom cell
+    UINib *eventNib = [UINib nibWithNibName:@"YOSEventTableViewCell"
+                                       bundle:main];
+    
+    [self.tableView registerNib:eventNib
+         forCellReuseIdentifier:[YOSEventTableViewCell cellId]];
+    
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+#pragma mark - TableViewDelegate
 
 
 

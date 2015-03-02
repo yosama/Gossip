@@ -9,13 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface YOSEventTableViewCell : UITableViewCell
+
++(CGFloat)height;
+
++(NSString *) cellId;
+
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *imvPhotoService;
 @property (weak, nonatomic) IBOutlet UIImageView *imvPhotoUser;
-
 @property (weak, nonatomic) IBOutlet UILabel *lblTypeEvent;
-
 @property (weak, nonatomic) IBOutlet UILabel *lblDescriptionEvent;
-
 @property (weak, nonatomic) IBOutlet UILabel *lblUserDate;
+
+
 
 @end

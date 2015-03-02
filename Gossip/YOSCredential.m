@@ -13,7 +13,7 @@
 +(instancetype) credentialWithDictionary: (NSDictionary *) aDictionary
                                  context: (NSManagedObjectContext *) aContext; {
     
-    YOSCredential *crendential = [YOSCredential insertInManagedObjectContext:aContext];
+    YOSCredential *credential = [YOSCredential insertInManagedObjectContext:aContext];
     
     NSInteger userId = [[aDictionary objectForKey:@"id"] integerValue];
     NSString *userName = [aDictionary objectForKey:@"login"];
@@ -21,19 +21,14 @@
     photoCont.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[aDictionary objectForKey:@"avatar_url"]]]];
     NSString *detail = [aDictionary objectForKey:@"html_url"];
     
+    credential.idUser = @(userId);
+    credential.name = userName;
+    credential.photo = photoCont;
+    credential.detail = detail;
     
-    
-    
-    crendential.idUser = @(userId);
-    crendential.name = userName;
-    crendential.photo = photoCont;
-    crendential.detail = detail;
-    
-   crendential.services = [YOSService serviceForNameService:@"GitHub"
-                                                    context:aContext];
-    
-    
-    return crendential;
+   [credential.servicesSet addObject:[YOSService serviceForNameService:@"GitHub"
+                                                               context:aContext]];
+    return credential;
 }
 
 
@@ -57,9 +52,13 @@
         credential = [res objectAtIndex:0];
     }
     
+    
     return credential;
     
 }
+
+
+
 
 
 

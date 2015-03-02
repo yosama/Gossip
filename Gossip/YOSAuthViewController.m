@@ -26,8 +26,8 @@
 #pragma mark - Init
 
 
--(id) initWithService: (YOSService *) aService {
-    
+-(id) initWithService: (YOSService *) aService
+{
     if (self = [super init]) {
         _service = aService;
     }
@@ -36,57 +36,35 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated {
-    
+- (void) viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
     self.imvLogoService.image = self.service.photo.image;
     self.txfUser.delegate = self;
-//    self.txfPassword.delegate = self;
-    
 }
 
-- (void)viewDidLoad {
-    
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
-
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
+#pragma mark - Actions
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-
-
-- (IBAction)btnSingin:(id)sender {
-    
+- (IBAction)btnSingin:(id)sender
+{
     [self callEventsForService];
     
-    YOSEventsTableViewController *eventVC = [YOSEventsTableViewController new];
-    
-    [self.navigationController pushViewController:eventVC
-                                        animated:YES];
-    
 }
 
 
--(void) callEventsForService {
-    
-    
+-(void) callEventsForService
+{
     if ([self.service.name isEqualToString:DROPBOX]) {
         
         NSLog(@"Implementando modulo");
@@ -95,14 +73,19 @@
         
         YOSJSONObjectGitHub *objectsGithub = [[YOSJSONObjectGitHub alloc] initWithService:self.service
                                                                                      user:self.txfUser.text];
+        AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
         
+        NSFetchedResultsController *frc =   [YOSEvent showAllEvents:appDel.stack.context];
         
-
+        YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc] initWithFetchedResultsController:frc
+                                                                                                                  style:UITableViewStylePlain];
+        [self.navigationController pushViewController:eventTVC
+                                             animated:YES];
         
     } else if ([self.service.name isEqualToString:GOOGLE]) {
         NSLog(@"Implementando modulo");
     }
-
+    
 }
 
 
@@ -142,7 +125,7 @@
     [alert addAction:ok];
     [alert addAction:cancel];
     [self presentViewController:alert animated:YES completion:nil];
-
+    
 }
 
 #pragma mark - TextFieldDelegate
@@ -161,7 +144,7 @@
 
 -(void) textFieldDidEndEditing:(UITextField *)textField{
     
-//    [self validateField];
+    //    [self validateField];
     
     // El tio ha terminado de editar y YA HEMOS VALIDADO
     // Momento de guardar el texto en algun lugar

@@ -15,11 +15,10 @@
 
 @property (nonatomic,strong) NSDictionary *model;
 @property (nonatomic,copy) NSString *user;
-
+@property (nonatomic,strong) YOSEvent *event;
 
 -(id) initWithService:(YOSService *) aService user:(NSString *) anUser;
 
--(void) showData;
 
 
 @end

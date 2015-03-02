@@ -45,12 +45,14 @@
         // la cagamos
         NSLog(@"Error al buscar: %@", err);
     } else {
-        service = [res objectAtIndex:0];
+        service =[res objectAtIndex:0];
     }
     
     return service;
     
 }
+
+
 
 
 

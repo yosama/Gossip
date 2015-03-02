@@ -1,5 +1,5 @@
 //
-//  YOSEventsTableViewCell.m
+//  YOSEventTableViewCell.m
 //  Gossip
 //
 //  Created by Yosnier on 23/02/15.
@@ -13,17 +13,10 @@
 @implementation YOSEventTableViewCell
 
 
--(id) init {
-    
-    self.imvPhotoUser.layer.cornerRadius = 25;
-    
-    return self;
-}
-
 
 +(CGFloat)height {
     
-    return 100.0f;
+    return 80.0f;
 }
 
 

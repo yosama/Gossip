@@ -13,10 +13,11 @@
 @interface YOSEventsTableViewController : AGTCoreDataTableViewController
 
 @property (strong,nonatomic) YOSEvent *event;
+@property (strong, nonatomic) NSManagedObjectContext *context;
 
 
--(id) initWithEvent: (YOSEvent *) anEvent;
-
+-(id) initWithContext:(NSManagedObjectContext *) aContext;
+-(NSFetchedResultsController *) loadEvents;
 
 
 

@@ -31,8 +31,8 @@
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
     [self createDummyData];
-    
-   [self showData];
+   
+    [self showData];
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSCredential entityName]];
     req.fetchBatchSize = 20;
@@ -44,24 +44,25 @@
     
     
     if ( numCredentials > 0 ) {
-        [self loadEvents];
+        [self showEvents];
         
     } else {
-        [self loadServices];
+        [self showServices];
     }
     
-       [self.window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    [self save];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    [self save];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -78,34 +79,32 @@
 
 
 
+#pragma mark - Util
+
 -(void) createDummyData {
     
-    [self.stack zapAllData];
+   // [self.stack zapAllData];
     
     YOSPhotoContainer  *photoGit = [YOSPhotoContainer  insertInManagedObjectContext:self.stack.context];
-    
     photoGit.image = [UIImage imageNamed:@"octocat.png"];
-
-    YOSService *gitHub = [YOSService serviceWithName:@"GitHub"
-                                              detail:@"the nerd's facebook"
-                                               photo: photoGit
-                                             context:self.stack.context];
-    
+    [YOSService serviceWithName:@"GitHub"
+                         detail:@"the nerd's facebook"
+                          photo: photoGit
+                        context:self.stack.context];
     
     YOSPhotoContainer  *photoGoogle = [YOSPhotoContainer  insertInManagedObjectContext:self.stack.context];
     photoGoogle.image = [UIImage imageNamed:@"googleDrive.png"];
-    
-    YOSService *google =  [YOSService serviceWithName:@"Google Drive"
-                                               detail:@"Data store in the cloud 1"
-                                                photo:photoGoogle
-                                              context:self.stack.context];
+    [YOSService serviceWithName:@"Google Drive"
+                         detail:@"Data store in the cloud 1"
+                          photo:photoGoogle
+                        context:self.stack.context];
     
     YOSPhotoContainer  *photoDropbox = [YOSPhotoContainer  insertInManagedObjectContext:self.stack.context];
-     photoDropbox.image = [UIImage imageNamed:@"dropbox.png"];
-    YOSService *dropbox  =  [YOSService serviceWithName:@"Dropbox"
-                                                 detail:@"Data store in the cloud 2"
-                                                  photo: photoDropbox
-                                                context:self.stack.context];
+    photoDropbox.image = [UIImage imageNamed:@"dropbox.png"];
+    [YOSService serviceWithName:@"Dropbox"
+                         detail:@"Data store in the cloud 2"
+                          photo: photoDropbox
+                        context:self.stack.context];
     
     
 }
@@ -144,15 +143,13 @@
                                                         error:&err];
     NSInteger numEvents = [events count];
     
-    
     printf("=========================================\n");
     printf("Number of services:        %lu\n", (unsigned long)numServices);
     printf("Number of credentials:        %lu\n", (unsigned long)numCredentials);
     printf("Number of events:            %lu\n", (unsigned long)numEvents);
     printf("========================================\n\n\n");
     
-    
-   // NSLog(@"Services: %@",[services description]);
+    // NSLog(@"Services: %@",[services description]);
     //yNSLog(@"Services: %@",[events description]);
     [self performSelector:@selector(showData)
                withObject:nil
@@ -160,10 +157,8 @@
     
 }
 
-    
 
-
--(void) loadServices {
+-(void) showServices {
     
     
     NSFetchRequest *reqServices = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
@@ -189,33 +184,33 @@
 }
 
 
--(void) loadEvents {
+-(void) showEvents {
     
-    NSFetchRequest *reqEvents = [NSFetchRequest fetchRequestWithEntityName:[YOSEvent entityName]];
-    reqEvents.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.typeEvent
-                                                              ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.name
-                                                                ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.detail
-                                                                ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.url
-                                                                ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventRelationships.user
-                                                                ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventRelationships.service
-                                                                ascending:YES]
-                                  ];
+    YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc] initWithContext:self.stack.context];
+   
+    self.window.rootViewController = eventTVC;
     
-    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:reqEvents
-                                                                          managedObjectContext:self.stack.context
-                                                                            sectionNameKeyPath:nil
-                                                                                     cacheName:nil];
-    
-    YOSEventsTableViewController *eventsTVC = [[YOSEventsTableViewController alloc] initWithFetchedResultsController:frc
-                                                                                                               style:UITableViewStylePlain];
-    
-    self.window.rootViewController = eventsTVC;
 }
+
+-(void) save {
+    
+    [self.stack saveWithErrorBlock:^(NSError *error) {
+        NSLog(@"Error when save %s \n\n %@",__func__,error);
+    }];
+    
+}
+
+-(void) autosaving {
+    
+    NSLog(@"Saving");
+    [self save];
+    
+    [self performSelector:@selector(autosaving)
+               withObject:nil
+               afterDelay:10];
+
+}
+
 
 
 @end
