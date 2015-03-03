@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imvLogoService;
 @property (weak, nonatomic) IBOutlet UITextField *txfUser;
 
-@property (weak, nonatomic) IBOutlet UITextField *txfPassword;
 
 -(id) initWithService: (YOSService *) aService;
 

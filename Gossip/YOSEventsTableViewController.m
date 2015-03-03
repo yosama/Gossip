@@ -69,13 +69,13 @@
     NSString *time;
     
     if (dayDiferences > 1) {
-        df.dateFormat = @"dd-MM-yyyy";
-        time = [df stringFromDate:events.date];
+        df.dateFormat = @"dd/MM/yy";
+        time = [NSString stringWithFormat:@"on %@",[df stringFromDate:events.date]];
         
     } else {
         NSDateFormatter *df = [NSDateFormatter new];
-        df.dateFormat = @"HH:mm:ss";
-        time = [df stringFromDate:events.date];
+        df.dateFormat = @"HH:mm";
+        time = [NSString stringWithFormat:@"today at %@",[df stringFromDate:events.date]];
     }
     
     NSString *typeEvent = events.typeEvent;
@@ -85,7 +85,7 @@
         
         typeEvent = [NSString stringWithFormat:@"%@",[[events.detail componentsSeparatedByString:@"/"] objectAtIndex:1]];
         
-        userTime = [NSString stringWithFormat:@"pushed by %@ at %@",events.user.name,time];
+        userTime = [NSString stringWithFormat:@"pushed by %@ %@",events.user.name,time];
         
     } else {
         typeEvent = @"New repository";

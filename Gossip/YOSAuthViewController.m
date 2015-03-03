@@ -92,13 +92,10 @@
 
 -(void) validateField {
     if([self.txfUser.text length] == 0) {
-        [self showAlertByInfo:@"Error" message:@"Type an user or password"];
-    } else if([self.txfPassword.text length] == 0) {
-        [self showAlertByInfo:@"Error" message:@"Type an user or password"];
-    }
+        [self showAlertByInfo:@"Error" message:@"Type an user valid"];
+    } 
+
 }
-
-
 
 - (void) showAlertByInfo:(NSString *) aInfo message:(NSString *) aMessage{
     
