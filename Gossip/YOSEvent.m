@@ -23,7 +23,7 @@
     NSString *url = nil;
     NSString *message = nil;
     NSString *author = nil;
-    NSDate *createdDate = nil;
+    NSDate *createdDate;
     
     if ([type isEqualToString:@"CreateEvent"]) {
         
@@ -31,27 +31,29 @@
         NSDictionary *repo = [aDict objectForKey:@"repo"];
         message = [[[repo objectForKey:@"name"] componentsSeparatedByString:@"/"] objectAtIndex:1];
         url = [repo objectForKey:@"url"];
-        
     } else {
         type = @"Push event";
         NSDictionary *payload = [aDict objectForKey:@"payload"];
         NSArray *commits = [payload objectForKey:@"commits"];
         
         NSDictionary *authorDict = nil;
-        
         for (NSDictionary *dict in commits) {
             message = [dict objectForKey:@"message"];
             url = [dict objectForKey:@"url"];
             authorDict = [dict objectForKey:@"author"];
         }
-        
-        NSDateFormatter *df = [NSDateFormatter new];
-        createdDate = [df dateFromString:[aDict objectForKey:@"created_at"]];
         author = [authorDict objectForKey:@"name"];
     }
     
+    NSString* date = [aDict objectForKey:@"created_at"];
+    date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
+    NSDateFormatter *df = [NSDateFormatter new];
+    df.dateFormat = @"yyyy-MM-dd''HH:mm:ss";
+    //df.dateStyle = NSDateFormatterMediumStyle;
+    createdDate = [df dateFromString:date];
+    
     event.idEvent = @(eventId);
-    event.name = message;
+    event.name = message;   
     event.typeEvent = type;
     event.url = url;
     event.detail = author;
@@ -68,18 +70,9 @@ return event;
 +(NSFetchedResultsController *) eventWithMOC: (NSManagedObjectContext *) aContext {
     
     NSFetchRequest *reqEvents = [NSFetchRequest fetchRequestWithEntityName:[YOSEvent entityName]];
-    reqEvents.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.typeEvent
-                                                                ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventRelationships.service
-                                                                ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.name
-                                                                ascending:YES],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.detail
-                                                                ascending:NO],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.url
-                                                                ascending:NO],
-                                  [NSSortDescriptor sortDescriptorWithKey:YOSEventRelationships.user
+    reqEvents.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.date
                                                                 ascending:NO]
+                                 
                                   ];
     
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:reqEvents
