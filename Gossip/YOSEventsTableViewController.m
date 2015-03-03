@@ -63,10 +63,6 @@
     
     YOSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSEventTableViewCell cellId] ];
     
-      
-    cell.lblTypeEvent.text = events.typeEvent;
-    cell.lblDescriptionEvent.text = events.name;
-    
     NSInteger dayDiferences = [self daysBetweenDate:events.date
                                             andDate:[NSDate date]];
     NSDateFormatter *df = [NSDateFormatter new];
@@ -82,7 +78,24 @@
         time = [df stringFromDate:events.date];
     }
     
-    cell.lblUserDate.text = [NSString stringWithFormat:@"created by %@ %@",events.user.name,time];
+    NSString *typeEvent = events.typeEvent;
+    NSString *userTime;
+    
+    if ([typeEvent isEqualToString:@"PushEvent"]) {
+        
+        typeEvent = [NSString stringWithFormat:@"%@",[[events.detail componentsSeparatedByString:@"/"] objectAtIndex:1]];
+        
+        userTime = [NSString stringWithFormat:@"pushed by %@ at %@",events.user.name,time];
+        
+    } else {
+        typeEvent = @"New repository";
+        userTime = [NSString stringWithFormat:@"created by %@ at %@",events.user.name,time];
+
+    }
+    
+    cell.lblTypeEvent.text = typeEvent;
+    cell.lblDescriptionEvent.text = events.name;
+    cell.lblUserDate.text = userTime;
     cell.imvPhotoService.image = events.service.photo.image;
     cell.imvPhotoUser.image = events.user.photo.image;
     

@@ -27,11 +27,11 @@
     NSDateFormatter *df;
     NSDate *createdDate;
     NSInteger idUser;
+    NSDictionary *repo;
     
     if ([type isEqualToString:@"CreateEvent"]) {
         
-        type = @"Created repository";
-        NSDictionary *repo = [aDict objectForKey:@"repo"];
+        repo = [aDict objectForKey:@"repo"];
         message = [[[repo objectForKey:@"name"] componentsSeparatedByString:@"/"] objectAtIndex:1];
         url = [repo objectForKey:@"url"];
         
@@ -54,7 +54,7 @@
         
         
     } else {
-        type = @"Push event";
+        
         NSDictionary *payload = [aDict objectForKey:@"payload"];
         NSArray *commits = [payload objectForKey:@"commits"];
         NSDictionary *authorDict = nil;
@@ -65,6 +65,8 @@
             url = [dict objectForKey:@"url"];
             authorDict = [dict objectForKey:@"author"];
             author = [authorDict objectForKey:@"name"];
+            repo = [aDict objectForKey:@"repo"];
+            NSString *nameRepo = [[[repo objectForKey:@"name"] componentsSeparatedByString:@"/"] objectAtIndex:1];
            
             NSString* date = [aDict objectForKey:@"created_at"];
             date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
@@ -78,7 +80,7 @@
             event.idEvent = @(eventId);
             event.typeEvent = type;
             event.url = url;
-            event.detail = author;
+            event.detail = [author stringByAppendingString:[NSString stringWithFormat:@"/%@",nameRepo]];
             event.date = createdDate;
             event.service = aService;
             event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
