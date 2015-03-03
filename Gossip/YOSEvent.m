@@ -15,7 +15,7 @@
                             service:(YOSService *) aService
                             context:(NSManagedObjectContext *) aContext
 {
-    YOSEvent *event = [YOSEvent insertInManagedObjectContext:aContext];
+    YOSEvent *event;
     
     NSInteger eventId = [[aDict objectForKey:@"id"] integerValue] ;
     NSString *type = [aDict objectForKey:@"type"];
@@ -23,7 +23,10 @@
     NSString *url = nil;
     NSString *message = nil;
     NSString *author = nil;
+    NSString* date;
+    NSDateFormatter *df;
     NSDate *createdDate;
+    NSInteger idUser;
     
     if ([type isEqualToString:@"CreateEvent"]) {
         
@@ -31,38 +34,59 @@
         NSDictionary *repo = [aDict objectForKey:@"repo"];
         message = [[[repo objectForKey:@"name"] componentsSeparatedByString:@"/"] objectAtIndex:1];
         url = [repo objectForKey:@"url"];
+        
+        date = [aDict objectForKey:@"created_at"];
+        date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
+        df= [NSDateFormatter new];
+        df.dateFormat = @"yyyy-MM-dd''HH:mm:ss";
+        createdDate = [df dateFromString:date];
+        idUser = [[[NSDictionary dictionaryWithDictionary:[aDict objectForKey:@"actor"] ] objectForKey:@"id"] integerValue];
+        
+        event = [YOSEvent insertInManagedObjectContext:aContext];
+        event.idEvent = @(eventId);
+        event.name = message;
+        event.typeEvent = type;
+        event.url = url;
+        event.detail = author;
+        event.date = createdDate;
+        event.service = aService;
+        event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
+        
+        
     } else {
         type = @"Push event";
         NSDictionary *payload = [aDict objectForKey:@"payload"];
         NSArray *commits = [payload objectForKey:@"commits"];
-        
         NSDictionary *authorDict = nil;
+        
         for (NSDictionary *dict in commits) {
+            
             message = [dict objectForKey:@"message"];
             url = [dict objectForKey:@"url"];
             authorDict = [dict objectForKey:@"author"];
+            author = [authorDict objectForKey:@"name"];
+           
+            NSString* date = [aDict objectForKey:@"created_at"];
+            date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
+            NSDateFormatter *df = [NSDateFormatter new];
+            df.dateFormat = @"yyyy-MM-dd''HH:mm:ss";
+            createdDate = [df dateFromString:date];
+            idUser = [[[NSDictionary dictionaryWithDictionary:[aDict objectForKey:@"actor"] ] objectForKey:@"id"] integerValue];
+            
+            event = [YOSEvent insertInManagedObjectContext:aContext];
+            event.name = message;
+            event.idEvent = @(eventId);
+            event.typeEvent = type;
+            event.url = url;
+            event.detail = author;
+            event.date = createdDate;
+            event.service = aService;
+            event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
         }
-        author = [authorDict objectForKey:@"name"];
+       
     }
     
-    NSString* date = [aDict objectForKey:@"created_at"];
-    date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
-    NSDateFormatter *df = [NSDateFormatter new];
-    df.dateFormat = @"yyyy-MM-dd''HH:mm:ss";
-    createdDate = [df dateFromString:date];
-    
-    event.idEvent = @(eventId);
-    event.name = message;   
-    event.typeEvent = type;
-    event.url = url;
-    event.detail = author;
-    event.date = createdDate;
-    event.service = aService;
-    
-    NSInteger idUser = [[[NSDictionary dictionaryWithDictionary:[aDict objectForKey:@"actor"] ] objectForKey:@"id"] integerValue];
-    event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
-    
-return event;
+ return event;
 }
 
 
