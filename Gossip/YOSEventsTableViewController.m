@@ -66,7 +66,23 @@
       
     cell.lblTypeEvent.text = events.typeEvent;
     cell.lblDescriptionEvent.text = events.name;
-    cell.lblUserDate.text = [NSString stringWithFormat:@"Created by %@ date:%@",events.user.name,events.date];
+    
+    NSInteger dayDiferences = [self daysBetweenDate:events.date
+                                            andDate:[NSDate date]];
+    NSDateFormatter *df = [NSDateFormatter new];
+    NSString *time;
+    
+    if (dayDiferences > 1) {
+        df.dateFormat = @"dd-MM-yyyy";
+        time = [df stringFromDate:events.date];
+        
+    } else {
+        NSDateFormatter *df = [NSDateFormatter new];
+        df.dateFormat = @"HH:mm:ss";
+        time = [df stringFromDate:events.date];
+    }
+    
+    cell.lblUserDate.text = [NSString stringWithFormat:@"created by %@ %@",events.user.name,time];
     cell.imvPhotoService.image = events.service.photo.image;
     cell.imvPhotoUser.image = events.user.photo.image;
     
@@ -84,7 +100,8 @@
 
 
 //Register the cell in the bundle
-- (void) registerNibs {
+- (void) registerNibs
+{
     
     // Bundle
     NSBundle *main = [NSBundle mainBundle];
@@ -97,6 +114,34 @@
          forCellReuseIdentifier:[YOSEventTableViewCell cellId]];
     
 }
+
+
+
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
+{
+    NSDate *fromDate;
+    NSDate *toDate;
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar rangeOfUnit:NSCalendarUnitDay
+                startDate:&fromDate
+                 interval:NULL
+                  forDate:fromDateTime];
+    
+    [calendar rangeOfUnit:NSCalendarUnitDay
+                startDate:&toDate
+                 interval:NULL
+                  forDate:toDateTime];
+    
+    NSDateComponents *difference = [calendar components:NSCalendarUnitDay
+                                               fromDate:fromDate
+                                                 toDate:toDate
+                                                options:0];
+    
+    return [difference day];
+}
+
 
 
 #pragma mark - TableViewDelegate

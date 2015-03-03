@@ -49,7 +49,6 @@
     date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
     NSDateFormatter *df = [NSDateFormatter new];
     df.dateFormat = @"yyyy-MM-dd''HH:mm:ss";
-    //df.dateStyle = NSDateFormatterMediumStyle;
     createdDate = [df dateFromString:date];
     
     event.idEvent = @(eventId);
