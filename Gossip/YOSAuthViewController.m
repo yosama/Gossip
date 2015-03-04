@@ -85,26 +85,39 @@
         
     } else if ([self.service.name isEqualToString:GITHUB]) {
         
-        YOSJSONObjectGitHub *objectsGithub = [[YOSJSONObjectGitHub alloc] initWithService:self.service
-                                                                                     user:self.txfUser.text];
-        AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
+        YOSJSONObjectGitHub *jsonObject = [[YOSJSONObjectGitHub alloc ]initWithService:self.service
+                                                                                  user:self.txfUser.text];
         
-        NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
+        if ([jsonObject verificValid] == NO) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"User no valid"
+                                                           delegate:nil
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"OK", nil];
+            [alert show];
+            
+        } else {
+            
+            AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
+            
+            NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
+            
+            YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]init];
+            self.delegate = eventTVC;
+            [self.delegate authViewController:self
+                        fetchResultController:frc];
+            
+            NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
+                                                                   object:self
+                                                                 userInfo:@{KEY:frc}];
+            [NSNotificationCenter.defaultCenter postNotification:notify];
+            
+            [self.navigationController pushViewController:eventTVC
+                                                 animated:YES];
+        }
         
-        YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]init];
-        self.delegate = eventTVC;
-        [self.delegate authViewController:self
-                    fetchResultController:frc];
         
-        NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
-                                                               object:self
-                                                             userInfo:@{KEY:frc}];
-        [NSNotificationCenter.defaultCenter postNotification:notify];
-        
-        [self.navigationController pushViewController:eventTVC
-                                             animated:YES];
-        
-    
     } else if ([self.service.name isEqualToString:GOOGLE]) {
         NSLog(@"Implementando modulo");
     }

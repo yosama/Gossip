@@ -34,6 +34,9 @@
     [super viewDidLoad];
     
     self.wvBrowser.delegate = self;
+    
+    [self loadPage];
+    [self.aivActivityIndicator startAnimating];
 
 }
 
@@ -46,7 +49,6 @@
            selector:@selector(eventDidChange:)
                name:NEW_EVENT_SELECTED_NOTIFICATION
              object:nil];
-    [self loadPage];
     
 }
 

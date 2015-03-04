@@ -15,11 +15,22 @@
                             service:(YOSService *) aService
                             context:(NSManagedObjectContext *) aContext
 {
+    return [[self alloc] initWithDictionary:aDict
+                                    service:aService
+                                    context:aContext];
+}
+
+
+-(id) initWithDictionary:(NSDictionary *) aDict
+                  service:(YOSService *) aService
+                  context:(NSManagedObjectContext *) aContext
+{
+    
+    
     YOSEvent *event;
     
     NSInteger eventId = [[aDict objectForKey:@"id"] integerValue] ;
     NSString *type = [aDict objectForKey:@"type"];
-    
     NSString *url = nil;
     NSString *message = nil;
     NSString *author = nil;
@@ -89,9 +100,12 @@
         }
         
     }
+
     
     return event;
+    
 }
+
 
 
 +(NSFetchedResultsController *) eventWithMOC: (NSManagedObjectContext *) aContext {

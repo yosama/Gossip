@@ -32,6 +32,9 @@
 }
 
 
+- ()
+
+
 
 +(instancetype) credentialForIdUser:(NSInteger) anIdUser
                             context:(NSManagedObjectContext *) aContext {
