@@ -88,40 +88,37 @@
         YOSJSONObjectGitHub *jsonObject = [[YOSJSONObjectGitHub alloc ]initWithService:self.service
                                                                                   user:self.txfUser.text];
         
-        if ([jsonObject verificValid] == NO) {
+        if ([jsonObject userValid] == NO) {
+            [self showAlertError:@"Error" message:@"User no valid"];
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"User no valid"
-                                                           delegate:nil
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@"OK", nil];
-            [alert show];
+        } else if ([jsonObject userExists] == YES) {
+            [self showAlertError:@"Error" message:@"User exists"];
             
         } else {
-            
-            AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
-            
-            NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
-            
-            YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]init];
-            self.delegate = eventTVC;
-            [self.delegate authViewController:self
-                        fetchResultController:frc];
-            
-            NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
-                                                                   object:self
-                                                                 userInfo:@{KEY:frc}];
-            [NSNotificationCenter.defaultCenter postNotification:notify];
-            
-            [self.navigationController pushViewController:eventTVC
-                                                 animated:YES];
-        }
         
+        AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
         
-    } else if ([self.service.name isEqualToString:GOOGLE]) {
-        NSLog(@"Implementando modulo");
+        NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
+        
+        YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]init];
+        self.delegate = eventTVC;
+        [self.delegate authViewController:self
+                    fetchResultController:frc];
+        
+        NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
+                                                               object:self
+                                                             userInfo:@{KEY:frc}];
+        [NSNotificationCenter.defaultCenter postNotification:notify];
+        
+        [self.navigationController pushViewController:eventTVC
+                                             animated:YES];
     }
     
+    
+} else if ([self.service.name isEqualToString:GOOGLE]) {
+    NSLog(@"Implementando modulo");
+}
+
 }
 
 
@@ -187,6 +184,19 @@
 {
     // keyboard hide
     [self.view endEditing:YES];
+    
+}
+
+
+
+-(void) showAlertError: (NSString *) aTitle message: (NSString *) aMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:aTitle
+                                                    message:aMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"OK", nil];
+    [alert show];
     
 }
 

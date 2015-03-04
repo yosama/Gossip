@@ -17,7 +17,7 @@
 @interface YOSJSONObjectGitHub ()
 @property (nonatomic, strong) YOSService *service;
 @property (nonatomic, strong) AppDelegate *appDelegate;
-@property (nonatomic) BOOL valid;
+
 
 
 @end
@@ -39,7 +39,8 @@
     if (self = [super init]) {
         _service = aService;
         _user = anUser;
-        self.valid = YES;
+        self.userValid = YES;
+        self.userExists = NO;
         self.appDelegate = [[UIApplication sharedApplication] delegate];
         
         NSString *url = [NSString stringWithFormat:@"https://api.github.com/users/%@",anUser];
@@ -47,12 +48,19 @@
         id data = [self connectAPIGitHub:url];
         
         if (data) {
-            [self processJSONUserData:data];
-            url =[NSString stringWithFormat:@"https://api.github.com/users/%@/events",anUser];
-            data =  [self connectAPIGitHub:url];
-            [self  processJSONUserEvents:data];
+            
+            YOSCredential *credential = [ YOSCredential credentialForIdUser:[[data objectForKey:@"id"] integerValue]
+                                                                    context:self.appDelegate.stack.context];
+            if (credential) {
+                self.userExists = YES;
+            } else {
+                [self processJSONUserData:data];
+                url =[NSString stringWithFormat:@"https://api.github.com/users/%@/events",anUser];
+                data =  [self connectAPIGitHub:url];
+                [self  processJSONUserEvents:data];
+            }
         } else {
-            self.valid = NO;
+            self.userValid = NO;
         }
         
     }
@@ -69,6 +77,7 @@
         
         [YOSCredential credentialWithDictionary:JSONUserData
                                         context:self.appDelegate.stack.context];
+        
     } else {
         NSLog(@"Error al parsear el JSON:%@ ", error.localizedDescription);
     }
@@ -121,6 +130,8 @@
         if ([JSONData count] == 2) {
             JSONData  = nil;
         }
+        
+        
     } else {
         NSLog(@"Error al cargar los datos del servidor:%@ ", error.localizedDescription);
     }
@@ -128,11 +139,13 @@
     return JSONData;
 }
 
-#pragma  mark - Misc
 
--(BOOL) verificValid {
-    
-    return  self.valid;
-}
+
+#pragma mark - Misc
+
+-(void) checkIfUserExist {
+    }
+
+
 
 @end

@@ -11,7 +11,8 @@
 @implementation YOSCredential
 
 +(instancetype) credentialWithDictionary: (NSDictionary *) aDictionary
-                                 context: (NSManagedObjectContext *) aContext; {
+                                 context: (NSManagedObjectContext *) aContext;
+{
     
     YOSCredential *credential = [YOSCredential insertInManagedObjectContext:aContext];
     
@@ -31,15 +32,11 @@
     return credential;
 }
 
-
-- ()
-
-
-
 +(instancetype) credentialForIdUser:(NSInteger) anIdUser
-                            context:(NSManagedObjectContext *) aContext {
+                            context:(NSManagedObjectContext *) aContext
+{
     
-    YOSCredential *credential = nil;
+    YOSCredential *credential;
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName:[YOSCredential entityName]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSCredentialAttributes.idUser
                                                          ascending:NO]];
@@ -52,9 +49,12 @@
         // la cagamos
         NSLog(@"Error al buscar: %@", err);
     } else {
-        credential = [res objectAtIndex:0];
+        if ([res count] == 0 ) {
+            credential = nil;
+        } else {
+            credential = [res objectAtIndex:0];
+        }
     }
-    
     
     return credential;
     
