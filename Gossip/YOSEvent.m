@@ -33,7 +33,8 @@
         
         repo = [aDict objectForKey:@"repo"];
         message = [[[repo objectForKey:@"name"] componentsSeparatedByString:@"/"] objectAtIndex:1];
-        url = [repo objectForKey:@"url"];
+        url = [[[[repo objectForKey:@"url"]stringByReplacingOccurrencesOfString:@"api."
+                                                                     withString:@""] stringByReplacingOccurrencesOfString:@"repos/" withString:@""] stringByReplacingOccurrencesOfString:@"commits" withString:@"commit"];
         
         date = [aDict objectForKey:@"created_at"];
         date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
@@ -62,12 +63,13 @@
         for (NSDictionary *dict in commits) {
             
             message = [dict objectForKey:@"message"];
-            url = [dict objectForKey:@"url"];
+            url = [[[[dict objectForKey:@"url"] stringByReplacingOccurrencesOfString:@"api."
+                                                                          withString:@""] stringByReplacingOccurrencesOfString:@"repos/" withString:@""] stringByReplacingOccurrencesOfString:@"commits" withString:@"commit"];
             authorDict = [dict objectForKey:@"author"];
             author = [authorDict objectForKey:@"name"];
             repo = [aDict objectForKey:@"repo"];
             NSString *nameRepo = [[[repo objectForKey:@"name"] componentsSeparatedByString:@"/"] objectAtIndex:1];
-           
+            
             NSString* date = [aDict objectForKey:@"created_at"];
             date = [[date stringByReplacingOccurrencesOfString:@"T" withString:@" "] stringByReplacingOccurrencesOfString:@"Z" withString:@""] ;
             NSDateFormatter *df = [NSDateFormatter new];
@@ -85,10 +87,10 @@
             event.service = aService;
             event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
         }
-       
+        
     }
     
- return event;
+    return event;
 }
 
 
@@ -97,7 +99,7 @@
     NSFetchRequest *reqEvents = [NSFetchRequest fetchRequestWithEntityName:[YOSEvent entityName]];
     reqEvents.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.date
                                                                 ascending:NO]
-                                 
+                                  
                                   ];
     
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:reqEvents

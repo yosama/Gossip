@@ -99,7 +99,7 @@
         NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
                                                                object:self
                                                              userInfo:@{KEY:frc}];
-        [[NSNotificationCenter defaultCenter]postNotification:notify];
+        [NSNotificationCenter.defaultCenter postNotification:notify];
         
         [self.navigationController pushViewController:eventTVC
                                              animated:YES];

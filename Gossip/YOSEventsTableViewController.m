@@ -7,13 +7,13 @@
 //
 
 #import "YOSEventsTableViewController.h"
-#import "YOSEvent.h"
 #import "YOSCredential.h"
 #import "YOSService.h"
 #import "YOSPhotoContainer.h"
 #import "YOSJSONObjectGitHub.h"
 #import "YOSAuthViewController.h"
 #import "YOSEventTableViewCell.h"
+#import "YOSWebViewController.h"
 
 
 @interface YOSEventsTableViewController ()
@@ -39,10 +39,9 @@
     
     [super viewWillAppear:animated];
     
-    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
-           selector:@selector(catchFrc:)
+           selector:@selector(userDidChange:)
                name:NEW_USER_NOTIFICATION
              object:nil];
     
@@ -109,6 +108,23 @@
 }
 
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.events = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    NSNotification *notify = [NSNotification notificationWithName:NEW_EVENT_SELECTED_NOTIFICATION
+                                                           object:self
+                                                         userInfo:@{KEY_URL:self.events.url}];
+    [NSNotificationCenter.defaultCenter postNotification:notify];
+    
+    YOSWebViewController *webVC = [[YOSWebViewController alloc]initWithURL:self.events.url];
+
+    [self.navigationController pushViewController:webVC
+                                         animated:YES];
+    
+}
+
 #pragma mark - Util
 
 // cell Height
@@ -161,10 +177,6 @@
 }
 
 
-
-#pragma mark - TableViewDelegate
-
-
 #pragma mark - AuthViewControllerDelegate
 
 -(void) authViewController: (YOSAuthViewController *) sender fetchResultController: (NSFetchedResultsController *) aFrc
@@ -176,12 +188,13 @@
 
 #pragma mark - Notification
 
-- (void) catchFrc: (NSNotification *) aNotification
+- (void) userDidChange:(NSNotification *) aNotification
 {
     NSDictionary *dict = [aNotification userInfo];
     self.fetchedResultsController = [dict objectForKey:KEY];
     
 }
+
 
 
 

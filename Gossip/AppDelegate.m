@@ -165,14 +165,6 @@
 }
 
 
--(void) showServices {
-    
-    
-    
-}
-
-
-
 -(void) save {
     
     [self.stack saveWithErrorBlock:^(NSError *error) {
