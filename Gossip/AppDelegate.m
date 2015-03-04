@@ -13,6 +13,7 @@
 #import "YOSEventsTableViewController.h"
 #import "AGTCoreDataStack.h"
 #import "YOSPhotoContainer.h"
+#import "YOSAuthViewController.h"
 #import "UIViewController+Navigation.h"
 
 @interface AppDelegate ()
@@ -46,12 +47,15 @@
     YOSServicesTableViewController *servicesTVC = nil;
     
     if ( numCredentials > 0 ) {
+        
         eventTVC = [[YOSEventsTableViewController alloc] initWithFetchedResultsController:[YOSEvent eventWithMOC:self.stack.context] style:UITableViewStylePlain];
+        
         self.window.rootViewController = [eventTVC wrapperNavigation];
         
     } else {
+
         servicesTVC = [[YOSServicesTableViewController alloc] initWithFetchedResultsController:[YOSService serviceWithContext:self.stack.context]
-                                                                                                                        style:UITableViewStylePlain];
+                                                                                                                style:UITableViewStylePlain];
         self.window.rootViewController = [servicesTVC wrapperNavigation];
     }
     
@@ -110,8 +114,6 @@
                          detail:@"Data store in the cloud 2"
                           photo: photoDropbox
                         context:self.stack.context];
-    
-    
 }
 
 

@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "YOSEvent.h"
 #import "AGTCoreDataTableViewController.h"
+#import "YOSAuthViewController.h"
 
-@interface YOSEventsTableViewController : AGTCoreDataTableViewController
+@interface YOSEventsTableViewController : AGTCoreDataTableViewController<AuthViewControllerDelegate>
+
+@property (nonatomic,strong) YOSEvent *events;
+
 
 @end

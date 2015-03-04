@@ -12,6 +12,7 @@
 #import "YOSCredential.h"
 #import "YOSJSONObjectGitHub.h"
 #import "YOSEventsTableViewController.h"
+#import "UIViewController+Navigation.h"
 
 
 @interface YOSAuthViewController ()
@@ -41,11 +42,24 @@
     [super viewWillAppear:animated];
     self.imvLogoService.image = self.service.photo.image;
     self.txfUser.delegate = self;
+    
+    //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    //    [nc addObserver:self
+    //           selector:@selector(callEventsForService)
+    //               name:NOTIFICATION_USER
+    //             object:nil];
+    
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,11 +91,20 @@
         
         NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
         
-        YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc] initWithFetchedResultsController:frc
-                                                                                                                  style:UITableViewStylePlain];
+        YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]init];
+        self.delegate = eventTVC;
+        [self.delegate authViewController:self
+                    fetchResultController:frc];
+        
+        NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
+                                                               object:self
+                                                             userInfo:@{KEY:frc}];
+        [[NSNotificationCenter defaultCenter]postNotification:notify];
+        
         [self.navigationController pushViewController:eventTVC
                                              animated:YES];
         
+    
     } else if ([self.service.name isEqualToString:GOOGLE]) {
         NSLog(@"Implementando modulo");
     }
@@ -89,16 +112,16 @@
 }
 
 
-
--(void) validateField {
+-(void) validateField
+{
     if([self.txfUser.text length] == 0) {
         [self showAlertByInfo:@"Error" message:@"Type an user valid"];
-    } 
-
+    }
+    
 }
 
-- (void) showAlertByInfo:(NSString *) aInfo message:(NSString *) aMessage{
-    
+- (void) showAlertByInfo:(NSString *) aInfo message:(NSString *) aMessage
+{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:aInfo
                                                                    message:aMessage
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
@@ -128,7 +151,8 @@
 #pragma mark - TextFieldDelegate
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     // El usuario le ha dado a into
     // ¿LO damos por bueno?
     // Valimos el texto y si está bien, entonces...
@@ -139,22 +163,17 @@
     
 }
 
--(void) textFieldDidEndEditing:(UITextField *)textField{
-    
-    //    [self validateField];
-    
-    // El tio ha terminado de editar y YA HEMOS VALIDADO
-    // Momento de guardar el texto en algun lugar
+-(void) textFieldDidEndEditing:(UITextField *)textField
+{
     [self callEventsForService];
     
 }
 
 
--(IBAction)removeKeyBoard:(id)sender{
-    
+-(IBAction)removeKeyBoard:(id)sender
+{
     // keyboard hide
     [self.view endEditing:YES];
-    
     
 }
 

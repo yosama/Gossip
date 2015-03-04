@@ -12,6 +12,7 @@
 #import "YOSService.h"
 #import "YOSPhotoContainer.h"
 #import "YOSJSONObjectGitHub.h"
+#import "YOSAuthViewController.h"
 #import "YOSEventTableViewCell.h"
 
 
@@ -30,7 +31,6 @@
     [super viewDidLoad];
     
     self.title = @"Events";
-    
 }
 
 
@@ -38,8 +38,19 @@
 {
     
     [super viewWillAppear:animated];
-   
     
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(catchFrc:)
+               name:NEW_USER_NOTIFICATION
+             object:nil];
+    
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,54 +61,49 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YOSEvent *events = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    self.events = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     [self registerNibs];
     
     YOSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSEventTableViewCell cellId] ];
     
-    NSInteger dayDiferences = [self daysBetweenDate:events.date
+    NSInteger dayDiferences = [self daysBetweenDate:self.events.date
                                             andDate:[NSDate date]];
     NSDateFormatter *df = [NSDateFormatter new];
     NSString *time;
     
     if (dayDiferences > 1) {
         df.dateFormat = @"dd/MM/yy";
-        time = [NSString stringWithFormat:@"on %@",[df stringFromDate:events.date]];
+        time = [NSString stringWithFormat:@"on %@",[df stringFromDate:self.events.date]];
         
     } else {
         NSDateFormatter *df = [NSDateFormatter new];
         df.dateFormat = @"HH:mm";
-        time = [NSString stringWithFormat:@"today at %@",[df stringFromDate:events.date]];
+        time = [NSString stringWithFormat:@"today at %@",[df stringFromDate:self.events.date]];
     }
     
-    NSString *typeEvent = events.typeEvent;
+    NSString *typeEvent = self.events.typeEvent;
     NSString *userTime;
     
     if ([typeEvent isEqualToString:@"PushEvent"]) {
         
-        typeEvent = [NSString stringWithFormat:@"%@",[[events.detail componentsSeparatedByString:@"/"] objectAtIndex:1]];
+        typeEvent = [NSString stringWithFormat:@"%@",[[self.events.detail componentsSeparatedByString:@"/"] objectAtIndex:1]];
         
-        userTime = [NSString stringWithFormat:@"pushed by %@ %@",events.user.name,time];
+        userTime = [NSString stringWithFormat:@"pushed by %@ %@",self.events.user.name,time];
         
     } else {
         typeEvent = @"New repository";
-        userTime = [NSString stringWithFormat:@"created by %@ at %@",events.user.name,time];
-
+        userTime = [NSString stringWithFormat:@"created by %@ at %@",self.events.user.name,time];
+        
     }
     
     cell.lblTypeEvent.text = typeEvent;
-    cell.lblDescriptionEvent.text = events.name;
+    cell.lblDescriptionEvent.text = self.events.name;
     cell.lblUserDate.text = userTime;
-    cell.imvPhotoService.image = events.service.photo.image;
-    cell.imvPhotoUser.image = events.user.photo.image;
+    cell.imvPhotoService.image = self.events.service.photo.image;
+    cell.imvPhotoUser.image = self.events.user.photo.image;
     
     return cell;
 }
@@ -107,7 +113,7 @@
 
 // cell Height
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     return [YOSEventTableViewCell height];
 }
 
@@ -121,7 +127,7 @@
     
     // Register custom cell
     UINib *eventNib = [UINib nibWithNibName:@"YOSEventTableViewCell"
-                                       bundle:main];
+                                     bundle:main];
     
     [self.tableView registerNib:eventNib
          forCellReuseIdentifier:[YOSEventTableViewCell cellId]];
@@ -151,13 +157,32 @@
                                                fromDate:fromDate
                                                  toDate:toDate
                                                 options:0];
-    
     return [difference day];
 }
 
 
 
 #pragma mark - TableViewDelegate
+
+
+#pragma mark - AuthViewControllerDelegate
+
+-(void) authViewController: (YOSAuthViewController *) sender fetchResultController: (NSFetchedResultsController *) aFrc
+{
+    self.fetchedResultsController = aFrc;
+
+}
+
+
+#pragma mark - Notification
+
+- (void) catchFrc: (NSNotification *) aNotification
+{
+    NSDictionary *dict = [aNotification userInfo];
+    self.fetchedResultsController = [dict objectForKey:KEY];
+    
+}
+
 
 
 
