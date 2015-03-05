@@ -11,6 +11,7 @@
 #import "YOSService.h"
 #import "YOSPhotoContainer.h"
 #import "YOSAuthViewController.h"
+#import "YOSGoogleOAuth.h"
 
 @interface YOSServicesTableViewController ()
 
@@ -107,11 +108,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     YOSService *service = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    YOSAuthViewController *authVC = [[YOSAuthViewController alloc] initWithService:service];
     
+    YOSAuthViewController *authVC = [[YOSAuthViewController alloc] initWithService:service];
     [self.navigationController pushViewController:authVC
                                          animated:YES];
-    
 }
 
 

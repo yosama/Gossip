@@ -43,6 +43,7 @@
 		DBD9412B1A93785000CBD51F /* YOSService.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD941241A93785000CBD51F /* YOSService.m */; };
 		DBDEB7771AA6A2C6009F60D2 /* YOSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDEB7751AA6A2C6009F60D2 /* YOSWebViewController.m */; };
 		DBDEB7781AA6A2C6009F60D2 /* YOSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBDEB7761AA6A2C6009F60D2 /* YOSWebViewController.xib */; };
+		DBE038AA1AA8849D00A80C10 /* YOSGoogleOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,8 @@
 		DBDEB7741AA6A2C6009F60D2 /* YOSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSWebViewController.h; sourceTree = "<group>"; };
 		DBDEB7751AA6A2C6009F60D2 /* YOSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSWebViewController.m; sourceTree = "<group>"; };
 		DBDEB7761AA6A2C6009F60D2 /* YOSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOSWebViewController.xib; sourceTree = "<group>"; };
+		DBE038A81AA8849D00A80C10 /* YOSGoogleOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSGoogleOAuth.h; sourceTree = "<group>"; };
+		DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSGoogleOAuth.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 		DB0542011A9B2BB90087F90F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DBE038A81AA8849D00A80C10 /* YOSGoogleOAuth.h */,
+				DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */,
 				DB98CFE01A9E831000ECC6AA /* YOSJSONObjectGitHub.h */,
 				DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */,
 			);
@@ -492,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE038AA1AA8849D00A80C10 /* YOSGoogleOAuth.m in Sources */,
 				DB4E430F1AA4D02B00FEB8EA /* UIViewController+Navigation.m in Sources */,
 				DB9B3A961A960BDB003B3EE2 /* YOSEvent.m in Sources */,
 				DBD940DC1A93716000CBD51F /* YOSGossipBaseClass.m in Sources */,
