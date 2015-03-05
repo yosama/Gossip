@@ -4,8 +4,6 @@
 
 @interface YOSService ()
 
-
-
 @end
 
 @implementation YOSService

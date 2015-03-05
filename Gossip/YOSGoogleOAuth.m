@@ -6,12 +6,9 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
+#import "Settings.h"
 #import "YOSGoogleOAuth.h"
 #import <AFNetworking/AFNetworking.h>
-
-#define ENDPOINT_FOR_AUTHORIZATION @"https://accounts.google.com/o/oauth2/auth"
-#define ENDPOINT_FOR_REVOCATION @"https://accounts.google.com/o/oauth2/revoke"
-#define ENDPOINT_FOR_TOKEN @"https://accounts.google.com/o/oauth2/token"
 
 @interface YOSGoogleOAuth ()
 
@@ -25,12 +22,9 @@
 @property (nonatomic, strong) UIActivityIndicatorView *aivActivityIndicator;
 @property (nonatomic,strong) NSNotificationCenter *nc;
 
-
 - (NSDictionary *)tokenizeParameters:(NSDictionary *)parameters;
-
 - (NSString *)generatePayload:(NSDictionary *)parameters;
 - (void)showAuthorizationView;
-
 - (void)requestTokenWithCode:(NSString *)code
                thenOnSuccess:(RequestSuccess)successBlock
                  thenOnError:(RequestError)errorBlock;
@@ -40,10 +34,6 @@
 - (BOOL)tokenHasExpired;
 - (void)writeTokenDocument:(NSDictionary *)token;
 - (NSDictionary *)readTokenDocument;
-
-
-
-
 
 @end
 

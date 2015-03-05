@@ -18,7 +18,6 @@
 @property (nonatomic) BOOL userValid;
 @property (nonatomic) BOOL userExists;
 
-
 +(instancetype) jsonObjectGithubWithService: (YOSService *) aService user:(NSString *) anUser;
 
 -(id) initWithService: (YOSService *) aService user:(NSString *) anUser;

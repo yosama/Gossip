@@ -6,14 +6,9 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-#define GOOGLE_RESPONSE_NOTIFICATION @"googleResponseNotification"
-#define GOOGLE_ERROR_NOTIFICATION @"googleErrorNotification"
-#define GOOGLE_REVOKE_NOTIFICATION @"googleRevokeNotification"
-#define GOOGLE_KEY @"keyResponse"
+
 
 #import <UIKit/UIKit.h>
-
-
 
 @protocol YOSGoogleOAuthDelegate <NSObject>
 

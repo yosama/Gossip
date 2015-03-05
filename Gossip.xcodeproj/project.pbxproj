@@ -124,6 +124,7 @@
 		DBDEB7761AA6A2C6009F60D2 /* YOSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOSWebViewController.xib; sourceTree = "<group>"; };
 		DBE038A81AA8849D00A80C10 /* YOSGoogleOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSGoogleOAuth.h; sourceTree = "<group>"; };
 		DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSGoogleOAuth.m; sourceTree = "<group>"; };
+		DBE038B41AA8EC3100A80C10 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +162,7 @@
 				DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */,
 				DB98CFE01A9E831000ECC6AA /* YOSJSONObjectGitHub.h */,
 				DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */,
+				DBE038B41AA8EC3100A80C10 /* Settings.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";

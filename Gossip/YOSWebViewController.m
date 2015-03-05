@@ -8,6 +8,7 @@
 
 #import "YOSWebViewController.h"
 #import "YOSEventsTableViewController.h"
+#import "Settings.h"
 
 @interface YOSWebViewController ()
 

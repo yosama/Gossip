@@ -12,13 +12,10 @@
 #import "YOSCredential.h"
 #import "YOSPhotoContainer.h"
 
-
-
 @interface YOSJSONObjectGitHub ()
+
 @property (nonatomic, strong) YOSService *service;
 @property (nonatomic, strong) AppDelegate *appDelegate;
-
-
 
 @end
 

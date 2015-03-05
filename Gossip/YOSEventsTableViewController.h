@@ -6,10 +6,6 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-
-#define NEW_EVENT_SELECTED_NOTIFICATION @"newEventSelected"
-#define KEY_URL @"newEvent"
-
 #import <UIKit/UIKit.h>
 #import "YOSEvent.h"
 #import "AGTCoreDataTableViewController.h"

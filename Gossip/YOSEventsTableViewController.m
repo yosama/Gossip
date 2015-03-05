@@ -14,7 +14,7 @@
 #import "YOSAuthViewController.h"
 #import "YOSEventTableViewCell.h"
 #import "YOSWebViewController.h"
-
+#import "Settings.h"
 
 @interface YOSEventsTableViewController ()
 

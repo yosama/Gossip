@@ -14,6 +14,7 @@
 #import "YOSEventsTableViewController.h"
 #import "UIViewController+Navigation.h"
 #import "YOSGoogleOAuth.h"
+#import "Settings.h"
 
 @interface YOSAuthViewController ()
 
