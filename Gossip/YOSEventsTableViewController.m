@@ -33,7 +33,7 @@
     
     self.title = @"Tracks";
     
-    UIBarButtonItem *btnBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Login"
+    UIBarButtonItem *btnBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Services"
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(backServices)];

@@ -1,6 +1,7 @@
 #import "YOSService.h"
 #import "YOSEvent.h"
 #import "YOSPhotoContainer.h"
+#import "Settings.h"
 
 @interface YOSService ()
 
@@ -70,6 +71,22 @@
     return frc;
 }
 
+
+
+-(NSInteger) countServices {
+    //Count Services
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSService entityName]];
+    req.fetchBatchSize = 20;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSServiceAttributes.name
+                                                          ascending:YES ]];
+    NSError *err = nil;
+    NSArray *services = [STACK.context executeFetchRequest:req
+                                                     error:&err];
+    NSInteger numServices = [services count];
+    
+    return numServices;
+
+}
 
 
 

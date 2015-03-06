@@ -32,7 +32,7 @@
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
     [[YOSServices alloc] init];
-    
+
     [[YOSLog alloc] showData];
     
     YOSServicesTableViewController *servicesTVC = [[YOSServicesTableViewController alloc] initWithFetchedResultsController:[YOSService serviceWithContext:STACK.context]
@@ -52,12 +52,12 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     
-    [[YOSLog alloc] save ];
+    [[YOSLog alloc] autosaving ];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     
-   [[YOSLog alloc] save ];
+   [[YOSLog alloc] autosaving ];
     
 }
 

@@ -92,8 +92,7 @@
         for (NSDictionary *dict in JSONUserEvents) {
             
             [YOSEvent eventWithDictionary:dict
-                                  service:self.service
-                                  context:STACK.context];
+                                  service:self.service];
         }
     } else {
         NSLog(@"Error al parsear el JSON:%@ ", error.localizedDescription);

@@ -44,7 +44,6 @@
     [super viewWillAppear:animated];
     self.imvLogoService.image = self.service.photo.image;
     self.txfUser.delegate = self;
-    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
     [nc addObserver:self
@@ -92,8 +91,10 @@
 
 - (IBAction)btnSingin:(id)sender
 {
-    [self callEventsForService];
-    
+    if ([self validateField] == YES) {
+        [self callEventsForService];
+    }
+
 }
 
 
@@ -142,18 +143,22 @@
 }
 
 
--(void) validateField
+-(BOOL) validateField
 {
+    BOOL result;
     if([self.txfUser.text length] == 0) {
         [self showAlertError:@"Error"
                      message:@"Type an user and password"];
+        result = NO;
+    }else {
+        result = YES;
     }
     
+    return result;
 }
 
 
 #pragma mark - TextFieldDelegate
-
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -161,18 +166,19 @@
     // ¿LO damos por bueno?
     // Valimos el texto y si está bien, entonces...
     
+    [self validateField];
+    
     [textField resignFirstResponder];
     
     return YES;
     
 }
 
--(void) textFieldDidEndEditing:(UITextField *)textField
-{
-    [self callEventsForService];
-    
-}
-
+//-(void) textFieldDidEndEditing:(UITextField *)textField
+//{
+//    [self callEventsForService];
+//    
+//}
 
 -(IBAction)removeKeyBoard:(id)sender
 {

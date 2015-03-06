@@ -50,7 +50,6 @@
            selector:@selector(eventDidChange:)
                name:NEW_EVENT_SELECTED_NOTIFICATION
              object:nil];
-    
 }
 
 -(void) viewWillDisappear:(BOOL)animated

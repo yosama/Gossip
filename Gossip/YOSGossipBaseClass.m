@@ -7,15 +7,10 @@
 //
 
 #import "YOSGossipBaseClass.h"
+#import "YOSCredential.h"
+#import "YOSService.h"
 
 @implementation YOSGossipBaseClass
-
-
-
-
-
-
-
 
 
 

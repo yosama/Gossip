@@ -11,6 +11,6 @@
 @interface YOSLog : NSObject
 
 -(void) showData;
--(void) save;
+-(void) autosaving;
 
 @end

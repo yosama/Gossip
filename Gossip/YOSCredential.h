@@ -9,4 +9,6 @@
                                context:(NSManagedObjectContext *) aContext;
 
 
+-(NSInteger) countCredentials;
+
 @end

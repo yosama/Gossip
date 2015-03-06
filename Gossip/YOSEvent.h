@@ -4,17 +4,14 @@
 // Custom logic goes here.
 
 +(instancetype) eventWithDictionary:(NSDictionary *) aDict
-                            service:(YOSService *) aService
-                            context:(NSManagedObjectContext *) aContext;
+                            service:(YOSService *) aService;
 
 +(NSFetchedResultsController *) eventWithMOC: (NSManagedObjectContext *) aContext;
 
--(NSInteger) countEvents:(NSManagedObjectContext *) aContext;
--(NSInteger) countEventsForService:(YOSService *) aService
-                           context:(NSManagedObjectContext *) aContext;
+-(NSInteger) countEvents;
+-(NSInteger) countEventsForService:(YOSService *) aService;
 
--(NSArray *) eventsForService:(YOSService *) aService
-                      context:(NSManagedObjectContext *) aContext;
+-(NSArray *) eventsForService:(YOSService *) aService;
 
 
 @end

@@ -1,6 +1,7 @@
 #import "YOSCredential.h"
 #import "YOSService.h"
 #import "YOSPhotoContainer.h"
+#import "Settings.h"
 
 @interface YOSCredential ()
 
@@ -59,6 +60,26 @@
     return credential;
     
 }
+
+
+
+
+-(NSInteger) countCredentials
+{
+    // Count Credentials
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[YOSCredential entityName]];
+    req.fetchBatchSize = 20;
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSCredentialAttributes.name
+                                                          ascending:YES ]];
+    NSError *err;
+    
+    NSArray *credentials = [STACK.context executeFetchRequest:req
+                                                        error:&err];
+    NSInteger numCredentials = [credentials count];
+    
+    return numCredentials;
+}
+
 
 
 

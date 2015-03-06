@@ -10,11 +10,15 @@
 #import "YOSServiceTableViewCell.h"
 #import "YOSService.h"
 #import "YOSCredential.h"
+#import "YOSEvent.h"
 #import "YOSPhotoContainer.h"
 #import "YOSAuthViewController.h"
 #import "YOSGoogleOAuth.h"
 
 @interface YOSServicesTableViewController ()
+
+@property (nonatomic) NSInteger countUsers;
+@property (nonatomic) NSInteger countEvents;
 
 @end
 
@@ -37,14 +41,19 @@
     [super viewDidLoad];
     
     self.title = @"Services";
-    
-    
-    
+
 }
 
-- (void) viewDidAppear:(BOOL)animated
+
+
+
+
+- (void) viewWillAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    self.countUsers = [[YOSCredential alloc] countCredentials];
+    self.countEvents = [[YOSEvent alloc] countEvents];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,9 +81,19 @@
     // create cell
     YOSServiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSServiceTableViewCell cellId]];
     
+    NSString *cellDescription;
     // configurate cell
+    
+    if (self.countUsers == 1 ) {
+        cellDescription = [NSString stringWithFormat:@" User:%lu  Events:%lu",(unsigned long)self.countUsers,(unsigned long)self.countEvents];
+    } else if (self.countUsers > 1 ) {
+        cellDescription = [NSString stringWithFormat:@" Users:%lu Events: %lu",(unsigned long)self.countUsers,(unsigned long)self.countEvents];
+    } else {
+        cellDescription = service.detail;
+    }
+    
     cell.lblNameService.text = service.name;
-    cell.lblDescriptionService.text = service.detail;
+    cell.lblDescriptionService.text = cellDescription;
     cell.imvPhotoService.image = service.photo.image;
     
     return cell;
