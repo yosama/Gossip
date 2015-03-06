@@ -9,6 +9,7 @@
 #import "YOSServicesTableViewController.h"
 #import "YOSServiceTableViewCell.h"
 #import "YOSService.h"
+#import "YOSCredential.h"
 #import "YOSPhotoContainer.h"
 #import "YOSAuthViewController.h"
 #import "YOSGoogleOAuth.h"
@@ -36,6 +37,9 @@
     [super viewDidLoad];
     
     self.title = @"Services";
+    
+    
+    
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -105,7 +109,8 @@
 
 #pragma mark - TableViewDelegate
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     YOSService *service = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -116,6 +121,12 @@
 
 
 
+#pragma mark - ServicesTableViewDelegate 
+
+-(void) authViewController: (YOSServicesTableViewController *) sender fetchResultController: (NSFetchedResultsController *) aFrc
+{
+    
+}
 
 
 

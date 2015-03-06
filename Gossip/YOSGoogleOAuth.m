@@ -227,14 +227,13 @@
           
             [self sendNotificationResponse:response];
             
-            [self.delegate authorizationGranted];
+//            [self.delegate authorizationGranted];
         };
         
         RequestError onError = ^(NSError *error) {
             
             [self sendNotificationError:error];
             
-            [self.delegate errorOcurred:error];
         };
         
         [self requestTokenWithCode:code
@@ -262,20 +261,20 @@
                 
                 [self sendNotificationResponse:response];
         
-                [self.delegate authorizationGranted];
+//                [self.delegate authorizationGranted];
             };
             
             RequestError onError = ^(NSError *error) {
                 
                 [self sendNotificationError:error];
-                [self.delegate errorOcurred:error];
+//                [self.delegate errorOcurred:error];
             };
             
             [self refreshTokenThenOnSuccess:onSuccess
                                 thenOnError:onError];
         } else {
             
-            [self.delegate authorizationGranted];
+//            [self.delegate authorizationGranted];
         }
     } else {
         
@@ -299,12 +298,12 @@
               
               [self sendNotificationRevoke:responseObject];
               
-              [self.delegate authorizationRevoke];
+//              [self.delegate authorizationRevoke];
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               
               [self sendNotificationError:error];
-              [self.delegate errorOcurred:error];
+//              [self.delegate errorOcurred:error];
           }];
 }
 

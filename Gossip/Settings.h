@@ -6,10 +6,8 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-@import Foundation;
-#ifndef Gossip_Settings_h
-#define Gossip_Settings_h
-#import "AppDelegate.h"
+
+#import "YOSAppDelegate.h"
 
 #define GOOGLE_RESPONSE_NOTIFICATION @"googleResponseNotification"
 #define GOOGLE_ERROR_NOTIFICATION @"googleErrorNotification"
@@ -29,16 +27,15 @@
 #define CLIENT_ID @"184164577500-i9bdmc70ceolniavq71rt10ku124osti.apps.googleusercontent.com"
 #define CLIENT_SECRET @"DchwgZRtwzubcQcjpr3xOGWs"
 #define REDIRECT_URI @"urn:ietf:wg:oauth:2.0:oob"
-#define SCOPES @"https://www.googleapis.com/auth/drive.apps.readonly"
+#define SCOPES @"https://www.googleapis.com/auth/drive"
 
 
 #define NEW_EVENT_SELECTED_NOTIFICATION @"newEventSelected"
 #define KEY_URL @"newEvent"
 
+#define AUTO_SAVE YES
+#define AUTO_SAVE_DELAY 5
 
-#define AUTO_SAVE 180
 
+#define STACK ([(YOSAppDelegate *)[[UIApplication sharedApplication] delegate] stack])
 
-#define STACK ([(AppDelegate *)[[UIApplication sharedApplication] delegate] stack])
-
-#endif

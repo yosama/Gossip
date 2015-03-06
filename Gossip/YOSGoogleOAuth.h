@@ -10,18 +10,18 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol YOSGoogleOAuthDelegate <NSObject>
-
--(void) authorizationGranted;
--(void) authorizationRevoke;
--(void) errorOcurred:(NSError *) anError;
-
-@end
+//@protocol GoogleOAuthDelegate <NSObject>
+//
+//-(void) authorizationGranted;
+//-(void) authorizationRevoke;
+//-(void) errorOcurred:(NSError *) anError;
+//
+//@end
 
 @interface YOSGoogleOAuth : UIWebView <UIWebViewDelegate>
 
-//Delegate
-@property (weak) id<YOSGoogleOAuthDelegate> delegate;
+////Delegate
+//@property (weak) id<GoogleOAuthDelegate> delegate;
 
 //Designated initializer
 - (id) initWithClientId:(NSString *) aClientId

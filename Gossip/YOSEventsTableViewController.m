@@ -18,6 +18,7 @@
 
 @interface YOSEventsTableViewController ()
 
+@property (nonatomic, strong) YOSGoogleOAuth *googleOAuth;
 
 @end
 
@@ -30,7 +31,15 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Events";
+    self.title = @"Tracks";
+    
+    UIBarButtonItem *btnBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Login"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(backServices)];
+    
+    
+    self.navigationItem.leftBarButtonItem = btnBarItem;
 }
 
 
@@ -119,7 +128,7 @@
     [NSNotificationCenter.defaultCenter postNotification:notify];
     
     YOSWebViewController *webVC = [[YOSWebViewController alloc]initWithURL:self.events.url];
-
+    
     [self.navigationController pushViewController:webVC
                                          animated:YES];
     
@@ -150,7 +159,12 @@
     
 }
 
-
+-(void) backServices
+{
+    
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0]
+                                          animated:YES];
+}
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
 {
@@ -177,33 +191,40 @@
 }
 
 
-#pragma mark - AuthViewControllerDelegate
-
--(void) authViewController: (YOSAuthViewController *) sender fetchResultController: (NSFetchedResultsController *) aFrc
-{
-    self.fetchedResultsController = aFrc;
-
-}
-
-
 
 #pragma mark - SplitViewControllerDelegate
 
-
 -(void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode
-    
+
 {
     if (displayMode == UISplitViewControllerDisplayModePrimaryHidden) {
         self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
     } else {
-         self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = nil;
     }
+}
+
+-(void) splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
+{
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+-(void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 
 
+#pragma mark - ServicesTableViewControllerDelegate
 
+#pragma mark - AuthViewControllerDelegate
 
+-(void) servicesViewController: (YOSAuthViewController *) sender fetchResultController: (NSFetchedResultsController *) aFrc
+{
+    self.fetchedResultsController = aFrc;
+    
+}
 
 #pragma mark - Notification
 
@@ -214,6 +235,52 @@
     
 }
 
+#pragma mark - Notification GoogleOAuth
+
+- (void)authorizationGranted
+{
+    NSLog( @"Authorization granted" );
+    
+    // Definimos el bloque encargado de manejar las peticiones de calendarios satisfactorias.
+    // Lo que hacemos es almacenar la respuesta en el array que definimos previamente y recargar la tabla para mostrarlos.
+    RequestSuccess onSuccess = ^(id response) {
+        
+        //        [[self calendars] addObjectsFromArray:[response objectForKey:@"items"]];
+        //
+        NSLog( @"Success" );
+        //
+        //        [[self table] reloadData];
+    };
+    
+    // Definimos el bloque encargado de manejar las peticiones de calendarios fallidas.
+    RequestError onError = ^(NSError *error) {
+        
+        NSLog( @"Error occured: %@", [error localizedDescription] );
+    };
+    
+    [self.googleOAuth doGetRequest:@"https://www.googleapis.com/calendar/v3/users/me/calendarList"
+                    withParameters:nil
+                     thenOnSuccess:onSuccess
+                       thenOnError:onError];
+}
+
+- (void)authorizationRevoked
+{
+    NSLog( @"Authorization revoked" );
+    
+    // Limpiamos el array de calendarios y vaciamos la tabla.
+    //    [[self calendars] removeAllObjects];
+    //    [[self table] reloadData];
+    //
+    //    // Habilitamos el botón Grant, y deshabilitamos Revoke.
+    //    [[self grantButton] setEnabled:YES];
+    //    [[self revokeButton] setEnabled:NO];
+}
+
+- (void)errorOccured:(NSError *)error
+{
+    NSLog( @"Error occured: %@", [error localizedDescription] );
+}
 
 
 

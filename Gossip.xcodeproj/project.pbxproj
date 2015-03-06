@@ -31,7 +31,7 @@
 		DBC4E6F01A9BDA600044F22A /* dropbox.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6EF1A9BDA600044F22A /* dropbox.png */; };
 		DBC4E6F21A9BDA7D0044F22A /* googleDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6F11A9BDA7D0044F22A /* googleDrive.png */; };
 		DBD940B71A9367F300CBD51F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940B61A9367F300CBD51F /* main.m */; };
-		DBD940BA1A9367F300CBD51F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940B91A9367F300CBD51F /* AppDelegate.m */; };
+		DBD940BA1A9367F300CBD51F /* YOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940B91A9367F300CBD51F /* YOSAppDelegate.m */; };
 		DBD940BC1A9367F300CBD51F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD940BB1A9367F300CBD51F /* Images.xcassets */; };
 		DBD940BF1A9367F300CBD51F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD940BD1A9367F300CBD51F /* LaunchScreen.xib */; };
 		DBD940CB1A9367F300CBD51F /* GossipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940CA1A9367F300CBD51F /* GossipTests.m */; };
@@ -44,8 +44,8 @@
 		DBDEB7771AA6A2C6009F60D2 /* YOSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDEB7751AA6A2C6009F60D2 /* YOSWebViewController.m */; };
 		DBDEB7781AA6A2C6009F60D2 /* YOSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBDEB7761AA6A2C6009F60D2 /* YOSWebViewController.xib */; };
 		DBE038AA1AA8849D00A80C10 /* YOSGoogleOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */; };
-		DBE038B71AA90E4D00A80C10 /* YOSServices.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038B61AA90E4D00A80C10 /* YOSServices.m */; };
 		DBE038BA1AA910F700A80C10 /* YOSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038B91AA910F700A80C10 /* YOSLog.m */; };
+		DBE038BE1AA9588000A80C10 /* YOSServices.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038BD1AA9588000A80C10 /* YOSServices.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,8 +103,8 @@
 		DBD940B11A9367F300CBD51F /* Gossip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gossip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBD940B51A9367F300CBD51F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBD940B61A9367F300CBD51F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DBD940B81A9367F300CBD51F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		DBD940B91A9367F300CBD51F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DBD940B81A9367F300CBD51F /* YOSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YOSAppDelegate.h; sourceTree = "<group>"; };
+		DBD940B91A9367F300CBD51F /* YOSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YOSAppDelegate.m; sourceTree = "<group>"; };
 		DBD940BB1A9367F300CBD51F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DBD940BE1A9367F300CBD51F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DBD940C41A9367F300CBD51F /* GossipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GossipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,10 +127,11 @@
 		DBE038A81AA8849D00A80C10 /* YOSGoogleOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSGoogleOAuth.h; sourceTree = "<group>"; };
 		DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSGoogleOAuth.m; sourceTree = "<group>"; };
 		DBE038B41AA8EC3100A80C10 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
-		DBE038B51AA90E4D00A80C10 /* YOSServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSServices.h; sourceTree = "<group>"; };
-		DBE038B61AA90E4D00A80C10 /* YOSServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSServices.m; sourceTree = "<group>"; };
 		DBE038B81AA910F700A80C10 /* YOSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSLog.h; sourceTree = "<group>"; };
 		DBE038B91AA910F700A80C10 /* YOSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSLog.m; sourceTree = "<group>"; };
+		DBE038BB1AA9556D00A80C10 /* Gossip-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Gossip-Prefix.pch"; sourceTree = "<group>"; };
+		DBE038BC1AA9588000A80C10 /* YOSServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSServices.h; path = Gossip/YOSServices.h; sourceTree = "<group>"; };
+		DBE038BD1AA9588000A80C10 /* YOSServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSServices.m; path = Gossip/YOSServices.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +169,6 @@
 				DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */,
 				DB98CFE01A9E831000ECC6AA /* YOSJSONObjectGitHub.h */,
 				DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */,
-				DBE038B41AA8EC3100A80C10 /* Settings.h */,
 				DBE038B81AA910F700A80C10 /* YOSLog.h */,
 				DBE038B91AA910F700A80C10 /* YOSLog.m */,
 			);
@@ -290,8 +290,8 @@
 			children = (
 				DB4E430C1AA4CC9600FEB8EA /* Categories */,
 				DBD4F5F71A9C8E4400C94591 /* Resources */,
-				DBD940B81A9367F300CBD51F /* AppDelegate.h */,
-				DBD940B91A9367F300CBD51F /* AppDelegate.m */,
+				DBD940B81A9367F300CBD51F /* YOSAppDelegate.h */,
+				DBD940B91A9367F300CBD51F /* YOSAppDelegate.m */,
 				DBD940BB1A9367F300CBD51F /* Images.xcassets */,
 				DBD940BD1A9367F300CBD51F /* LaunchScreen.xib */,
 				DBD940D71A93682A00CBD51F /* Models */,
@@ -305,8 +305,10 @@
 		DBD940B41A9367F300CBD51F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DBE038B41AA8EC3100A80C10 /* Settings.h */,
 				DBD940B51A9367F300CBD51F /* Info.plist */,
 				DBD940B61A9367F300CBD51F /* main.m */,
+				DBE038BB1AA9556D00A80C10 /* Gossip-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = Gossip;
@@ -332,14 +334,14 @@
 		DBD940D71A93682A00CBD51F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DBE038BC1AA9588000A80C10 /* YOSServices.h */,
+				DBE038BD1AA9588000A80C10 /* YOSServices.m */,
 				DBC4E6D51A9B860A0044F22A /* CoreData */,
 				DBD9412D1A93785A00CBD51F /* Machine */,
 				DB4B4FD31A95455000605487 /* Human */,
 				DBD940F31A9374AF00CBD51F /* Model.xcdatamodeld */,
 				DBD940DA1A93716000CBD51F /* YOSGossipBaseClass.h */,
 				DBD940DB1A93716000CBD51F /* YOSGossipBaseClass.m */,
-				DBE038B51AA90E4D00A80C10 /* YOSServices.h */,
-				DBE038B61AA90E4D00A80C10 /* YOSServices.m */,
 			);
 			name = Models;
 			path = ..;
@@ -515,7 +517,7 @@
 				DB9B3A961A960BDB003B3EE2 /* YOSEvent.m in Sources */,
 				DBD940DC1A93716000CBD51F /* YOSGossipBaseClass.m in Sources */,
 				DB9B3A2E1A95F1B7003B3EE2 /* YOSServicesTableViewController.m in Sources */,
-				DBD940BA1A9367F300CBD51F /* AppDelegate.m in Sources */,
+				DBD940BA1A9367F300CBD51F /* YOSAppDelegate.m in Sources */,
 				DBD9412B1A93785000CBD51F /* YOSService.m in Sources */,
 				DB4E430B1AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m in Sources */,
 				DBD940B71A9367F300CBD51F /* main.m in Sources */,
@@ -526,13 +528,13 @@
 				DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */,
 				DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */,
 				DB4E43091AA4CC8B00FEB8EA /* UIImage+Alpha.m in Sources */,
-				DBE038B71AA90E4D00A80C10 /* YOSServices.m in Sources */,
 				DBC4E6E51A9BA8D50044F22A /* YOSEventsTableViewController.m in Sources */,
 				DBC4E6E91A9BB3450044F22A /* YOSServiceTableViewCell.m in Sources */,
 				DBC4E6E01A9B8E200044F22A /* YOSEventTableViewCell.m in Sources */,
 				DBD9412A1A93785000CBD51F /* YOSPhotoContainer.m in Sources */,
 				DB6B60E81A9D40A0000B3229 /* YOSAuthViewController.m in Sources */,
 				DB9B3A951A960BDB003B3EE2 /* _YOSEvent.m in Sources */,
+				DBE038BE1AA9588000A80C10 /* YOSServices.m in Sources */,
 				DBD941281A93785000CBD51F /* _YOSService.m in Sources */,
 				DB4E430A1AA4CC8B00FEB8EA /* UIImage+Resize.m in Sources */,
 				DB05420B1A9B426F0087F90F /* AGTCoreDataStack.m in Sources */,
@@ -653,6 +655,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Gossip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -665,6 +668,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Gossip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

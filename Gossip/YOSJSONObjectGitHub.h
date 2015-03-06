@@ -9,7 +9,7 @@
 @import Foundation;
 #import "AGTCoreDataStack.h"
 #import "YOSService.h"
-#import "AppDelegate.h"
+#import "YOSAppDelegate.h"
 
 @interface YOSJSONObjectGitHub : NSObject
 

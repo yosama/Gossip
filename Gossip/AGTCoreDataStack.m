@@ -185,7 +185,8 @@
 
 
 
--(void) laPolla{
+-(void) laPolla
+{
     
     // Automagically do light migrations
     NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @YES,                                         NSInferMappingModelAutomaticallyOption : @YES} ;

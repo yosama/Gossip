@@ -40,7 +40,7 @@
         self.userValid = YES;
         self.userExists = NO;
         
-        [[(AppDelegate *)[[UIApplication sharedApplication] delegate] stack]context ];
+        [[(YOSAppDelegate *)[[UIApplication sharedApplication] delegate] stack]context ];
         
         NSString *url = [NSString stringWithFormat:@"https://api.github.com/users/%@",anUser];
         

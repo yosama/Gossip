@@ -56,6 +56,9 @@
            selector:@selector(errorOccured:)
                name:GOOGLE_ERROR_NOTIFICATION
              object:nil];
+    
+    
+    self.title = self.service.name;
 
 }
 
@@ -113,14 +116,12 @@
             
         } else {
             
-            AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
+            YOSAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
             
             NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
             
-            YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]init];
-            self.delegate = eventTVC;
-            [self.delegate authViewController:self
-                        fetchResultController:frc];
+            YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]initWithFetchedResultsController:frc
+                                                                                                                     style:UITableViewStylePlain];
             
             NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
                                                                    object:self
@@ -183,7 +184,6 @@
 
 #pragma mark - Misc
 
-
 -(void) showAlertError: (NSString *) aTitle message: (NSString *) aMessage
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:aTitle
@@ -195,7 +195,8 @@
     
 }
 
-#pragma mark - Notification GoogleOAuth
+
+#pragma mark - Notifications GoogleOAuth
 
 - (void)authorizationGranted
 {
@@ -205,11 +206,11 @@
     // Lo que hacemos es almacenar la respuesta en el array que definimos previamente y recargar la tabla para mostrarlos.
     RequestSuccess onSuccess = ^(id response) {
         
-//        [[self calendars] addObjectsFromArray:[response objectForKey:@"items"]];
-//        
+        //        [[self calendars] addObjectsFromArray:[response objectForKey:@"items"]];
+        //
         NSLog( @"Success" );
-//
-//        [[self table] reloadData];
+        //
+        //        [[self table] reloadData];
     };
     
     // Definimos el bloque encargado de manejar las peticiones de calendarios fallidas.
@@ -219,9 +220,9 @@
     };
     
     [self.googleOAuth doGetRequest:@"https://www.googleapis.com/calendar/v3/users/me/calendarList"
-                      withParameters:nil
-                       thenOnSuccess:onSuccess
-                         thenOnError:onError];
+                    withParameters:nil
+                     thenOnSuccess:onSuccess
+                       thenOnError:onError];
 }
 
 - (void)authorizationRevoked
@@ -229,18 +230,19 @@
     NSLog( @"Authorization revoked" );
     
     // Limpiamos el array de calendarios y vaciamos la tabla.
-//    [[self calendars] removeAllObjects];
-//    [[self table] reloadData];
-//    
-//    // Habilitamos el botón Grant, y deshabilitamos Revoke.
-//    [[self grantButton] setEnabled:YES];
-//    [[self revokeButton] setEnabled:NO];
+    //    [[self calendars] removeAllObjects];
+    //    [[self table] reloadData];
+    //
+    //    // Habilitamos el botón Grant, y deshabilitamos Revoke.
+    //    [[self grantButton] setEnabled:YES];
+    //    [[self revokeButton] setEnabled:NO];
 }
 
 - (void)errorOccured:(NSError *)error
 {
     NSLog( @"Error occured: %@", [error localizedDescription] );
 }
+
 
 
 

@@ -9,7 +9,7 @@
 @import UIKit;
 #import "AGTCoreDataStack.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface YOSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) AGTCoreDataStack *stack;

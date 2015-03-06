@@ -9,7 +9,7 @@
 #import "YOSServices.h"
 #import "YOSService.h"
 #import "YOSPhotoContainer.h"
-#import "AppDelegate.h"
+#import "YOSAppDelegate.h"
 
 
 @implementation YOSServices
@@ -21,7 +21,7 @@
     
     if (self = [super init]) {
         
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        YOSAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         YOSPhotoContainer  *photoGit = [YOSPhotoContainer  insertInManagedObjectContext:appDelegate.stack.context];
         photoGit.image = [UIImage imageNamed:@"octocat.png"];

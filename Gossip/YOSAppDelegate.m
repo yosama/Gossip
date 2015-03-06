@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "YOSAppDelegate.h"
 #import "YOSService.h"
 #import "YOSCredential.h"
 #import "YOSServicesTableViewController.h"
@@ -19,11 +19,11 @@
 #import "Settings.h"
 #import "YOSLog.h"
 
-@interface AppDelegate ()
+@interface YOSAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation YOSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -101,6 +101,7 @@
     
     // Assign delegate
     splitVC.delegate = eventTVC;
+    aServiceTVC.delegate = eventTVC;
     
     self.window.rootViewController = splitVC;
     
