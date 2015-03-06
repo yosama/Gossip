@@ -11,11 +11,12 @@
 #import "YOSService.h"
 #import "YOSCredential.h"
 #import "YOSPhotoContainer.h"
+#import "Settings.h"
+
 
 @interface YOSJSONObjectGitHub ()
 
 @property (nonatomic, strong) YOSService *service;
-@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @end
 
@@ -38,7 +39,8 @@
         _user = anUser;
         self.userValid = YES;
         self.userExists = NO;
-        self.appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        [[(AppDelegate *)[[UIApplication sharedApplication] delegate] stack]context ];
         
         NSString *url = [NSString stringWithFormat:@"https://api.github.com/users/%@",anUser];
         
@@ -47,7 +49,7 @@
         if (data) {
             
             YOSCredential *credential = [ YOSCredential credentialForIdUser:[[data objectForKey:@"id"] integerValue]
-                                                                    context:self.appDelegate.stack.context];
+                                                                    context:STACK.context];
             if (credential) {
                 self.userExists = YES;
             } else {
@@ -73,7 +75,7 @@
     if (JSONUserData) {
         
         [YOSCredential credentialWithDictionary:JSONUserData
-                                        context:self.appDelegate.stack.context];
+                                        context:STACK.context];
         
     } else {
         NSLog(@"Error al parsear el JSON:%@ ", error.localizedDescription);
@@ -91,7 +93,7 @@
             
             [YOSEvent eventWithDictionary:dict
                                   service:self.service
-                                  context:self.appDelegate.stack.context];
+                                  context:STACK.context];
         }
     } else {
         NSLog(@"Error al parsear el JSON:%@ ", error.localizedDescription);

@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
+@import Foundation;
 #ifndef Gossip_Settings_h
 #define Gossip_Settings_h
+#import "AppDelegate.h"
 
 #define GOOGLE_RESPONSE_NOTIFICATION @"googleResponseNotification"
 #define GOOGLE_ERROR_NOTIFICATION @"googleErrorNotification"
@@ -32,5 +34,11 @@
 
 #define NEW_EVENT_SELECTED_NOTIFICATION @"newEventSelected"
 #define KEY_URL @"newEvent"
+
+
+#define AUTO_SAVE 180
+
+
+#define STACK ([(AppDelegate *)[[UIApplication sharedApplication] delegate] stack])
 
 #endif

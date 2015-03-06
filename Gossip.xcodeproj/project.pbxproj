@@ -44,6 +44,8 @@
 		DBDEB7771AA6A2C6009F60D2 /* YOSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDEB7751AA6A2C6009F60D2 /* YOSWebViewController.m */; };
 		DBDEB7781AA6A2C6009F60D2 /* YOSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBDEB7761AA6A2C6009F60D2 /* YOSWebViewController.xib */; };
 		DBE038AA1AA8849D00A80C10 /* YOSGoogleOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */; };
+		DBE038B71AA90E4D00A80C10 /* YOSServices.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038B61AA90E4D00A80C10 /* YOSServices.m */; };
+		DBE038BA1AA910F700A80C10 /* YOSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038B91AA910F700A80C10 /* YOSLog.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,10 @@
 		DBE038A81AA8849D00A80C10 /* YOSGoogleOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSGoogleOAuth.h; sourceTree = "<group>"; };
 		DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSGoogleOAuth.m; sourceTree = "<group>"; };
 		DBE038B41AA8EC3100A80C10 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		DBE038B51AA90E4D00A80C10 /* YOSServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSServices.h; sourceTree = "<group>"; };
+		DBE038B61AA90E4D00A80C10 /* YOSServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSServices.m; sourceTree = "<group>"; };
+		DBE038B81AA910F700A80C10 /* YOSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSLog.h; sourceTree = "<group>"; };
+		DBE038B91AA910F700A80C10 /* YOSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSLog.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +169,8 @@
 				DB98CFE01A9E831000ECC6AA /* YOSJSONObjectGitHub.h */,
 				DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */,
 				DBE038B41AA8EC3100A80C10 /* Settings.h */,
+				DBE038B81AA910F700A80C10 /* YOSLog.h */,
+				DBE038B91AA910F700A80C10 /* YOSLog.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -330,6 +338,8 @@
 				DBD940F31A9374AF00CBD51F /* Model.xcdatamodeld */,
 				DBD940DA1A93716000CBD51F /* YOSGossipBaseClass.h */,
 				DBD940DB1A93716000CBD51F /* YOSGossipBaseClass.m */,
+				DBE038B51AA90E4D00A80C10 /* YOSServices.h */,
+				DBE038B61AA90E4D00A80C10 /* YOSServices.m */,
 			);
 			name = Models;
 			path = ..;
@@ -499,6 +509,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE038BA1AA910F700A80C10 /* YOSLog.m in Sources */,
 				DBE038AA1AA8849D00A80C10 /* YOSGoogleOAuth.m in Sources */,
 				DB4E430F1AA4D02B00FEB8EA /* UIViewController+Navigation.m in Sources */,
 				DB9B3A961A960BDB003B3EE2 /* YOSEvent.m in Sources */,
@@ -515,6 +526,7 @@
 				DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */,
 				DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */,
 				DB4E43091AA4CC8B00FEB8EA /* UIImage+Alpha.m in Sources */,
+				DBE038B71AA90E4D00A80C10 /* YOSServices.m in Sources */,
 				DBC4E6E51A9BA8D50044F22A /* YOSEventsTableViewController.m in Sources */,
 				DBC4E6E91A9BB3450044F22A /* YOSServiceTableViewCell.m in Sources */,
 				DBC4E6E01A9B8E200044F22A /* YOSEventTableViewCell.m in Sources */,
@@ -642,6 +654,7 @@
 				INFOPLIST_FILE = Gossip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -653,6 +666,7 @@
 				INFOPLIST_FILE = Gossip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

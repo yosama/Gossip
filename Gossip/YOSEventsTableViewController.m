@@ -186,6 +186,25 @@
 }
 
 
+
+#pragma mark - SplitViewControllerDelegate
+
+
+-(void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode
+    
+{
+    if (displayMode == UISplitViewControllerDisplayModePrimaryHidden) {
+        self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
+    } else {
+         self.navigationItem.leftBarButtonItem = nil;
+    }
+}
+
+
+
+
+
+
 #pragma mark - Notification
 
 - (void) userDidChange:(NSNotification *) aNotification
@@ -194,6 +213,9 @@
     self.fetchedResultsController = [dict objectForKey:KEY];
     
 }
+
+
+
 
 
 

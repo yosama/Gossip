@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "YOSService.h"
 #import "AGTCoreDataTableViewController.h"
+#import "YOSAuthViewController.h"
 
 @interface YOSServicesTableViewController : AGTCoreDataTableViewController
 
