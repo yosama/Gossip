@@ -10,6 +10,9 @@
 		BC8ED7367082EFD219FBB065 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C128A4EC93C920ED136614B3 /* libPods.a */; };
 		DB05420B1A9B426F0087F90F /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DB05420A1A9B426F0087F90F /* AGTCoreDataStack.m */; };
 		DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB05420D1A9B4CB70087F90F /* AGTCoreDataTableViewController.m */; };
+		DB2D28601AB8BE200042F206 /* mendeley.png in Resources */ = {isa = PBXBuildFile; fileRef = DB2D285F1AB8BE200042F206 /* mendeley.png */; };
+		DB2D28621AB8C3AB0042F206 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = DB2D28611AB8C3AB0042F206 /* calendar.png */; };
+		DB2D28661AB8CA170042F206 /* evernote_logo_center_4c-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = DB2D28651AB8CA170042F206 /* evernote_logo_center_4c-sm.png */; };
 		DB4E43091AA4CC8B00FEB8EA /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43041AA4CC8B00FEB8EA /* UIImage+Alpha.m */; };
 		DB4E430A1AA4CC8B00FEB8EA /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43061AA4CC8B00FEB8EA /* UIImage+Resize.m */; };
 		DB4E430B1AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43081AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m */; };
@@ -71,6 +74,9 @@
 		DB05420A1A9B426F0087F90F /* AGTCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGTCoreDataStack.m; path = Gossip/AGTCoreDataStack.m; sourceTree = "<group>"; };
 		DB05420C1A9B4CB70087F90F /* AGTCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataTableViewController.h; sourceTree = "<group>"; };
 		DB05420D1A9B4CB70087F90F /* AGTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataTableViewController.m; sourceTree = "<group>"; };
+		DB2D285F1AB8BE200042F206 /* mendeley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mendeley.png; sourceTree = "<group>"; };
+		DB2D28611AB8C3AB0042F206 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		DB2D28651AB8CA170042F206 /* evernote_logo_center_4c-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "evernote_logo_center_4c-sm.png"; sourceTree = "<group>"; };
 		DB4E43031AA4CC8B00FEB8EA /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		DB4E43041AA4CC8B00FEB8EA /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		DB4E43051AA4CC8B00FEB8EA /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -270,6 +276,9 @@
 		DBD4F5F71A9C8E4400C94591 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DB2D28651AB8CA170042F206 /* evernote_logo_center_4c-sm.png */,
+				DB2D28611AB8C3AB0042F206 /* calendar.png */,
+				DB2D285F1AB8BE200042F206 /* mendeley.png */,
 				DBD7E9AF1AB32F60006BFF2A /* OpenSans-Bold.ttf */,
 				DBD7E9B11AB32F60006BFF2A /* OpenSans-Light.ttf */,
 				DB6964501AAA5EF30047FFA5 /* OpenSans-Regular.ttf */,
@@ -475,13 +484,16 @@
 				DBD7E9B51AB32F60006BFF2A /* OpenSans-Light.ttf in Resources */,
 				DBD7E9B31AB32F60006BFF2A /* OpenSans-Bold.ttf in Resources */,
 				DBD940BC1A9367F300CBD51F /* Images.xcassets in Resources */,
+				DB2D28621AB8C3AB0042F206 /* calendar.png in Resources */,
 				DBC4E6E11A9B8E200044F22A /* YOSEventTableViewCell.xib in Resources */,
 				DBC4E6EA1A9BB3450044F22A /* YOSServiceTableViewCell.xib in Resources */,
 				DBC4E6F01A9BDA600044F22A /* dropbox.png in Resources */,
 				DBC4E6EE1A9BDA300044F22A /* octocat.png in Resources */,
 				DBC4E6F21A9BDA7D0044F22A /* googleDrive.png in Resources */,
 				DB6B60E91A9D40A0000B3229 /* YOSAuthViewController.xib in Resources */,
+				DB2D28661AB8CA170042F206 /* evernote_logo_center_4c-sm.png in Resources */,
 				DB69644F1AAA5A200047FFA5 /* logo.png in Resources */,
+				DB2D28601AB8BE200042F206 /* mendeley.png in Resources */,
 				DBDEB7781AA6A2C6009F60D2 /* YOSWebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
