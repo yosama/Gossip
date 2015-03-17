@@ -39,7 +39,7 @@
                                                                   action:@selector(backServices)];
     self.navigationItem.leftBarButtonItem = btnBarItem;
     
-    [self registerNibs];
+    
 }
 
 
@@ -74,9 +74,9 @@
 {
     self.events = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
+    [self registerNibs];
     
-    
-    YOSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSEventTableViewCell cellId] ];
+    YOSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSEventTableViewCell cellId]  forIndexPath:indexPath];
     
     NSInteger dayDiferences = [self daysBetweenDate:self.events.date
                                             andDate:[NSDate date]];

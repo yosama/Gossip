@@ -45,6 +45,11 @@
     self.title = @"Services";
     //Register cell
     [self registerNibs];
+
+    [[UITableView appearance] setBackgroundColor:[UIColor colorWithHue:0
+                                                            saturation:0
+                                                            brightness:93
+                                                                 alpha:1 ]];
     
    
     

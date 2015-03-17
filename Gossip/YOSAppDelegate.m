@@ -33,7 +33,7 @@
     
     [[YOSServices alloc] init];
     
-    [self customApp];
+   // [self customApp];
 
     [[YOSLog alloc] showData];
     
@@ -107,6 +107,7 @@
     
     self.window.rootViewController = splitVC;
     
+    
 }
 
 
@@ -143,6 +144,7 @@
     
     return result;
 }
+
 
 
 
