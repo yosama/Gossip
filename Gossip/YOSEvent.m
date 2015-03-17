@@ -2,6 +2,7 @@
 #import "YOSService.h"
 #import "YOSPhotoContainer.h"
 #import "YOSCredential.h"
+#import "Settings.h"
 
 @interface YOSEvent ()
 
@@ -13,7 +14,6 @@
 
 +(instancetype) eventWithDictionary:(NSDictionary *) aDict
                             service:(YOSService *) aService
-                            context:(NSManagedObjectContext *) aContext
 {
     YOSEvent *event;
     
@@ -43,7 +43,7 @@
         createdDate = [df dateFromString:date];
         idUser = [[[NSDictionary dictionaryWithDictionary:[aDict objectForKey:@"actor"] ] objectForKey:@"id"] integerValue];
         
-        event = [YOSEvent insertInManagedObjectContext:aContext];
+        event = [YOSEvent insertInManagedObjectContext:STACK.context];
         event.idEvent = @(eventId);
         event.name = message;
         event.typeEvent = type;
@@ -51,7 +51,7 @@
         event.detail = author;
         event.date = createdDate;
         event.service = aService;
-        event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
+        event.user = [YOSCredential credentialForIdUser:idUser context:STACK.context];
         
         
     } else {
@@ -77,7 +77,7 @@
             createdDate = [df dateFromString:date];
             idUser = [[[NSDictionary dictionaryWithDictionary:[aDict objectForKey:@"actor"] ] objectForKey:@"id"] integerValue];
             
-            event = [YOSEvent insertInManagedObjectContext:aContext];
+            event = [YOSEvent insertInManagedObjectContext:STACK.context];
             event.name = message;
             event.idEvent = @(eventId);
             event.typeEvent = type;
@@ -85,14 +85,13 @@
             event.detail = [author stringByAppendingString:[NSString stringWithFormat:@"/%@",nameRepo]];
             event.date = createdDate;
             event.service = aService;
-            event.user = [YOSCredential credentialForIdUser:idUser context:aContext];
+            event.user = [YOSCredential credentialForIdUser:idUser context:STACK.context];
         }
         
     }
     
     return event;
 }
-
 
 +(NSFetchedResultsController *) eventWithMOC: (NSManagedObjectContext *) aContext {
     
@@ -112,14 +111,14 @@
 
 #pragma mark - Utils
 
--(NSInteger) countEvents:(NSManagedObjectContext *) aContext
+-(NSInteger) countEvents
 {
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName: [YOSEvent entityName]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.idEvent
                                                          ascending:NO]];
     
     NSError *error = nil;
-    NSArray *result = [aContext executeFetchRequest:fr
+    NSArray *result = [STACK.context executeFetchRequest:fr
                                               error:&error];
     if (!result) {
         NSLog(@"Error al buscar: %@", error);
@@ -131,7 +130,7 @@
 
 
 -(NSInteger) countEventsForService:(YOSService *) aService
-                           context:(NSManagedObjectContext *) aContext {
+{
     
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName: [YOSEvent entityName]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.idEvent
@@ -140,7 +139,7 @@
     fr.predicate = [NSPredicate predicateWithFormat:@"services == %@",aService];
     
     NSError *error = nil;
-    NSArray *result = [aContext executeFetchRequest:fr
+    NSArray *result = [STACK.context executeFetchRequest:fr
                                               error:&error];
     if (!result) {
         NSLog(@"Error al buscar: %@", error);
@@ -152,7 +151,7 @@
 
 
 -(NSArray *) eventsForService:(YOSService *) aService
-                      context:(NSManagedObjectContext *) aContext {
+{
     
     NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName: [YOSEvent entityName]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:YOSEventAttributes.typeEvent
@@ -161,7 +160,7 @@
     fr.predicate = [NSPredicate predicateWithFormat:@"services == %@",aService];
     
     NSError *error = nil;
-    NSArray *result = [aContext executeFetchRequest:fr
+    NSArray *result = [STACK.context executeFetchRequest:fr
                                               error:&error];
     if (result) {
         NSLog(@"Error al buscar: %@", error);
@@ -170,6 +169,7 @@
     return result ;
     
 }
+
 
 
 

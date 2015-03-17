@@ -6,16 +6,13 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-
-#define NEW_EVENT_SELECTED_NOTIFICATION @"newEventSelected"
-#define KEY_URL @"newEvent"
-
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "YOSEvent.h"
 #import "AGTCoreDataTableViewController.h"
-#import "YOSAuthViewController.h"
+#import "YOSServicesTableViewController.h"
+#import "YOSGoogleOAuth.h"
 
-@interface YOSEventsTableViewController : AGTCoreDataTableViewController<AuthViewControllerDelegate,UISplitViewControllerDelegate>
+@interface YOSEventsTableViewController : AGTCoreDataTableViewController<UISplitViewControllerDelegate,ServicesTableViewControllerDelegate>
 
 @property (nonatomic,strong) YOSEvent *events;
 

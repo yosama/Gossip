@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YOSEventTableViewCell : UITableViewCell<UIImagePickerControllerDelegate>
+@interface YOSEventTableViewCell : UITableViewCell
 
 +(CGFloat)height;
 

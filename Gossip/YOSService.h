@@ -14,4 +14,6 @@
 
 +(NSFetchedResultsController *) serviceWithContext: (NSManagedObjectContext *) aContext;
 
+
+-(NSInteger) countServices;
 @end

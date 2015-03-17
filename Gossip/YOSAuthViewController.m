@@ -13,11 +13,13 @@
 #import "YOSJSONObjectGitHub.h"
 #import "YOSEventsTableViewController.h"
 #import "UIViewController+Navigation.h"
-
+#import "YOSGoogleOAuth.h"
+#import "Settings.h"
 
 @interface YOSAuthViewController ()
 
 @property (nonatomic, strong) NSDictionary *services;
+@property (nonatomic, strong) YOSGoogleOAuth *googleOAuth;
 
 @end
 
@@ -42,24 +44,41 @@
     [super viewWillAppear:animated];
     self.imvLogoService.image = self.service.photo.image;
     self.txfUser.delegate = self;
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
-    //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    //    [nc addObserver:self
-    //           selector:@selector(callEventsForService)
-    //               name:NOTIFICATION_USER
-    //             object:nil];
+    [nc addObserver:self
+           selector:@selector(authorizationGranted)
+               name:GOOGLE_RESPONSE_NOTIFICATION
+             object:nil];
     
+    [nc addObserver:self
+           selector:@selector(errorOccured:)
+               name:GOOGLE_ERROR_NOTIFICATION
+             object:nil];
+    
+    
+    self.title = self.service.name;
+
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    if ([self.service.name isEqualToString:GOOGLE]) {
+        
+        self.googleOAuth = [[YOSGoogleOAuth alloc] initWithClientId:CLIENT_ID
+                                                       clientSecret:CLIENT_SECRET
+                                                        redirectUri:REDIRECT_URI
+                                                          forScopes:@[SCOPES]
+                                                         parentView:self.view];
+        [self.googleOAuth grantAuthorization];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,8 +91,10 @@
 
 - (IBAction)btnSingin:(id)sender
 {
-    [self callEventsForService];
-    
+    if ([self validateField] == YES) {
+        [self callEventsForService];
+    }
+
 }
 
 
@@ -85,71 +106,59 @@
         
     } else if ([self.service.name isEqualToString:GITHUB]) {
         
-        YOSJSONObjectGitHub *objectsGithub = [[YOSJSONObjectGitHub alloc] initWithService:self.service
-                                                                                     user:self.txfUser.text];
-        AppDelegate *appDel = [[UIApplication sharedApplication] delegate];
+        YOSJSONObjectGitHub *jsonObject = [[YOSJSONObjectGitHub alloc ]initWithService:self.service
+                                                                                  user:self.txfUser.text];
         
-        NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
+        if ([jsonObject userValid] == NO) {
+            [self showAlertError:@"Error" message:@"User no valid"];
+            
+        } else if ([jsonObject userExists] == YES) {
+            [self showAlertError:@"Error" message:@"User exists"];
+            
+        } else {
+            
+            YOSAppDelegate *appDel = [[UIApplication sharedApplication] delegate];
+            
+            NSFetchedResultsController *frc =   [YOSEvent eventWithMOC:appDel.stack.context];
+            
+            YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]initWithFetchedResultsController:frc
+                                                                                                                     style:UITableViewStylePlain];
+            
+            NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
+                                                                   object:self
+                                                                 userInfo:@{KEY:frc}];
+            [NSNotificationCenter.defaultCenter postNotification:notify];
+            
+            [self.navigationController pushViewController:eventTVC
+                                                 animated:YES];
+        }
         
-        YOSEventsTableViewController *eventTVC = [[YOSEventsTableViewController alloc]init];
-        self.delegate = eventTVC;
-        [self.delegate authViewController:self
-                    fetchResultController:frc];
         
-        NSNotification *notify = [NSNotification notificationWithName:NEW_USER_NOTIFICATION
-                                                               object:self
-                                                             userInfo:@{KEY:frc}];
-        [NSNotificationCenter.defaultCenter postNotification:notify];
-        
-        [self.navigationController pushViewController:eventTVC
-                                             animated:YES];
-        
-    
     } else if ([self.service.name isEqualToString:GOOGLE]) {
-        NSLog(@"Implementando modulo");
+        
+        
+        
     }
     
 }
 
 
--(void) validateField
+-(BOOL) validateField
 {
+    BOOL result;
     if([self.txfUser.text length] == 0) {
-        [self showAlertByInfo:@"Error" message:@"Type an user valid"];
+        [self showAlertError:@"Error"
+                     message:@"Type an user and password"];
+        result = NO;
+    }else {
+        result = YES;
     }
     
+    return result;
 }
 
-- (void) showAlertByInfo:(NSString *) aInfo message:(NSString *) aMessage
-{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:aInfo
-                                                                   message:aMessage
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-    // Button OK
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                 style:UIAlertActionStyleDefault
-                                               handler:^(UIAlertAction *action){
-                                                   
-                                                   [alert dismissViewControllerAnimated:YES completion:nil];
-                                               }];
-    
-    // Button Cancel
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction *action){
-                                                       
-                                                       [alert dismissViewControllerAnimated:YES completion:nil];
-                                                   }];
-    
-    // Add buttons [ok,cancel]
-    [alert addAction:ok];
-    [alert addAction:cancel];
-    [self presentViewController:alert animated:YES completion:nil];
-    
-}
 
 #pragma mark - TextFieldDelegate
-
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -157,18 +166,19 @@
     // ¿LO damos por bueno?
     // Valimos el texto y si está bien, entonces...
     
+    [self validateField];
+    
     [textField resignFirstResponder];
     
     return YES;
     
 }
 
--(void) textFieldDidEndEditing:(UITextField *)textField
-{
-    [self callEventsForService];
-    
-}
-
+//-(void) textFieldDidEndEditing:(UITextField *)textField
+//{
+//    [self callEventsForService];
+//    
+//}
 
 -(IBAction)removeKeyBoard:(id)sender
 {
@@ -176,6 +186,70 @@
     [self.view endEditing:YES];
     
 }
+
+
+#pragma mark - Misc
+
+-(void) showAlertError: (NSString *) aTitle message: (NSString *) aMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:aTitle
+                                                    message:aMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"OK", nil];
+    [alert show];
+    
+}
+
+
+#pragma mark - Notifications GoogleOAuth
+
+- (void)authorizationGranted
+{
+    NSLog( @"Authorization granted" );
+    
+    // Definimos el bloque encargado de manejar las peticiones de calendarios satisfactorias.
+    // Lo que hacemos es almacenar la respuesta en el array que definimos previamente y recargar la tabla para mostrarlos.
+    RequestSuccess onSuccess = ^(id response) {
+        
+        //        [[self calendars] addObjectsFromArray:[response objectForKey:@"items"]];
+        //
+        NSLog( @"Success" );
+        //
+        //        [[self table] reloadData];
+    };
+    
+    // Definimos el bloque encargado de manejar las peticiones de calendarios fallidas.
+    RequestError onError = ^(NSError *error) {
+        
+        NSLog( @"Error occured: %@", [error localizedDescription] );
+    };
+    
+    [self.googleOAuth doGetRequest:@"https://www.googleapis.com/calendar/v3/users/me/calendarList"
+                    withParameters:nil
+                     thenOnSuccess:onSuccess
+                       thenOnError:onError];
+}
+
+- (void)authorizationRevoked
+{
+    NSLog( @"Authorization revoked" );
+    
+    // Limpiamos el array de calendarios y vaciamos la tabla.
+    //    [[self calendars] removeAllObjects];
+    //    [[self table] reloadData];
+    //
+    //    // Habilitamos el botón Grant, y deshabilitamos Revoke.
+    //    [[self grantButton] setEnabled:YES];
+    //    [[self revokeButton] setEnabled:NO];
+}
+
+- (void)errorOccured:(NSError *)error
+{
+    NSLog( @"Error occured: %@", [error localizedDescription] );
+}
+
+
 
 
 

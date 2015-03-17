@@ -9,15 +9,18 @@
 @import Foundation;
 #import "AGTCoreDataStack.h"
 #import "YOSService.h"
-#import "AppDelegate.h"
+#import "YOSAppDelegate.h"
 
 @interface YOSJSONObjectGitHub : NSObject
 
 @property (nonatomic,strong) NSDictionary *model;
 @property (nonatomic,copy) NSString *user;
-@property (nonatomic,strong) YOSEvent *event;
+@property (nonatomic) BOOL userValid;
+@property (nonatomic) BOOL userExists;
 
--(id) initWithService:(YOSService *) aService user:(NSString *) anUser;
++(instancetype) jsonObjectGithubWithService: (YOSService *) aService user:(NSString *) anUser;
+
+-(id) initWithService: (YOSService *) aService user:(NSString *) anUser;
 
 
 

@@ -8,6 +8,7 @@
 
 #import "YOSWebViewController.h"
 #import "YOSEventsTableViewController.h"
+#import "Settings.h"
 
 @interface YOSWebViewController ()
 
@@ -18,11 +19,10 @@
 
 #pragma mark - Init
 
--(id) initWithURL:(NSString *) anUrl
+-(id) initWithEvent:(YOSEvent *) anEvent
 {
-    if (self = [super initWithNibName:nil
-                               bundle:nil]) {
-        _url = anUrl;
+    if (self = [super init]) {
+        _event = anEvent;
     }
     return self;
 }
@@ -34,6 +34,9 @@
     [super viewDidLoad];
     
     self.wvBrowser.delegate = self;
+    
+    [self loadPage];
+    [self.aivActivityIndicator startAnimating];
 
 }
 
@@ -46,8 +49,8 @@
            selector:@selector(eventDidChange:)
                name:NEW_EVENT_SELECTED_NOTIFICATION
              object:nil];
-    [self loadPage];
     
+    self.title = self.event.name;
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -67,7 +70,7 @@
 
 -(void) loadPage
 {
-    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.event.url]];
     
     [self.wvBrowser loadRequest:req];
 }
@@ -109,7 +112,7 @@
 - (void) eventDidChange: (NSNotification *) aNotification
 {
     NSDictionary *dict = [aNotification userInfo];
-    self.url = [dict objectForKey:KEY_URL];
+    self.event.url = [dict objectForKey:KEY_EVENT_CHANGE];
     
     [self loadPage];
 }
