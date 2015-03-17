@@ -11,7 +11,6 @@
 @interface YOSStyle : NSObject
 
 
-@property (nonatomic,strong) UITableView *table;
-@property (nonatomic,strong) UIView *view;
+
 
 @end

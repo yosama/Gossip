@@ -17,6 +17,7 @@
 #import "UIViewController+Navigation.h"
 #import "YOSServices.h"
 #import "Settings.h"
+#import "YOSStyle.h"
 #import "YOSLog.h"
 
 @interface YOSAppDelegate ()
@@ -33,7 +34,9 @@
     
     [[YOSServices alloc] init];
     
-   // [self customApp];
+    [[YOSStyle alloc] init];
+    
+   
 
     [[YOSLog alloc] showData];
     

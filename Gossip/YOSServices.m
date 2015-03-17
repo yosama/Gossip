@@ -27,7 +27,7 @@
         YOSPhotoContainer  *photoGit = [YOSPhotoContainer  insertInManagedObjectContext:STACK.context];
         photoGit.image = [UIImage imageNamed:@"octocat.png"];
         [YOSService serviceWithName:@"GitHub"
-                             detail:@"the nerd's facebook"
+                             detail:@"The nerd's Facebook"
                               photo: photoGit
                             context:STACK.context];
         
@@ -49,7 +49,7 @@
         YOSPhotoContainer  *photoMendeley = [YOSPhotoContainer  insertInManagedObjectContext:STACK.context];
         photoMendeley.image = [UIImage imageNamed:@"mendeley.png"];
         [YOSService serviceWithName:@"Mendeley"
-                             detail:@"Social Reference manager"
+                             detail:@"Social reference manager"
                               photo: photoMendeley
                             context:STACK.context];
         
@@ -65,7 +65,7 @@
         YOSPhotoContainer  *photoEvernote = [YOSPhotoContainer  insertInManagedObjectContext:STACK.context];
         photoEvernote.image = [UIImage imageNamed:@"evernote_logo_center_4c-sm.png"];
         [YOSService serviceWithName:@"Evernote"
-                             detail:@""
+                             detail:@"Your notes"
                               photo: photoEvernote
                             context:STACK.context];
         
