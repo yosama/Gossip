@@ -37,9 +37,9 @@
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
                                                                   action:@selector(backServices)];
-    
-    
     self.navigationItem.leftBarButtonItem = btnBarItem;
+    
+    [self registerNibs];
 }
 
 
@@ -61,7 +61,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     
 }
@@ -73,7 +74,7 @@
 {
     self.events = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [self registerNibs];
+    
     
     YOSEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSEventTableViewCell cellId] ];
     
@@ -113,9 +114,9 @@
     cell.imvPhotoService.image = self.events.service.photo.image;
     cell.imvPhotoUser.image = self.events.user.photo.image;
     
+    
     return cell;
 }
-
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,10 +125,10 @@
     
     NSNotification *notify = [NSNotification notificationWithName:NEW_EVENT_SELECTED_NOTIFICATION
                                                            object:self
-                                                         userInfo:@{KEY_URL:self.events.url}];
+                                                         userInfo:@{KEY_EVENT_CHANGE :self.events}];
     [NSNotificationCenter.defaultCenter postNotification:notify];
     
-    YOSWebViewController *webVC = [[YOSWebViewController alloc]initWithURL:self.events.url];
+    YOSWebViewController *webVC = [[YOSWebViewController alloc]initWithEvent:self.events];
     
     [self.navigationController pushViewController:webVC
                                          animated:YES];

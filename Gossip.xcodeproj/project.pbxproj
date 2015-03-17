@@ -14,6 +14,8 @@
 		DB4E430A1AA4CC8B00FEB8EA /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43061AA4CC8B00FEB8EA /* UIImage+Resize.m */; };
 		DB4E430B1AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E43081AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m */; };
 		DB4E430F1AA4D02B00FEB8EA /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4E430E1AA4D02B00FEB8EA /* UIViewController+Navigation.m */; };
+		DB69644F1AAA5A200047FFA5 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DB69644E1AAA5A200047FFA5 /* logo.png */; };
+		DB6964511AAA5EF30047FFA5 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6964501AAA5EF30047FFA5 /* OpenSans-Regular.ttf */; };
 		DB6B60E81A9D40A0000B3229 /* YOSAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6B60E61A9D40A0000B3229 /* YOSAuthViewController.m */; };
 		DB6B60E91A9D40A0000B3229 /* YOSAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB6B60E71A9D40A0000B3229 /* YOSAuthViewController.xib */; };
 		DB98CFE21A9E831000ECC6AA /* YOSJSONObjectGitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = DB98CFE11A9E831000ECC6AA /* YOSJSONObjectGitHub.m */; };
@@ -30,6 +32,9 @@
 		DBC4E6EE1A9BDA300044F22A /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6ED1A9BDA300044F22A /* octocat.png */; };
 		DBC4E6F01A9BDA600044F22A /* dropbox.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6EF1A9BDA600044F22A /* dropbox.png */; };
 		DBC4E6F21A9BDA7D0044F22A /* googleDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC4E6F11A9BDA7D0044F22A /* googleDrive.png */; };
+		DBD7E9B31AB32F60006BFF2A /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBD7E9AF1AB32F60006BFF2A /* OpenSans-Bold.ttf */; };
+		DBD7E9B51AB32F60006BFF2A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBD7E9B11AB32F60006BFF2A /* OpenSans-Light.ttf */; };
+		DBD7E9B91AB35FD7006BFF2A /* YOSStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD7E9B81AB35FD7006BFF2A /* YOSStyle.m */; };
 		DBD940B71A9367F300CBD51F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940B61A9367F300CBD51F /* main.m */; };
 		DBD940BA1A9367F300CBD51F /* YOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD940B91A9367F300CBD51F /* YOSAppDelegate.m */; };
 		DBD940BC1A9367F300CBD51F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBD940BB1A9367F300CBD51F /* Images.xcassets */; };
@@ -74,6 +79,8 @@
 		DB4E43081AA4CC8B00FEB8EA /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		DB4E430D1AA4D02B00FEB8EA /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
 		DB4E430E1AA4D02B00FEB8EA /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
+		DB69644E1AAA5A200047FFA5 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		DB6964501AAA5EF30047FFA5 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		DB6B60E51A9D40A0000B3229 /* YOSAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSAuthViewController.h; sourceTree = "<group>"; };
 		DB6B60E61A9D40A0000B3229 /* YOSAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSAuthViewController.m; sourceTree = "<group>"; };
 		DB6B60E71A9D40A0000B3229 /* YOSAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YOSAuthViewController.xib; sourceTree = "<group>"; };
@@ -100,6 +107,10 @@
 		DBC4E6ED1A9BDA300044F22A /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
 		DBC4E6EF1A9BDA600044F22A /* dropbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropbox.png; sourceTree = "<group>"; };
 		DBC4E6F11A9BDA7D0044F22A /* googleDrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = googleDrive.png; sourceTree = "<group>"; };
+		DBD7E9AF1AB32F60006BFF2A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		DBD7E9B11AB32F60006BFF2A /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		DBD7E9B71AB35FD7006BFF2A /* YOSStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSStyle.h; sourceTree = "<group>"; };
+		DBD7E9B81AB35FD7006BFF2A /* YOSStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSStyle.m; sourceTree = "<group>"; };
 		DBD940B11A9367F300CBD51F /* Gossip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gossip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBD940B51A9367F300CBD51F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBD940B61A9367F300CBD51F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -189,6 +200,8 @@
 				DBDEB7741AA6A2C6009F60D2 /* YOSWebViewController.h */,
 				DBDEB7751AA6A2C6009F60D2 /* YOSWebViewController.m */,
 				DBDEB7761AA6A2C6009F60D2 /* YOSWebViewController.xib */,
+				DBD7E9B71AB35FD7006BFF2A /* YOSStyle.h */,
+				DBD7E9B81AB35FD7006BFF2A /* YOSStyle.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -257,6 +270,10 @@
 		DBD4F5F71A9C8E4400C94591 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DBD7E9AF1AB32F60006BFF2A /* OpenSans-Bold.ttf */,
+				DBD7E9B11AB32F60006BFF2A /* OpenSans-Light.ttf */,
+				DB6964501AAA5EF30047FFA5 /* OpenSans-Regular.ttf */,
+				DB69644E1AAA5A200047FFA5 /* logo.png */,
 				DBC4E6F11A9BDA7D0044F22A /* googleDrive.png */,
 				DBC4E6EF1A9BDA600044F22A /* dropbox.png */,
 				DBC4E6ED1A9BDA300044F22A /* octocat.png */,
@@ -416,6 +433,7 @@
 		DBD940A91A9367F200CBD51F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = YOS;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = YOS;
 				TargetAttributes = {
@@ -453,6 +471,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBD940BF1A9367F300CBD51F /* LaunchScreen.xib in Resources */,
+				DB6964511AAA5EF30047FFA5 /* OpenSans-Regular.ttf in Resources */,
+				DBD7E9B51AB32F60006BFF2A /* OpenSans-Light.ttf in Resources */,
+				DBD7E9B31AB32F60006BFF2A /* OpenSans-Bold.ttf in Resources */,
 				DBD940BC1A9367F300CBD51F /* Images.xcassets in Resources */,
 				DBC4E6E11A9B8E200044F22A /* YOSEventTableViewCell.xib in Resources */,
 				DBC4E6EA1A9BB3450044F22A /* YOSServiceTableViewCell.xib in Resources */,
@@ -460,6 +481,7 @@
 				DBC4E6EE1A9BDA300044F22A /* octocat.png in Resources */,
 				DBC4E6F21A9BDA7D0044F22A /* googleDrive.png in Resources */,
 				DB6B60E91A9D40A0000B3229 /* YOSAuthViewController.xib in Resources */,
+				DB69644F1AAA5A200047FFA5 /* logo.png in Resources */,
 				DBDEB7781AA6A2C6009F60D2 /* YOSWebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +549,7 @@
 				DBDEB7771AA6A2C6009F60D2 /* YOSWebViewController.m in Sources */,
 				DBD940F51A9374AF00CBD51F /* Model.xcdatamodeld in Sources */,
 				DB05420E1A9B4CB70087F90F /* AGTCoreDataTableViewController.m in Sources */,
+				DBD7E9B91AB35FD7006BFF2A /* YOSStyle.m in Sources */,
 				DB4E43091AA4CC8B00FEB8EA /* UIImage+Alpha.m in Sources */,
 				DBC4E6E51A9BA8D50044F22A /* YOSEventsTableViewController.m in Sources */,
 				DBC4E6E91A9BB3450044F22A /* YOSServiceTableViewCell.m in Sources */,
@@ -654,10 +677,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Gossip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -667,10 +691,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Gossip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				New_Setting = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

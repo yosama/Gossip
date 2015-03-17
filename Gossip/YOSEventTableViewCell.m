@@ -26,15 +26,12 @@
     return [self description];
 }
 
-- (void)awakeFromNib
+-(void) viewWillAppear:(BOOL)animated
 {
-    // Initialization code
+    self.imvPhotoUser.layer.cornerRadius = self.imvPhotoUser.frame.size.width/2;
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
 
-}
 
 @end

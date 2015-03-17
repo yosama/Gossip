@@ -32,6 +32,8 @@
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
     [[YOSServices alloc] init];
+    
+    [self customApp];
 
     [[YOSLog alloc] showData];
     
@@ -141,6 +143,7 @@
     
     return result;
 }
+
 
 
 

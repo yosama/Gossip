@@ -41,13 +41,18 @@
 }
 
 -(void) autosaving {
+
+    if (AUTO_SAVE){
+        NSLog(@"Saving");
+        [self save];
+        
+        [self performSelector:@selector(autosaving)
+                   withObject:nil
+                   afterDelay:AUTO_SAVE_DELAY];
+    }
     
-    NSLog(@"Saving");
-    [self save];
     
-    [self performSelector:@selector(autosaving)
-               withObject:nil
-               afterDelay:AUTO_SAVE_DELAY];
+  
     
 }
 

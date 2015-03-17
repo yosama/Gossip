@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YOSEvent.h"
 
 @interface YOSWebViewController : UIViewController<UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *aivActivityIndicator;
 
 @property (weak, nonatomic) IBOutlet UIWebView *wvBrowser;
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) YOSEvent *event;
 
--(id) initWithURL:(NSString *) anUrl;
+-(id) initWithEvent:(YOSEvent *) anEvent;
 
 @end

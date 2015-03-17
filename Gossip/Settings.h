@@ -31,7 +31,7 @@
 
 
 #define NEW_EVENT_SELECTED_NOTIFICATION @"newEventSelected"
-#define KEY_URL @"newEvent"
+#define KEY_EVENT_CHANGE @"newEvent"
 
 #define AUTO_SAVE YES
 #define AUTO_SAVE_DELAY 5

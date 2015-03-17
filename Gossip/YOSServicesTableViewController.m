@@ -14,6 +14,8 @@
 #import "YOSPhotoContainer.h"
 #import "YOSAuthViewController.h"
 #import "YOSGoogleOAuth.h"
+#import "YOSEventsTableViewController.h"
+#import "Settings.h"
 
 @interface YOSServicesTableViewController ()
 
@@ -41,7 +43,11 @@
     [super viewDidLoad];
     
     self.title = @"Services";
-
+    //Register cell
+    [self registerNibs];
+    
+   
+    
 }
 
 
@@ -54,6 +60,17 @@
     
     self.countUsers = [[YOSCredential alloc] countCredentials];
     self.countEvents = [[YOSEvent alloc] countEvents];
+
+    if (self.countUsers > 0 ) {
+        
+        UIBarButtonItem *btnBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Tracks"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(goTracks)];
+        self.navigationItem.rightBarButtonItem = btnBarItem;
+        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,15 +93,14 @@
 {
     // Capture the services
     YOSService *service = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    //Register cell
-    [self registerNibs];
+   
     // create cell
     YOSServiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[YOSServiceTableViewCell cellId]];
     
     NSString *cellDescription;
     // configurate cell
     
-    if (self.countUsers == 1 ) {
+    if (self.countUsers > 0 || self.countUsers == 1 ) {
         cellDescription = [NSString stringWithFormat:@" User:%lu  Events:%lu",(unsigned long)self.countUsers,(unsigned long)self.countEvents];
     } else if (self.countUsers > 1 ) {
         cellDescription = [NSString stringWithFormat:@" Users:%lu Events: %lu",(unsigned long)self.countUsers,(unsigned long)self.countEvents];
@@ -125,6 +141,17 @@
     
 }
 
+-(void) goTracks
+{
+    
+    
+    
+    [self.navigationController pushViewController:[[YOSEventsTableViewController alloc] initWithFetchedResultsController:[YOSEvent eventWithMOC:STACK.context]
+                                                                                                                   style:UITableViewStylePlain]
+                                         animated:YES];
+    
+}
+
 
 #pragma mark - TableViewDelegate
 
@@ -140,12 +167,15 @@
 
 
 
-#pragma mark - ServicesTableViewDelegate 
+#pragma mark - ServicesTableViewDelegate
 
 -(void) authViewController: (YOSServicesTableViewController *) sender fetchResultController: (NSFetchedResultsController *) aFrc
 {
     
 }
+
+
+
 
 
 
