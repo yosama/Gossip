@@ -15,7 +15,7 @@
 #import "YOSPhotoContainer.h"
 #import "YOSAuthViewController.h"
 #import "UIViewController+Navigation.h"
-#import "YOSServices.h"
+#import "YOSServicesManager.h"
 #import "Settings.h"
 #import "YOSStyle.h"
 #import "YOSLog.h"
@@ -32,7 +32,7 @@
    
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
-    [[YOSServices alloc] init];
+    [[YOSServicesManager alloc] init];
     
     [[YOSStyle alloc] init];
     
@@ -146,7 +146,7 @@
     }
     
     return result;
-}
+}   
 
 
 

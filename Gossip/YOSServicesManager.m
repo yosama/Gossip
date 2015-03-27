@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 YOS. All rights reserved.
 //
 
-#import "YOSServices.h"
+#import "YOSServicesManager.h"
 #import "YOSService.h"
 #import "YOSPhotoContainer.h"
 #import "YOSAppDelegate.h"
 #import "Settings.h"
 
 
-@implementation YOSServices
+@implementation YOSServicesManager
 
 
 

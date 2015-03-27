@@ -53,7 +53,7 @@
 		DBDEB7781AA6A2C6009F60D2 /* YOSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBDEB7761AA6A2C6009F60D2 /* YOSWebViewController.xib */; };
 		DBE038AA1AA8849D00A80C10 /* YOSGoogleOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038A91AA8849D00A80C10 /* YOSGoogleOAuth.m */; };
 		DBE038BA1AA910F700A80C10 /* YOSLog.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038B91AA910F700A80C10 /* YOSLog.m */; };
-		DBE038BE1AA9588000A80C10 /* YOSServices.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038BD1AA9588000A80C10 /* YOSServices.m */; };
+		DBE038BE1AA9588000A80C10 /* YOSServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE038BD1AA9588000A80C10 /* YOSServicesManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,8 +147,8 @@
 		DBE038B81AA910F700A80C10 /* YOSLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSLog.h; sourceTree = "<group>"; };
 		DBE038B91AA910F700A80C10 /* YOSLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSLog.m; sourceTree = "<group>"; };
 		DBE038BB1AA9556D00A80C10 /* Gossip-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Gossip-Prefix.pch"; sourceTree = "<group>"; };
-		DBE038BC1AA9588000A80C10 /* YOSServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSServices.h; path = Gossip/YOSServices.h; sourceTree = "<group>"; };
-		DBE038BD1AA9588000A80C10 /* YOSServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSServices.m; path = Gossip/YOSServices.m; sourceTree = "<group>"; };
+		DBE038BC1AA9588000A80C10 /* YOSServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YOSServicesManager.h; path = Gossip/YOSServicesManager.h; sourceTree = "<group>"; };
+		DBE038BD1AA9588000A80C10 /* YOSServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YOSServicesManager.m; path = Gossip/YOSServicesManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,8 +360,8 @@
 		DBD940D71A93682A00CBD51F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DBE038BC1AA9588000A80C10 /* YOSServices.h */,
-				DBE038BD1AA9588000A80C10 /* YOSServices.m */,
+				DBE038BC1AA9588000A80C10 /* YOSServicesManager.h */,
+				DBE038BD1AA9588000A80C10 /* YOSServicesManager.m */,
 				DBC4E6D51A9B860A0044F22A /* CoreData */,
 				DBD9412D1A93785A00CBD51F /* Machine */,
 				DB4B4FD31A95455000605487 /* Human */,
@@ -569,7 +569,7 @@
 				DBD9412A1A93785000CBD51F /* YOSPhotoContainer.m in Sources */,
 				DB6B60E81A9D40A0000B3229 /* YOSAuthViewController.m in Sources */,
 				DB9B3A951A960BDB003B3EE2 /* _YOSEvent.m in Sources */,
-				DBE038BE1AA9588000A80C10 /* YOSServices.m in Sources */,
+				DBE038BE1AA9588000A80C10 /* YOSServicesManager.m in Sources */,
 				DBD941281A93785000CBD51F /* _YOSService.m in Sources */,
 				DB4E430A1AA4CC8B00FEB8EA /* UIImage+Resize.m in Sources */,
 				DB05420B1A9B426F0087F90F /* AGTCoreDataStack.m in Sources */,
