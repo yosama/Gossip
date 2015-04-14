@@ -15,14 +15,9 @@
 
 @implementation YOSServicesManager
 
-
-
-
 -(id) init {
     
     if (self = [super init]) {
-        
-        
         
         YOSPhotoContainer  *photoGit = [YOSPhotoContainer  insertInManagedObjectContext:STACK.context];
         photoGit.image = [UIImage imageNamed:@"octocat.png"];

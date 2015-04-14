@@ -81,12 +81,10 @@
 
 #pragma mark - Configuration
 
--(void) configureForIPadAtService: (YOSServicesTableViewController *) aServiceTVC
-{
+-(void) configureForIPadAtService: (YOSServicesTableViewController *) aServiceTVC {
     UISplitViewController* splitVC = [[UISplitViewController alloc] init];
     YOSEventsTableViewController *eventTVC;
-    
-    
+        
     [aServiceTVC wrapperNavigation];
     
     if ( [self checkExistsuser] == YES ) {
@@ -104,13 +102,9 @@
         
     }
     
-    // Assign delegate
     splitVC.delegate = eventTVC;
     aServiceTVC.delegate = eventTVC;
-    
     self.window.rootViewController = splitVC;
-    
-    
 }
 
 
